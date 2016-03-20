@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		B06E92541C9D8F4B003D1796 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E92531C9D8F4B003D1796 /* CoreDataStack.swift */; };
 		B06E92561C9D8FD4003D1796 /* FetchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E92551C9D8FD4003D1796 /* FetchResult.swift */; };
+		B0C988F71C9E9F3700812CBD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988F61C9E9F3700812CBD /* Transaction.swift */; };
+		B0C988F81C9E9F3700812CBD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988F61C9E9F3700812CBD /* Transaction.swift */; };
+		B0C988FA1C9EA1A600812CBD /* TransactionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988F91C9EA1A600812CBD /* TransactionCategory.swift */; };
+		B0C988FB1C9EA1A600812CBD /* TransactionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988F91C9EA1A600812CBD /* TransactionCategory.swift */; };
+		B0C988FD1C9EA2C400812CBD /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988FC1C9EA2C400812CBD /* TransactionType.swift */; };
+		B0C988FE1C9EA2C400812CBD /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988FC1C9EA2C400812CBD /* TransactionType.swift */; };
 		B0D0038D1C9D48D90064690E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0038C1C9D48D90064690E /* AppDelegate.swift */; };
 		B0D0038F1C9D48D90064690E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0038E1C9D48D90064690E /* FirstViewController.swift */; };
 		B0D003911C9D48D90064690E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D003901C9D48D90064690E /* SecondViewController.swift */; };
@@ -31,6 +37,9 @@
 /* Begin PBXFileReference section */
 		B06E92531C9D8F4B003D1796 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B06E92551C9D8FD4003D1796 /* FetchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchResult.swift; sourceTree = "<group>"; };
+		B0C988F61C9E9F3700812CBD /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		B0C988F91C9EA1A600812CBD /* TransactionCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionCategory.swift; sourceTree = "<group>"; };
+		B0C988FC1C9EA2C400812CBD /* TransactionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
 		B0D003891C9D48D90064690E /* Simple Accounts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Accounts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D0038C1C9D48D90064690E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0D0038E1C9D48D90064690E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +75,9 @@
 			isa = PBXGroup;
 			children = (
 				B06E92511C9D8EAC003D1796 /* Database */,
+				B0C988F61C9E9F3700812CBD /* Transaction.swift */,
+				B0C988F91C9EA1A600812CBD /* TransactionCategory.swift */,
+				B0C988FC1C9EA2C400812CBD /* TransactionType.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -240,8 +252,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0C988FD1C9EA2C400812CBD /* TransactionType.swift in Sources */,
 				B0D003911C9D48D90064690E /* SecondViewController.swift in Sources */,
+				B0C988FA1C9EA1A600812CBD /* TransactionCategory.swift in Sources */,
 				B06E92561C9D8FD4003D1796 /* FetchResult.swift in Sources */,
+				B0C988F71C9E9F3700812CBD /* Transaction.swift in Sources */,
 				B0D0038D1C9D48D90064690E /* AppDelegate.swift in Sources */,
 				B0D0038F1C9D48D90064690E /* FirstViewController.swift in Sources */,
 				B06E92541C9D8F4B003D1796 /* CoreDataStack.swift in Sources */,
@@ -252,7 +267,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0C988FE1C9EA2C400812CBD /* TransactionType.swift in Sources */,
+				B0C988F81C9E9F3700812CBD /* Transaction.swift in Sources */,
 				B0D003A41C9D48DA0064690E /* Simple_AccountsTests.swift in Sources */,
+				B0C988FB1C9EA1A600812CBD /* TransactionCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

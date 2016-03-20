@@ -12,17 +12,19 @@ class Period {
     var transactions = [Transaction]()
     
     var income: Money {
-        let amounts = transactions.filter({ $0.type == .Income }).map({ $0.amount })
-        return amounts.reduce(Money.zero(), combine: + )
+        return Period.sumMoney(transactions.filter({ $0.type == .Income }).map({ $0.amount }))
     }
     
     var expenses: Money {
-        let amounts = transactions.filter({ $0.type == .Expense }).map({ $0.amount })
-        return amounts.reduce(Money.zero(), combine: + )
+        return Period.sumMoney(transactions.filter({ $0.type == .Expense }).map({ $0.amount }))
     }
     
     var aggregate: Money {
         return income - expenses
+    }
+    
+    private static func sumMoney(money: [Money]) -> Money {
+        return money.reduce(Money.zero(), combine: +)
     }
 }
 
@@ -33,3 +35,5 @@ func +(left: Money, right: Money) -> Money {
 func -(left: Money, right: Money) -> Money {
     return left.decimalNumberBySubtracting(right)
 }
+
+

@@ -50,7 +50,7 @@ class CoreDataStack {
         return saveError
     }
     
-    func getManagedEntity<T: NSManagedObject>(entity: T.Type, matchingPredicate predicate: NSPredicate, usingConversionFunction function: (T) -> ()) -> T {
+    func getManagedEntity<T: NSManagedObject>(entity: T.Type, matchingPredicate predicate: NSPredicate, withStateSettingFunction function: (T) -> ()) -> T {
         if let managedEntity = getSingleEntity(entity, matchingPredicate: predicate) {
             return managedEntity
         } else {

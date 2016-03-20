@@ -20,7 +20,7 @@ class PeriodTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        let defaultCategory = TransactionCategory(name: "default", iconIndex: 0)
+        let defaultCategory = TransactionCategory(name: "default", icon: 0)
         let incomeAmounts = [NSDecimalNumber(integer: 55), NSDecimalNumber(integer: 37)]
         let expenseAmounts = [NSDecimalNumber(integer: 44)]
         incomeTotal = incomeAmounts.reduce(Money.zero(), combine: +)

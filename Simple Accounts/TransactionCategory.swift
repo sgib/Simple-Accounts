@@ -10,11 +10,13 @@ import Foundation
 
 
 class TransactionCategory {
-    var name: String
-    var iconIndex: Int
+    typealias IconIndex = Int
     
-    init(name: String, iconIndex: Int) {
+    var name: String
+    var icon: IconIndex
+    
+    init(name: String, icon: IconIndex) {
         self.name = name
-        self.iconIndex = iconIndex
+        self.icon = icon
     }
 }

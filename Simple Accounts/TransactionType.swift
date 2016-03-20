@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TransactionType {
-    case Expense
-    case Income
+enum TransactionType: Int {
+    case Expense = -1
+    case Income = 1
 }

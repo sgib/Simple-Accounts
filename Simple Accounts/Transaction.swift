@@ -8,16 +8,17 @@
 
 import Foundation
 
+typealias Money = NSDecimalNumber
 
 class Transaction {
     
-    var amount: NSDecimalNumber
+    var amount: Money
     var category: TransactionCategory
     var date: NSDate
     var description: String?
     var type: TransactionType
     
-    init(amount: NSDecimalNumber, category: TransactionCategory, date: NSDate, type: TransactionType, description: String?) {
+    init(amount: Money, category: TransactionCategory, date: NSDate, type: TransactionType, description: String?) {
         self.amount = amount
         self.category = category
         self.date = date
@@ -25,3 +26,6 @@ class Transaction {
         self.type = type
     }
 }
+
+
+

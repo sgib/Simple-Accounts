@@ -20,7 +20,7 @@ class Period {
     }
     
     var aggregate: Money {
-        return income - expenses
+        return Period.sumMoney(transactions.map({ $0.signedAmount }))
     }
     
     private static func sumMoney(money: [Money]) -> Money {

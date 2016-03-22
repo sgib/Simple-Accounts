@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias Money = NSDecimalNumber
-
 class Transaction {
     
     var amount: Money
@@ -19,7 +17,7 @@ class Transaction {
     var type: TransactionType
     
     var signedAmount: Money {
-        return amount.decimalNumberByMultiplyingBy(Money(integer: type.rawValue))
+        return amount * Money(integer: type.rawValue)
     }
     
     init(amount: Money, category: TransactionCategory, date: NSDate, type: TransactionType, description: String?) {

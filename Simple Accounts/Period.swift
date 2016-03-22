@@ -28,12 +28,5 @@ class Period {
     }
 }
 
-func +(left: Money, right: Money) -> Money {
-    return left.decimalNumberByAdding(right)
-}
-
-func -(left: Money, right: Money) -> Money {
-    return left.decimalNumberBySubtracting(right)
-}
 
 

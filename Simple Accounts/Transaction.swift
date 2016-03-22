@@ -18,6 +18,10 @@ class Transaction {
     var description: String?
     var type: TransactionType
     
+    var signedAmount: Money {
+        return amount.decimalNumberByMultiplyingBy(Money(integer: type.rawValue))
+    }
+    
     init(amount: Money, category: TransactionCategory, date: NSDate, type: TransactionType, description: String?) {
         self.amount = amount
         self.category = category

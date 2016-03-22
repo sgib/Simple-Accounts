@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		B06E92541C9D8F4B003D1796 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E92531C9D8F4B003D1796 /* CoreDataStack.swift */; };
 		B06E92561C9D8FD4003D1796 /* FetchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E92551C9D8FD4003D1796 /* FetchResult.swift */; };
+		B0B32AEC1CA132620086A17A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AEB1CA132620086A17A /* Account.swift */; };
+		B0B32AED1CA132620086A17A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AEB1CA132620086A17A /* Account.swift */; };
+		B0B32AF01CA135950086A17A /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AEE1CA135950086A17A /* AccountTests.swift */; };
+		B0B32AF21CA138120086A17A /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AF11CA138120086A17A /* TransactionTests.swift */; };
 		B0C988F71C9E9F3700812CBD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988F61C9E9F3700812CBD /* Transaction.swift */; };
 		B0C988F81C9E9F3700812CBD /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988F61C9E9F3700812CBD /* Transaction.swift */; };
 		B0C988FA1C9EA1A600812CBD /* TransactionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988F91C9EA1A600812CBD /* TransactionCategory.swift */; };
@@ -39,6 +43,9 @@
 /* Begin PBXFileReference section */
 		B06E92531C9D8F4B003D1796 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B06E92551C9D8FD4003D1796 /* FetchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchResult.swift; sourceTree = "<group>"; };
+		B0B32AEB1CA132620086A17A /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		B0B32AEE1CA135950086A17A /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
+		B0B32AF11CA138120086A17A /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
 		B0C988F61C9E9F3700812CBD /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		B0C988F91C9EA1A600812CBD /* TransactionCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionCategory.swift; sourceTree = "<group>"; };
 		B0C988FC1C9EA2C400812CBD /* TransactionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
@@ -79,6 +86,7 @@
 			children = (
 				B06E92511C9D8EAC003D1796 /* Database */,
 				B0C988FF1C9EB73A00812CBD /* Period.swift */,
+				B0B32AEB1CA132620086A17A /* Account.swift */,
 				B0C988F61C9E9F3700812CBD /* Transaction.swift */,
 				B0C988F91C9EA1A600812CBD /* TransactionCategory.swift */,
 				B0C988FC1C9EA2C400812CBD /* TransactionType.swift */,
@@ -148,6 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				B0D003A31C9D48DA0064690E /* PeriodTests.swift */,
+				B0B32AEE1CA135950086A17A /* AccountTests.swift */,
+				B0B32AF11CA138120086A17A /* TransactionTests.swift */,
 				B0D003A51C9D48DA0064690E /* Info.plist */,
 			);
 			path = "Simple AccountsTests";
@@ -261,6 +271,7 @@
 				B0C988FA1C9EA1A600812CBD /* TransactionCategory.swift in Sources */,
 				B06E92561C9D8FD4003D1796 /* FetchResult.swift in Sources */,
 				B0C989001C9EB73A00812CBD /* Period.swift in Sources */,
+				B0B32AEC1CA132620086A17A /* Account.swift in Sources */,
 				B0C988F71C9E9F3700812CBD /* Transaction.swift in Sources */,
 				B0D0038D1C9D48D90064690E /* AppDelegate.swift in Sources */,
 				B0D0038F1C9D48D90064690E /* FirstViewController.swift in Sources */,
@@ -274,9 +285,12 @@
 			files = (
 				B0C989011C9EB73A00812CBD /* Period.swift in Sources */,
 				B0C988FE1C9EA2C400812CBD /* TransactionType.swift in Sources */,
+				B0B32AF21CA138120086A17A /* TransactionTests.swift in Sources */,
 				B0C988F81C9E9F3700812CBD /* Transaction.swift in Sources */,
 				B0D003A41C9D48DA0064690E /* PeriodTests.swift in Sources */,
+				B0B32AF01CA135950086A17A /* AccountTests.swift in Sources */,
 				B0C988FB1C9EA1A600812CBD /* TransactionCategory.swift in Sources */,
+				B0B32AED1CA132620086A17A /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

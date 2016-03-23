@@ -9,9 +9,9 @@
 import XCTest
 @testable import Simple_Accounts
 
-class PeriodTests: XCTestCase {
+class TransactionCollectionTests: XCTestCase {
     
-    private var period = Period()
+    private var transCollection: TransactionCollection!
     private var incomeTotal = Money.zero()
     private var expenseTotal = Money.zero()
     private var aggregateTotal = Money.zero()
@@ -30,7 +30,7 @@ class PeriodTests: XCTestCase {
         let trans2 = Transaction(amount: expenseAmounts[0], category: defaultCategory, date: NSDate(), type: .Expense, description: nil)
         let trans3 = Transaction(amount: incomeAmounts[1], category: defaultCategory, date: NSDate(), type: .Income, description: nil)
 
-        period.transactions = [trans1, trans2, trans3]
+        transCollection = [trans1, trans2, trans3]
     }
     
     override func tearDown() {
@@ -38,16 +38,16 @@ class PeriodTests: XCTestCase {
         super.tearDown()
     }
     
-    func testPeriodTotalIncome() {
-        XCTAssertTrue(period.income == incomeTotal)
+    func testCollectionSumIncome() {
+        XCTAssertTrue(transCollection.sumIncome == incomeTotal)
     }
     
-    func testPeriodTotalExpenses() {
-        XCTAssertTrue(period.expenses == expenseTotal)
+    func testCollectionSumExpenses() {
+        XCTAssertTrue(transCollection.sumExpenses == expenseTotal)
     }
     
-    func testPeriodAggregateTotal() {
-        XCTAssertTrue(period.aggregate == aggregateTotal)
+    func testCollectionSumAggregate() {
+        XCTAssertTrue(transCollection.sumAggregate == aggregateTotal)
     }
     
     

@@ -23,15 +23,13 @@
 		B0C988FB1C9EA1A600812CBD /* TransactionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988F91C9EA1A600812CBD /* TransactionCategory.swift */; };
 		B0C988FD1C9EA2C400812CBD /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988FC1C9EA2C400812CBD /* TransactionType.swift */; };
 		B0C988FE1C9EA2C400812CBD /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988FC1C9EA2C400812CBD /* TransactionType.swift */; };
-		B0C989001C9EB73A00812CBD /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988FF1C9EB73A00812CBD /* Period.swift */; };
-		B0C989011C9EB73A00812CBD /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988FF1C9EB73A00812CBD /* Period.swift */; };
 		B0D0038D1C9D48D90064690E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0038C1C9D48D90064690E /* AppDelegate.swift */; };
 		B0D0038F1C9D48D90064690E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0038E1C9D48D90064690E /* FirstViewController.swift */; };
 		B0D003911C9D48D90064690E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D003901C9D48D90064690E /* SecondViewController.swift */; };
 		B0D003941C9D48D90064690E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D003921C9D48D90064690E /* Main.storyboard */; };
 		B0D003961C9D48D90064690E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0D003951C9D48D90064690E /* Assets.xcassets */; };
 		B0D003991C9D48D90064690E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D003971C9D48D90064690E /* LaunchScreen.storyboard */; };
-		B0D003A41C9D48DA0064690E /* PeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D003A31C9D48DA0064690E /* PeriodTests.swift */; };
+		B0D003A41C9D48DA0064690E /* TransactionCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D003A31C9D48DA0064690E /* TransactionCollectionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +53,6 @@
 		B0C988F61C9E9F3700812CBD /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		B0C988F91C9EA1A600812CBD /* TransactionCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionCategory.swift; sourceTree = "<group>"; };
 		B0C988FC1C9EA2C400812CBD /* TransactionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
-		B0C988FF1C9EB73A00812CBD /* Period.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		B0D003891C9D48D90064690E /* Simple Accounts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Accounts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D0038C1C9D48D90064690E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0D0038E1C9D48D90064690E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -65,7 +62,7 @@
 		B0D003981C9D48D90064690E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0D0039A1C9D48D90064690E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0D0039F1C9D48DA0064690E /* Simple AccountsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Simple AccountsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0D003A31C9D48DA0064690E /* PeriodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodTests.swift; sourceTree = "<group>"; };
+		B0D003A31C9D48DA0064690E /* TransactionCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollectionTests.swift; sourceTree = "<group>"; };
 		B0D003A51C9D48DA0064690E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,12 +88,11 @@
 			isa = PBXGroup;
 			children = (
 				B06E92511C9D8EAC003D1796 /* Database */,
-				B0C988FF1C9EB73A00812CBD /* Period.swift */,
 				B0B32AEB1CA132620086A17A /* Account.swift */,
 				B0B32AF51CA13DEE0086A17A /* Money.swift */,
 				B0C988F61C9E9F3700812CBD /* Transaction.swift */,
-				B06CF6511CA3001200700899 /* TransactionCollection.swift */,
 				B0C988F91C9EA1A600812CBD /* TransactionCategory.swift */,
+				B06CF6511CA3001200700899 /* TransactionCollection.swift */,
 				B0C988FC1C9EA2C400812CBD /* TransactionType.swift */,
 			);
 			name = Model;
@@ -163,7 +159,7 @@
 		B0D003A21C9D48DA0064690E /* Simple AccountsTests */ = {
 			isa = PBXGroup;
 			children = (
-				B0D003A31C9D48DA0064690E /* PeriodTests.swift */,
+				B0D003A31C9D48DA0064690E /* TransactionCollectionTests.swift */,
 				B0B32AEE1CA135950086A17A /* AccountTests.swift */,
 				B0B32AF11CA138120086A17A /* TransactionTests.swift */,
 				B0D003A51C9D48DA0064690E /* Info.plist */,
@@ -280,7 +276,6 @@
 				B0D003911C9D48D90064690E /* SecondViewController.swift in Sources */,
 				B0C988FA1C9EA1A600812CBD /* TransactionCategory.swift in Sources */,
 				B06E92561C9D8FD4003D1796 /* FetchResult.swift in Sources */,
-				B0C989001C9EB73A00812CBD /* Period.swift in Sources */,
 				B0B32AEC1CA132620086A17A /* Account.swift in Sources */,
 				B0C988F71C9E9F3700812CBD /* Transaction.swift in Sources */,
 				B0D0038D1C9D48D90064690E /* AppDelegate.swift in Sources */,
@@ -293,13 +288,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0C989011C9EB73A00812CBD /* Period.swift in Sources */,
 				B0C988FE1C9EA2C400812CBD /* TransactionType.swift in Sources */,
 				B06CF6531CA3001200700899 /* TransactionCollection.swift in Sources */,
 				B0B32AF21CA138120086A17A /* TransactionTests.swift in Sources */,
 				B0B32AF71CA13DEE0086A17A /* Money.swift in Sources */,
 				B0C988F81C9E9F3700812CBD /* Transaction.swift in Sources */,
-				B0D003A41C9D48DA0064690E /* PeriodTests.swift in Sources */,
+				B0D003A41C9D48DA0064690E /* TransactionCollectionTests.swift in Sources */,
 				B0B32AF01CA135950086A17A /* AccountTests.swift in Sources */,
 				B0C988FB1C9EA1A600812CBD /* TransactionCategory.swift in Sources */,
 				B0B32AED1CA132620086A17A /* Account.swift in Sources */,

@@ -12,7 +12,7 @@ class Account {
     private var transactions: [Transaction]
     var openingBalance: Money
     var currentBalance: Money {
-        return openingBalance + transactions.map({ $0.signedAmount }).reduce(Money.zero(), combine: +)
+        return openingBalance + transactions.sumAggregate
     }
     
     init(openingBalance: Money, transactions: [Transaction] = [] ) {

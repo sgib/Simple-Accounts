@@ -15,7 +15,7 @@ class Account {
         return openingBalance + transactions.sumAggregate
     }
     
-    init(openingBalance: Money, transactions: [Transaction] = [] ) {
+    init(openingBalance: Money, transactions: TransactionCollection = [] ) {
         self.transactions = transactions
         self.openingBalance = openingBalance
     }
@@ -24,4 +24,11 @@ class Account {
         transactions.append(transaction)
     }
     
+    func transactionsForMonth(monthInDate: TransactionDate) -> TransactionCollection {
+        return transactions.filter({ $0.date.compareWithMonthGranularity(monthInDate).isSame })
+    }
+    
+    func balanceAtStartOfMonth(monthInDate: TransactionDate) -> Money {
+        return openingBalance + transactions.filter({ $0.date.compareWithMonthGranularity(monthInDate).isEarlier }).sumAggregate
+    }
 }

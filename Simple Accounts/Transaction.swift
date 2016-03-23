@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Transaction {
+class Transaction: Equatable {
     
     var amount: Money {
         didSet {
@@ -16,7 +16,7 @@ class Transaction {
         }
     }
     var category: TransactionCategory
-    var date: NSDate
+    var date: TransactionDate
     var description: String?
     var type: TransactionType
     
@@ -24,7 +24,7 @@ class Transaction {
         return amount * Money(integer: type.rawValue)
     }
     
-    init(amount: Money, category: TransactionCategory, date: NSDate, type: TransactionType, description: String?) {
+    init(amount: Money, category: TransactionCategory, date: TransactionDate, type: TransactionType, description: String?) {
         self.amount = amount.moneyRoundedToTwoDecimalPlaces()
         self.category = category
         self.date = date
@@ -33,5 +33,8 @@ class Transaction {
     }
 }
 
+func ==(left: Transaction, right: Transaction) -> Bool {
+    return left === right
+}
 
 

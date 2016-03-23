@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B04793F01CA3193D00C0F582 /* TransactionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04793EF1CA3193D00C0F582 /* TransactionDate.swift */; };
+		B04793F11CA3193D00C0F582 /* TransactionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04793EF1CA3193D00C0F582 /* TransactionDate.swift */; };
 		B06CF6521CA3001200700899 /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06CF6511CA3001200700899 /* TransactionCollection.swift */; };
 		B06CF6531CA3001200700899 /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06CF6511CA3001200700899 /* TransactionCollection.swift */; };
 		B06E92541C9D8F4B003D1796 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E92531C9D8F4B003D1796 /* CoreDataStack.swift */; };
@@ -43,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B04793EF1CA3193D00C0F582 /* TransactionDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDate.swift; sourceTree = "<group>"; };
 		B06CF6511CA3001200700899 /* TransactionCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionCollection.swift; sourceTree = "<group>"; };
 		B06E92531C9D8F4B003D1796 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B06E92551C9D8FD4003D1796 /* FetchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchResult.swift; sourceTree = "<group>"; };
@@ -93,6 +96,7 @@
 				B0C988F61C9E9F3700812CBD /* Transaction.swift */,
 				B0C988F91C9EA1A600812CBD /* TransactionCategory.swift */,
 				B06CF6511CA3001200700899 /* TransactionCollection.swift */,
+				B04793EF1CA3193D00C0F582 /* TransactionDate.swift */,
 				B0C988FC1C9EA2C400812CBD /* TransactionType.swift */,
 			);
 			name = Model;
@@ -159,9 +163,9 @@
 		B0D003A21C9D48DA0064690E /* Simple AccountsTests */ = {
 			isa = PBXGroup;
 			children = (
-				B0D003A31C9D48DA0064690E /* TransactionCollectionTests.swift */,
 				B0B32AEE1CA135950086A17A /* AccountTests.swift */,
 				B0B32AF11CA138120086A17A /* TransactionTests.swift */,
+				B0D003A31C9D48DA0064690E /* TransactionCollectionTests.swift */,
 				B0D003A51C9D48DA0064690E /* Info.plist */,
 			);
 			path = "Simple AccountsTests";
@@ -274,6 +278,7 @@
 				B0C988FD1C9EA2C400812CBD /* TransactionType.swift in Sources */,
 				B0B32AF61CA13DEE0086A17A /* Money.swift in Sources */,
 				B0D003911C9D48D90064690E /* SecondViewController.swift in Sources */,
+				B04793F01CA3193D00C0F582 /* TransactionDate.swift in Sources */,
 				B0C988FA1C9EA1A600812CBD /* TransactionCategory.swift in Sources */,
 				B06E92561C9D8FD4003D1796 /* FetchResult.swift in Sources */,
 				B0B32AEC1CA132620086A17A /* Account.swift in Sources */,
@@ -292,6 +297,7 @@
 				B06CF6531CA3001200700899 /* TransactionCollection.swift in Sources */,
 				B0B32AF21CA138120086A17A /* TransactionTests.swift in Sources */,
 				B0B32AF71CA13DEE0086A17A /* Money.swift in Sources */,
+				B04793F11CA3193D00C0F582 /* TransactionDate.swift in Sources */,
 				B0C988F81C9E9F3700812CBD /* Transaction.swift in Sources */,
 				B0D003A41C9D48DA0064690E /* TransactionCollectionTests.swift in Sources */,
 				B0B32AF01CA135950086A17A /* AccountTests.swift in Sources */,

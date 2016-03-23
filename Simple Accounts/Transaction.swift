@@ -10,7 +10,11 @@ import Foundation
 
 class Transaction {
     
-    var amount: Money
+    var amount: Money {
+        didSet {
+            amount = amount.moneyRoundedToTwoDecimalPlaces()
+        }
+    }
     var category: TransactionCategory
     var date: NSDate
     var description: String?
@@ -21,7 +25,7 @@ class Transaction {
     }
     
     init(amount: Money, category: TransactionCategory, date: NSDate, type: TransactionType, description: String?) {
-        self.amount = amount
+        self.amount = amount.moneyRoundedToTwoDecimalPlaces()
         self.category = category
         self.date = date
         self.description = description

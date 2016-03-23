@@ -29,4 +29,17 @@ class TransactionTests: XCTestCase {
         trans.type = .Expense
         XCTAssertEqual(trans.signedAmount, negativeAmount)
     }
+    
+    func testLongAmountCorrectlyRoundedWhenTransactionCreated() {
+        let manydecimalPlacesAmount = Money(double: 123.456789)
+        let trans = Transaction(amount: manydecimalPlacesAmount , category: TransactionCategory(name: "", icon: 0), date: NSDate(), type: .Income, description: nil)
+        XCTAssertEqual(trans.amount, Money(string: "123.46"))
+    }
+    
+    func testLongAmountCorrectlyRoundedWhenAmountChanged() {
+        let manydecimalPlacesAmount = Money(double: 123.456789)
+        let trans = Transaction(amount: Money.zero() , category: TransactionCategory(name: "", icon: 0), date: NSDate(), type: .Income, description: nil)
+        trans.amount = manydecimalPlacesAmount
+        XCTAssertEqual(trans.amount, Money(string: "123.46"))
+    }
 }

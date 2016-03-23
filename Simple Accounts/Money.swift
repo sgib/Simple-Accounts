@@ -21,3 +21,15 @@ func -(left: Money, right: Money) -> Money {
 func *(left: Money, right: Money) -> Money {
     return left.decimalNumberByMultiplyingBy(right)
 }
+
+extension Money {
+    func moneyRoundedToTwoDecimalPlaces() -> Money {
+        let handler = NSDecimalNumberHandler(roundingMode: .RoundPlain,
+                                             scale: 2,
+                                             raiseOnExactness: false,
+                                             raiseOnOverflow: false,
+                                             raiseOnUnderflow: false,
+                                             raiseOnDivideByZero: true)
+        return self.decimalNumberByRoundingAccordingToBehavior(handler)
+    }
+}

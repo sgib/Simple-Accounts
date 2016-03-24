@@ -25,10 +25,10 @@ class Account {
     }
     
     func transactionsForMonth(monthInDate: TransactionDate) -> TransactionCollection {
-        return transactions.filter({ $0.date.compareWithMonthGranularity(monthInDate).isSame })
+        return transactions.filter({ $0.date.compareTo(monthInDate, toNearest: .Month).isSame })
     }
     
     func balanceAtStartOfMonth(monthInDate: TransactionDate) -> Money {
-        return openingBalance + transactions.filter({ $0.date.compareWithMonthGranularity(monthInDate).isEarlier }).sumAggregate
+        return openingBalance + transactions.filter({ $0.date.compareTo(monthInDate, toNearest: .Month).isEarlier }).sumAggregate
     }
 }

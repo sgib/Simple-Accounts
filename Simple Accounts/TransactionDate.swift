@@ -10,34 +10,51 @@ import Foundation
 
 typealias TransactionDate = NSDate
 
-enum DateComparison: Int {
-    case IsEarlier = -1
-    case IsSame = 0
-    case IsLater = 1
+enum DateComparisonResult: Int {
+    case Earlier = -1
+    case Same = 0
+    case Later = 1
     
     var isEarlier: Bool {
-        return self == .IsEarlier
+        return self == .Earlier
     }
     
     var isSame: Bool {
-        return self == .IsSame
+        return self == .Same
     }
     
     var isLater: Bool {
-        return self == .IsLater
+        return self == .Later
     }
+}
+
+enum DateGranularity: UInt {
+    case Week
+    case Month
+    case Year
 }
 
 extension TransactionDate {
     
-    func compareWithMonthGranularity(date: TransactionDate) -> DateComparison {
-        switch NSCalendar.currentCalendar().compareDate(self, toDate: date, toUnitGranularity: .Month) {
+    func compareTo(date: TransactionDate, toNearest: DateGranularity) -> DateComparisonResult {
+        switch NSCalendar.currentCalendar().compareDate(self, toDate: date, toUnitGranularity: convertGranularity(toNearest)) {
         case .OrderedAscending:
-            return .IsEarlier
+            return .Earlier
         case .OrderedSame:
-            return .IsSame
+            return .Same
         case .OrderedDescending:
-            return .IsLater
+            return .Later
+        }
+    }
+    
+    private func convertGranularity(granularity: DateGranularity) -> NSCalendarUnit {
+        switch granularity {
+        case .Week:
+            return .WeekOfYear
+        case .Month:
+            return .Month
+        case .Year:
+            return .Year
         }
     }
 

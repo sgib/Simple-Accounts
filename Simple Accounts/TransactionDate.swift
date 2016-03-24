@@ -28,33 +28,33 @@ enum DateComparisonResult: Int {
     }
 }
 
-enum DateGranularity: UInt {
+enum DateGranularity {
     case Week
     case Month
     case Year
-}
-
-extension TransactionDate {
     
-    func compareTo(date: TransactionDate, toNearest: DateGranularity) -> DateComparisonResult {
-        switch NSCalendar.currentCalendar().compareDate(self, toDate: date, toUnitGranularity: convertGranularity(toNearest)) {
-        case .OrderedAscending:
-            return .Earlier
-        case .OrderedSame:
-            return .Same
-        case .OrderedDescending:
-            return .Later
-        }
-    }
-    
-    private func convertGranularity(granularity: DateGranularity) -> NSCalendarUnit {
-        switch granularity {
+    func convertToCalendarUnit() -> NSCalendarUnit {
+        switch self {
         case .Week:
             return .WeekOfYear
         case .Month:
             return .Month
         case .Year:
             return .Year
+        }
+    }
+}
+
+extension TransactionDate {
+    
+    func compareTo(date: TransactionDate, toNearest: DateGranularity) -> DateComparisonResult {
+        switch NSCalendar.currentCalendar().compareDate(self, toDate: date, toUnitGranularity: toNearest.convertToCalendarUnit()) {
+        case .OrderedAscending:
+            return .Earlier
+        case .OrderedSame:
+            return .Same
+        case .OrderedDescending:
+            return .Later
         }
     }
 

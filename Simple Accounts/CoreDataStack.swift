@@ -15,6 +15,11 @@ class CoreDataStack {
         case DatabaseError
     }
     
+    enum StoreType {
+        case Persistent
+        case InMemory
+    }
+    
     private let managedObjectModelName: String
     private let storeURL: NSURL
     
@@ -29,12 +34,13 @@ class CoreDataStack {
         return coordinator
     }()
     
-    private lazy var mainQueueContext: NSManagedObjectContext = {
-        let moc = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        moc.persistentStoreCoordinator = self.persistentStoreCoordinator
-        return moc
+    private lazy var inMemoryStoreCoordinator: NSPersistentStoreCoordinator = {
+        var coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+        let store = try! coordinator.addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: nil)
+        return coordinator
     }()
     
+    private var mainQueueContext: NSManagedObjectContext
     
     func saveChanges() -> CoreDataError? {
         var saveError: CoreDataError?
@@ -95,10 +101,13 @@ class CoreDataStack {
     }
 
     
-    init(modelName: String) {
+    init(modelName: String, storeType: StoreType) {
         managedObjectModelName = modelName
         let docsDirectory = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
         storeURL = docsDirectory.URLByAppendingPathComponent("\(managedObjectModelName).sqlite")
+        
+        mainQueueContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        mainQueueContext.persistentStoreCoordinator = (storeType == .Persistent) ? self.persistentStoreCoordinator : self.inMemoryStoreCoordinator
     }
 }
 

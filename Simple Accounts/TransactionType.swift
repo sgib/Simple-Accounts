@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc enum TransactionType: Int {
+@objc enum TransactionType: Int16 {
     case Expense = -1
     case Income = 1
 }

@@ -10,6 +10,7 @@ import XCTest
 @testable import Simple_Accounts
 
 class TransactionTests: XCTestCase {
+    private let coreDataHelper = CoreDataTestHelper(accountOpeningBalance: Money.zero())
     
     override func setUp() {
         super.setUp()
@@ -24,22 +25,11 @@ class TransactionTests: XCTestCase {
     func testSignedAmount() {
         let absoluteAmount = Money(integer: 35)
         let negativeAmount = absoluteAmount.decimalNumberByMultiplyingBy(Money(integer: -1))
-        let trans = Transaction(amount: absoluteAmount , category: TransactionCategory(name: "", icon: 0), date: NSDate(), type: .Income, description: nil)
+        let category = coreDataHelper.categoryStore.addCategory(("", 0))
+        let transData = TransactionData(amount: absoluteAmount, category: category, date: NSDate(), type: .Income, description: nil)
+        let trans = coreDataHelper.account.addTransaction(transData)
         XCTAssertEqual(trans.signedAmount, absoluteAmount)
         trans.type = .Expense
         XCTAssertEqual(trans.signedAmount, negativeAmount)
-    }
-    
-    func testLongAmountCorrectlyRoundedWhenTransactionCreated() {
-        let manydecimalPlacesAmount = Money(double: 123.456789)
-        let trans = Transaction(amount: manydecimalPlacesAmount , category: TransactionCategory(name: "", icon: 0), date: NSDate(), type: .Income, description: nil)
-        XCTAssertEqual(trans.amount, Money(string: "123.46"))
-    }
-    
-    func testLongAmountCorrectlyRoundedWhenAmountChanged() {
-        let manydecimalPlacesAmount = Money(double: 123.456789)
-        let trans = Transaction(amount: Money.zero() , category: TransactionCategory(name: "", icon: 0), date: NSDate(), type: .Income, description: nil)
-        trans.amount = manydecimalPlacesAmount
-        XCTAssertEqual(trans.amount, Money(string: "123.46"))
     }
 }

@@ -9,26 +9,48 @@
 import Foundation
 
 class Account {
-    private var transactions: [Transaction]
+    private let dataSource: CoreDataStack
     var openingBalance: Money
     var currentBalance: Money {
-        return openingBalance + transactions.sumAggregate
+        //TODO: add up all transactions 'inside' coredata
+        return openingBalance + allTransactions().sumAggregate
     }
     
-    init(openingBalance: Money, transactions: TransactionCollection = [] ) {
-        self.transactions = transactions
+    init(openingBalance: Money, dataSource: CoreDataStack ) {
+        self.dataSource = dataSource
         self.openingBalance = openingBalance
     }
     
-    func addTransaction(transaction: Transaction) {
-        transactions.append(transaction)
+    func addTransaction(transactionData: TransactionData) -> Transaction {
+        //we always create new transaction rather than matching existing one
+        let falsePredicate = NSPredicate(value: false)
+        let transaction = dataSource.getManagedEntity(Transaction.self, matchingPredicate: falsePredicate, withStateSettingFunction: { newTransaction in
+            newTransaction.amount = transactionData.amount
+            newTransaction.category = transactionData.category
+            newTransaction.date = transactionData.date
+            newTransaction.transactionDescription = transactionData.description
+            newTransaction.type = transactionData.type
+        })
+        return transaction
     }
     
+    
     func transactionsForMonth(monthInDate: TransactionDate) -> TransactionCollection {
-        return transactions.filter({ $0.date.compareTo(monthInDate, toNearest: .Month).isSame })
+        let startDate = monthInDate.dateAtTheStartOfMonth()
+        let endDate = monthInDate.dateAtTheEndOfMonth()
+        let predicate = NSPredicate(format: "date >= %@ && date <= %@", startDate, endDate)
+        return dataSource.fetchEntity(Transaction.self, matchingPredicate: predicate, sortedBy: nil).simpleResult()
+        //return allTransactions().filter({ $0.date.compareTo(monthInDate, toNearest: .Month).isSame })
     }
     
     func balanceAtStartOfMonth(monthInDate: TransactionDate) -> Money {
-        return openingBalance + transactions.filter({ $0.date.compareTo(monthInDate, toNearest: .Month).isEarlier }).sumAggregate
+        let startDate = monthInDate.dateAtTheStartOfMonth()
+        let predicate = NSPredicate(format: "date < %@", startDate)
+        return openingBalance + dataSource.fetchEntity(Transaction.self, matchingPredicate: predicate, sortedBy: nil).simpleResult().sumAggregate
+        //return openingBalance + allTransactions().filter({ $0.date.compareTo(monthInDate, toNearest: .Month).isEarlier }).sumAggregate
+    }
+    
+    private func allTransactions() -> TransactionCollection {
+        return dataSource.fetchEntity(Transaction.self, matchingPredicate: nil, sortedBy: nil).simpleResult()
     }
 }

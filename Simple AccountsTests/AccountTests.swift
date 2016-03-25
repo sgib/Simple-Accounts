@@ -11,15 +11,16 @@ import XCTest
 
 class AccountTests: XCTestCase {
 
+    private var coreDataHelper: CoreDataTestHelper!
     private let calendar = NSCalendar.currentCalendar()
     private let openingAmount = Money(integer: 111)
-    private var account: Account!
+    private var defaultCategory: TransactionCategory!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        account = Account(openingBalance: openingAmount)
+        coreDataHelper = CoreDataTestHelper(accountOpeningBalance: openingAmount)
+        defaultCategory = coreDataHelper.categoryStore.addCategory(("", 0))
     }
     
     override func tearDown() {
@@ -28,55 +29,59 @@ class AccountTests: XCTestCase {
     }
     
     func testAccountCreation() {
-        XCTAssertEqual(account.currentBalance, openingAmount)
+        XCTAssertEqual(coreDataHelper.account.currentBalance, openingAmount)
     }
     
     func testAddIncomeTransactionIncreasesCurrentBalance() {
         let transAmount = Money(integer: 38)
-        let trans = Transaction(amount: transAmount, category: TransactionCategory(name: "", icon: 0), date: NSDate(), type: .Income, description: nil)
-        account.addTransaction(trans)
+        coreDataHelper.account.addTransaction((amount: transAmount, category: defaultCategory, date: NSDate(), type: .Income, description: nil))
         
-        XCTAssertEqual(account.currentBalance, openingAmount + transAmount)
+        XCTAssertEqual(coreDataHelper.account.currentBalance, openingAmount + transAmount)
     }
     
     func testAddExpenseTransactionDecreasesCurrentBalance() {
         let transAmount = Money(integer: 38)
-        let trans = Transaction(amount: transAmount, category: TransactionCategory(name: "", icon: 0), date: NSDate(), type: .Expense, description: nil)
-        account.addTransaction(trans)
+        coreDataHelper.account.addTransaction((amount: transAmount, category: defaultCategory, date: NSDate(), type: .Expense, description: nil))
         
-        XCTAssertEqual(account.currentBalance, openingAmount - transAmount)
+        XCTAssertEqual(coreDataHelper.account.currentBalance, openingAmount - transAmount)
     }
     
     func testGetTransactionsForMonth() {
         let dateComp = NSDateComponents()
         dateComp.month = 2
-        dateComp.year = 2106
-        let trans1 = Transaction(amount: Money.zero(), category: TransactionCategory(name: "", icon: 0),
-                                 date: calendar.dateFromComponents(dateComp)!, type: .Expense, description: nil)
+        dateComp.year = 2016
+        _ = coreDataHelper.account.addTransaction((amount: Money.zero(), category: defaultCategory,
+                                 date: calendar.dateFromComponents(dateComp)!, type: .Expense, description: nil))
         dateComp.month = 3
-        let trans2 = Transaction(amount: Money(integer: 24), category: TransactionCategory(name: "", icon: 0),
-                                 date: calendar.dateFromComponents(dateComp)!, type: .Expense, description: nil)
-        let trans3 = Transaction(amount: Money(integer: 53), category: TransactionCategory(name: "", icon: 0),
-                                 date: calendar.dateFromComponents(dateComp)!, type: .Expense, description: nil)
-        account.addTransaction(trans1)
-        account.addTransaction(trans2)
-        account.addTransaction(trans3)
-        
-        XCTAssertEqual(account.transactionsForMonth(calendar.dateFromComponents(dateComp)!), [trans2, trans3])
+        let trans2 = coreDataHelper.account.addTransaction((amount: Money(integer: 24), category: defaultCategory,
+                                 date: calendar.dateFromComponents(dateComp)!, type: .Expense, description: nil))
+        let trans3 = coreDataHelper.account.addTransaction((amount: Money(integer: 53), category: defaultCategory,
+                                 date: calendar.dateFromComponents(dateComp)!, type: .Expense, description: nil))
+        let date = calendar.dateFromComponents(dateComp)!
+        XCTAssertEqual(coreDataHelper.account.transactionsForMonth(date).count, [trans2, trans3].count)
     }
     
     func testGetOpeningBalanceForMonth() {
         let dateComp = NSDateComponents()
         dateComp.month = 2
-        dateComp.year = 2106
-        let trans1 = Transaction(amount: Money(integer: 49), category: TransactionCategory(name: "", icon: 0),
-                                 date: calendar.dateFromComponents(dateComp)!, type: .Expense, description: nil)
+        dateComp.year = 2016
+        let trans1 = coreDataHelper.account.addTransaction((amount: Money(integer: 49), category: defaultCategory,
+                                 date: calendar.dateFromComponents(dateComp)!, type: .Expense, description: nil))
         dateComp.month = 3
-        let trans2 = Transaction(amount: Money(integer: 24), category: TransactionCategory(name: "", icon: 0),
-                                 date: calendar.dateFromComponents(dateComp)!, type: .Expense, description: nil)
-        account.addTransaction(trans1)
-        account.addTransaction(trans2)
-        
-        XCTAssertEqual(account.balanceAtStartOfMonth(calendar.dateFromComponents(dateComp)!), openingAmount + trans1.signedAmount)
+        _ = coreDataHelper.account.addTransaction((amount: Money(integer: 24), category: defaultCategory,
+                                 date: calendar.dateFromComponents(dateComp)!, type: .Expense, description: nil))
+        let date = calendar.dateFromComponents(dateComp)!
+        XCTAssertEqual(coreDataHelper.account.balanceAtStartOfMonth(date), openingAmount + trans1.signedAmount)
     }
 }
+
+
+
+
+
+
+
+
+
+
+

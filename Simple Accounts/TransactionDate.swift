@@ -57,5 +57,17 @@ extension TransactionDate {
             return .Later
         }
     }
+    
+    func dateAtTheStartOfMonth() -> NSDate {
+        let components = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: self)
+        components.day = 1
+        return NSCalendar.currentCalendar().dateFromComponents(components)!
+    }
+    
+    func dateAtTheEndOfMonth() -> NSDate {
+        let components = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: self)
+        components.day = NSCalendar.currentCalendar().rangeOfUnit(.Day, inUnit: .Month, forDate: self).length
+        return NSCalendar.currentCalendar().dateFromComponents(components)!
+    }
 
 }

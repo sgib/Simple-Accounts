@@ -14,7 +14,7 @@ import CoreData
 
 extension TransactionCategory {
 
-    typealias IconIndex = Int
+    typealias IconIndex = Int16
     
     @NSManaged var name: String
     @NSManaged var icon: IconIndex

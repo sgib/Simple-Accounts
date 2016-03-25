@@ -9,13 +9,19 @@
 import Foundation
 import CoreData
 
+typealias TransactionData = (amount: Money, category: TransactionCategory, date: TransactionDate, type: TransactionType, description: String?)
 
 class Transaction: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
+    override func awakeFromInsert() {
+        super.awakeFromInsert()
+        
+        transactionID = NSUUID()
+    }
     
     var signedAmount: Money {
-        return amount * Money(integer: type.rawValue)
+        return amount * Money(short: type.rawValue)
     }
 
 }

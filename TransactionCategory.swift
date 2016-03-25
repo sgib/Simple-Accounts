@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+typealias TransactionCategoryData = (name: String, icon: Int16)
 
 class TransactionCategory: NSManagedObject {
 

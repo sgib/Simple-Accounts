@@ -9,7 +9,13 @@
 import Foundation
 import CoreData
 
-typealias TransactionData = (amount: Money, category: TransactionCategory, date: TransactionDate, type: TransactionType, description: String?)
+struct TransactionData {
+    let amount: Money
+    let category: TransactionCategory
+    let date: TransactionDate
+    let description: String?
+    let type: TransactionType
+}
 
 class Transaction: NSManagedObject {
 

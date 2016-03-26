@@ -12,7 +12,7 @@ import Foundation
 
 class CoreDataTestHelper {
     private let dataSource: CoreDataStack
-    private(set) var account: Account
+    let account: Account
     let categoryStore: CategoryStore
     
     init(accountOpeningBalance: Money) {
@@ -21,7 +21,7 @@ class CoreDataTestHelper {
         self.categoryStore = CategoryStore(dataSource: self.dataSource)
     }
     
-    func resetAccount() {
-        
+    func resetData() {
+        dataSource.reset()
     }
 }

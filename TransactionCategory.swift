@@ -9,7 +9,10 @@
 import Foundation
 import CoreData
 
-typealias TransactionCategoryData = (name: String, icon: Int16)
+struct TransactionCategoryData {
+    let name: String
+    let icon: TransactionCategory.IconIndex
+}
 
 class TransactionCategory: NSManagedObject {
 

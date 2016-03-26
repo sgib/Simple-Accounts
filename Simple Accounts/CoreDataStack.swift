@@ -42,6 +42,10 @@ class CoreDataStack {
     
     private var mainQueueContext: NSManagedObjectContext
     
+    func reset() {
+        mainQueueContext.reset()
+    }
+    
     func saveChanges() -> CoreDataError? {
         var saveError: CoreDataError?
         mainQueueContext.performBlockAndWait({

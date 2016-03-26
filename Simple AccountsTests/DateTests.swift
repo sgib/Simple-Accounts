@@ -23,26 +23,20 @@ class DateTests: XCTestCase {
     }
 
     func testStartOfMonth() {
-        let comps = NSDateComponents()
-        comps.year = 2016
-        comps.month = 7
-        comps.day = 4
-        var date = calendar.dateFromComponents(comps)!
+        let month = 7
+        let year = 2016
+        var date = TransactionDate.creatDateFrom(day: 4, month: month, year: year)!
         let startDate = date.dateAtTheStartOfMonth()
-        comps.day = 1
-        date = calendar.dateFromComponents(comps)!
+        date = TransactionDate.creatDateFrom(day: 1, month: month, year: year)!
         XCTAssertEqual(date, startDate)
     }
 
     func testEndOfMonth() {
-        let comps = NSDateComponents()
-        comps.year = 2016
-        comps.month = 7
-        comps.day = 4
-        var date = calendar.dateFromComponents(comps)!
+        let month = 7
+        let year = 2016
+        var date = TransactionDate.creatDateFrom(day: 4, month: month, year: year)!
         let startDate = date.dateAtTheEndOfMonth()
-        comps.day = 31
-        date = calendar.dateFromComponents(comps)!
+        date = TransactionDate.creatDateFrom(day: 31, month: month, year: year)!
         XCTAssertEqual(date, startDate)
     }
 

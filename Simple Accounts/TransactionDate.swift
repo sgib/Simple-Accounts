@@ -54,6 +54,15 @@ extension TransactionDate {
         return NSCalendar.currentCalendar().dateFromComponents(components)!
     }
     
+    static func creatDateFrom(day day: Int, month: Int, year: Int) -> TransactionDate? {
+        let components = NSDateComponents()
+        components.day = day
+        components.month = month
+        components.year = year
+        
+        return NSCalendar.currentCalendar().dateFromComponents(components)
+    }
+    
     func compareTo(date: TransactionDate, toNearest: DateGranularity) -> DateComparisonResult {
         switch NSCalendar.currentCalendar().compareDate(self, toDate: date, toUnitGranularity: toNearest.convertToCalendarUnit()) {
         case .OrderedAscending:

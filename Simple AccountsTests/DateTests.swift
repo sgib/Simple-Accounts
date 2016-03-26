@@ -24,18 +24,18 @@ class DateTests: XCTestCase {
     func testStartOfMonth() {
         let month = 7
         let year = 2016
-        var date = TransactionDate.creatDateFrom(day: 4, month: month, year: year)!
+        var date = TransactionDate.dateFrom(day: 4, month: month, year: year)!
         let startDate = date.dateAtTheStartOfMonth()
-        date = TransactionDate.creatDateFrom(day: 1, month: month, year: year)!
+        date = TransactionDate.dateFrom(day: 1, month: month, year: year)!
         XCTAssertEqual(date, startDate)
     }
 
     func testEndOfMonth() {
         let month = 7
         let year = 2016
-        var date = TransactionDate.creatDateFrom(day: 4, month: month, year: year)!
+        var date = TransactionDate.dateFrom(day: 4, month: month, year: year)!
         let startDate = date.dateAtTheEndOfMonth()
-        date = TransactionDate.creatDateFrom(day: 31, month: month, year: year)!
+        date = TransactionDate.dateFrom(day: 31, month: month, year: year)!
         XCTAssertEqual(date, startDate)
     }
 

@@ -14,8 +14,8 @@ class AccountTests: XCTestCase {
     private let coreDataHelper = CoreDataTestHelper(accountOpeningBalance: Money.zero())
     private let openingAmount = Money(integer: 111)
     private var defaultCategory: TransactionCategory!
-    private let februaryDate = TransactionDate.creatDateFrom(day: 13, month: 2, year: 2016)!
-    private let marchDate = TransactionDate.creatDateFrom(day: 17, month: 3, year: 2016)!
+    private let februaryDate = TransactionDate.dateFrom(day: 13, month: 2, year: 2016)!
+    private let marchDate = TransactionDate.dateFrom(day: 17, month: 3, year: 2016)!
     
     override func setUp() {
         super.setUp()

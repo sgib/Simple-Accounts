@@ -12,7 +12,6 @@ class Account {
     private let dataSource: CoreDataStack
     var openingBalance: Money
     var currentBalance: Money {
-        //TODO: add up all transactions 'inside' coredata
         return openingBalance + allTransactions().sumAggregate
     }
     

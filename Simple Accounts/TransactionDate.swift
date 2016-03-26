@@ -46,6 +46,13 @@ enum DateGranularity {
 }
 
 extension TransactionDate {
+    private var components: NSDateComponents {
+        return NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: self)
+    }
+    
+    private func dateFromComponents(components: NSDateComponents) -> NSDate {
+        return NSCalendar.currentCalendar().dateFromComponents(components)!
+    }
     
     func compareTo(date: TransactionDate, toNearest: DateGranularity) -> DateComparisonResult {
         switch NSCalendar.currentCalendar().compareDate(self, toDate: date, toUnitGranularity: toNearest.convertToCalendarUnit()) {
@@ -59,15 +66,15 @@ extension TransactionDate {
     }
     
     func dateAtTheStartOfMonth() -> NSDate {
-        let components = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: self)
+        let components = self.components
         components.day = 1
-        return NSCalendar.currentCalendar().dateFromComponents(components)!
+        return dateFromComponents(components)
     }
     
     func dateAtTheEndOfMonth() -> NSDate {
-        let components = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: self)
+        let components = self.components
         components.day = NSCalendar.currentCalendar().rangeOfUnit(.Day, inUnit: .Month, forDate: self).length
-        return NSCalendar.currentCalendar().dateFromComponents(components)!
+        return dateFromComponents(components)
     }
 
 }

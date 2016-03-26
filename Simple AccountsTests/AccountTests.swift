@@ -75,17 +75,17 @@ class AccountTests: XCTestCase {
         XCTAssertEqual(coreDataHelper.account.balanceAtStartOfMonth(date), openingAmount + trans1.signedAmount)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        for _ in 1...5000 {
-            self.coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 53), category: self.defaultCategory,
-                date: NSDate(), description: nil, type: .Expense))
-        }
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-            print(self.coreDataHelper.account.currentBalance)
-        }
-    }
+//    func testPerformanceExample() {
+//        // This is an example of a performance test case.
+//        for _ in 1...5000 {
+//            self.coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 53), category: self.defaultCategory,
+//                date: NSDate(), description: nil, type: .Expense))
+//        }
+//        self.measureBlock {
+//            // Put the code you want to measure the time of here.
+//            print(self.coreDataHelper.account.currentBalance)
+//        }
+//    }
 }
 
 

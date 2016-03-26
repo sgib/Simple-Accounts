@@ -27,9 +27,9 @@ class TransactionCollectionTests: XCTestCase {
         incomeTotal = incomeAmounts.reduce(Money.zero(), combine: +)
         expenseTotal = expenseAmounts.reduce(Money.zero(), combine: +)
         aggregateTotal = incomeTotal - expenseTotal
-        let transData1 = TransactionData(amount: incomeAmounts[0], category: defaultCategory, date: NSDate(), description: nil, type: .Income)
-        let transData2 = TransactionData(amount: expenseAmounts[0], category: defaultCategory, date: NSDate(), description: nil, type: .Expense)
-        let transData3 = TransactionData(amount: incomeAmounts[1], category: defaultCategory, date: NSDate(), description: nil, type: .Income)
+        let transData1 = TransactionData(amount: incomeAmounts[0], category: defaultCategory, date: TransactionDate(), description: nil, type: .Income)
+        let transData2 = TransactionData(amount: expenseAmounts[0], category: defaultCategory, date: TransactionDate(), description: nil, type: .Expense)
+        let transData3 = TransactionData(amount: incomeAmounts[1], category: defaultCategory, date: TransactionDate(), description: nil, type: .Income)
         let trans1 = coreDataHelper.account.addTransaction(transData1)
         let trans2 = coreDataHelper.account.addTransaction(transData2)
         let trans3 = coreDataHelper.account.addTransaction(transData3)
@@ -55,11 +55,11 @@ class TransactionCollectionTests: XCTestCase {
     }
     
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }
+//    func testPerformanceExample() {
+//        // This is an example of a performance test case.
+//        self.measureBlock {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
     
 }

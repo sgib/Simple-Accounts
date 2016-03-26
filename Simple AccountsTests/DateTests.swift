@@ -10,8 +10,7 @@ import XCTest
 @testable import Simple_Accounts
 
 class DateTests: XCTestCase {
-    private let calendar = NSCalendar.currentCalendar()
-
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.

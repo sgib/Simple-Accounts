@@ -11,13 +11,15 @@ import Foundation
 
 
 class CoreDataTestHelper {
+    static let sharedInstance = CoreDataTestHelper()
+    
     private let dataSource: CoreDataStack
     let account: Account
     let categoryStore: CategoryStore
     
-    init(accountOpeningBalance: Money) {
+    private init() {
         self.dataSource = CoreDataStack(modelName: "AccountsModel", storeType: .InMemory)
-        self.account = Account(openingBalance: accountOpeningBalance, dataSource: self.dataSource)
+        self.account = Account(openingBalance: Money.zero(), dataSource: self.dataSource)
         self.categoryStore = CategoryStore(dataSource: self.dataSource)
     }
     

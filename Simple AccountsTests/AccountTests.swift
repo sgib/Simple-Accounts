@@ -11,7 +11,7 @@ import XCTest
 
 class AccountTests: XCTestCase {
 
-    private let coreDataHelper = CoreDataTestHelper(accountOpeningBalance: Money.zero())
+    private let coreDataHelper = CoreDataTestHelper.sharedInstance
     private let openingAmount = Money(integer: 111)
     private var defaultCategory: TransactionCategory!
     private let februaryDate = TransactionDate.dateFrom(day: 13, month: 2, year: 2016)!

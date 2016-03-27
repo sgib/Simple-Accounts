@@ -10,7 +10,7 @@ import XCTest
 @testable import Simple_Accounts
 
 class TransactionTests: XCTestCase {
-    private let coreDataHelper = CoreDataTestHelper(accountOpeningBalance: Money.zero())
+    private let coreDataHelper = CoreDataTestHelper.sharedInstance
     
     override func setUp() {
         super.setUp()

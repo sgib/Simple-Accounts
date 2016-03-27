@@ -11,7 +11,7 @@ import XCTest
 
 class TransactionCollectionTests: XCTestCase {
     
-    private let coreDataHelper = CoreDataTestHelper(accountOpeningBalance: Money.zero())
+    private let coreDataHelper = CoreDataTestHelper.sharedInstance
     private var transCollection: TransactionCollection!
     private var incomeTotal = Money.zero()
     private var expenseTotal = Money.zero()

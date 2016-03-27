@@ -23,7 +23,7 @@ class Transaction: NSManagedObject {
     override func awakeFromInsert() {
         super.awakeFromInsert()
         
-        transactionID = NSUUID()
+        transactionID = NSUUID().UUIDString
     }
     
     var signedAmount: Money {

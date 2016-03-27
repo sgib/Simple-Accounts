@@ -12,7 +12,7 @@
 import Foundation
 import CoreData
 
-typealias TransactionID = NSUUID
+typealias TransactionID = String
 
 extension Transaction {
 

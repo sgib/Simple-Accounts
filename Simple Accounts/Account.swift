@@ -23,7 +23,7 @@ class Account {
     func addTransaction(transactionData: TransactionData) -> Transaction {
         //we always create new transaction rather than matching existing one
         let newTransaction = dataSource.createManagedEntity(Transaction.self)
-        newTransaction.amount = transactionData.amount
+        newTransaction.amount = transactionData.amount.moneyRoundedToTwoDecimalPlaces()
         newTransaction.category = transactionData.category
         newTransaction.date = transactionData.date
         newTransaction.transactionDescription = transactionData.description

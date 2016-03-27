@@ -25,8 +25,6 @@ class CategoryTests: XCTestCase {
     }
 
     func testCreateSingleCategoryIsSucessful() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
         let category = coreDataHelper.categoryStore.addCategory(TransactionCategoryData(name: "test", icon: 0))
         XCTAssertNotNil(category)
     }
@@ -52,6 +50,12 @@ class CategoryTests: XCTestCase {
         coreDataHelper.categoryStore.addCategory(categoryData1)
         let duplicateCategory = coreDataHelper.categoryStore.addCategory(categoryData2)
         XCTAssertNil(duplicateCategory)
+    }
+    
+    func testCreateCategoryWithEmptyNameIsUnsucessful() {
+        let categoryData = TransactionCategoryData(name: " ", icon: 0)
+        let emptyCategory = coreDataHelper.categoryStore.addCategory(categoryData)
+        XCTAssertNil(emptyCategory)
     }
 
 //    func testPerformanceExample() {

@@ -15,14 +15,19 @@ class CategoryStore {
         self.dataSource = dataSource
     }
     
-    ///adds a category to the store and returns it, or returns nil if category already exists.
+    ///adds a category to the store and returns it, or returns nil if category already exists or is invalid.
     func addCategory(categoryData: TransactionCategoryData) -> TransactionCategory? {
-        let predicate = NSPredicate(format: "name ==[c] %@", categoryData.name.trim())
+        let trimmedName = categoryData.name.trim()
+        guard trimmedName.isNotEmpty else {
+            return nil
+        }
+        
+        let predicate = NSPredicate(format: "name ==[c] %@", trimmedName)
         if dataSource.getSingleEntity(TransactionCategory.self, matchingPredicate: predicate) != nil {
             return nil
         } else {
             let category = dataSource.createManagedEntity(TransactionCategory.self)
-            category.name = categoryData.name.trim()
+            category.name = trimmedName
             category.icon = categoryData.icon
             return category
         }
@@ -32,5 +37,9 @@ class CategoryStore {
 extension String {
     func trim() -> String {
         return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    }
+    
+    var isNotEmpty: Bool {
+        return !self.isEmpty
     }
 }

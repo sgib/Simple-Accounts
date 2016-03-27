@@ -22,6 +22,7 @@
 		B0B32AF01CA135950086A17A /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AEE1CA135950086A17A /* AccountTests.swift */; };
 		B0B32AF21CA138120086A17A /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AF11CA138120086A17A /* TransactionTests.swift */; };
 		B0B32AF61CA13DEE0086A17A /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AF51CA13DEE0086A17A /* Money.swift */; };
+		B0B890E51CA7CE6B0062EE3D /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B890E41CA7CE6B0062EE3D /* CategoryTests.swift */; };
 		B0C988FD1C9EA2C400812CBD /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988FC1C9EA2C400812CBD /* TransactionType.swift */; };
 		B0D0038D1C9D48D90064690E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0038C1C9D48D90064690E /* AppDelegate.swift */; };
 		B0D0038F1C9D48D90064690E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0038E1C9D48D90064690E /* FirstViewController.swift */; };
@@ -59,6 +60,7 @@
 		B0B32AEE1CA135950086A17A /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		B0B32AF11CA138120086A17A /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
 		B0B32AF51CA13DEE0086A17A /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
+		B0B890E41CA7CE6B0062EE3D /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTests.swift; sourceTree = "<group>"; };
 		B0C988FC1C9EA2C400812CBD /* TransactionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
 		B0D003891C9D48D90064690E /* Simple Accounts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Accounts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D0038C1C9D48D90064690E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				B0B32AEE1CA135950086A17A /* AccountTests.swift */,
+				B0B890E41CA7CE6B0062EE3D /* CategoryTests.swift */,
 				B0DDAB231CA6800200A31C59 /* DateTests.swift */,
 				B0B32AF11CA138120086A17A /* TransactionTests.swift */,
 				B0D003A31C9D48DA0064690E /* TransactionCollectionTests.swift */,
@@ -311,6 +314,7 @@
 				B0B32AF21CA138120086A17A /* TransactionTests.swift in Sources */,
 				B046D9561CA573F4001051FF /* CoreDataTestHelper.swift in Sources */,
 				B0D003A41C9D48DA0064690E /* TransactionCollectionTests.swift in Sources */,
+				B0B890E51CA7CE6B0062EE3D /* CategoryTests.swift in Sources */,
 				B0B32AF01CA135950086A17A /* AccountTests.swift in Sources */,
 				B0DDAB241CA6800200A31C59 /* DateTests.swift in Sources */,
 			);

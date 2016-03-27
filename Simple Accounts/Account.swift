@@ -22,15 +22,13 @@ class Account {
     
     func addTransaction(transactionData: TransactionData) -> Transaction {
         //we always create new transaction rather than matching existing one
-        let falsePredicate = NSPredicate(value: false)
-        let transaction = dataSource.getManagedEntity(Transaction.self, matchingPredicate: falsePredicate, withStateSettingFunction: { newTransaction in
-            newTransaction.amount = transactionData.amount
-            newTransaction.category = transactionData.category
-            newTransaction.date = transactionData.date
-            newTransaction.transactionDescription = transactionData.description
-            newTransaction.type = transactionData.type
-        })
-        return transaction
+        let newTransaction = dataSource.createManagedEntity(Transaction.self)
+        newTransaction.amount = transactionData.amount
+        newTransaction.category = transactionData.category
+        newTransaction.date = transactionData.date
+        newTransaction.transactionDescription = transactionData.description
+        newTransaction.type = transactionData.type
+        return newTransaction
     }
     
     

@@ -17,10 +17,13 @@ class CategoryStore {
     
     func addCategory(categoryData: TransactionCategoryData) -> TransactionCategory {
         let predicate = NSPredicate(format: "name == '\(categoryData.name)'")
-        let category = dataSource.getManagedEntity(TransactionCategory.self, matchingPredicate: predicate, withStateSettingFunction: { newCategory in
-            newCategory.name = categoryData.name
-            newCategory.icon = categoryData.icon
-        })
-        return category
+        if let category = dataSource.getSingleEntity(TransactionCategory.self, matchingPredicate: predicate) {
+            return category
+        } else {
+            let category = dataSource.createManagedEntity(TransactionCategory.self)
+            category.name = categoryData.name
+            category.icon = categoryData.icon
+            return category
+        }
     }
 }

@@ -60,14 +60,8 @@ class CoreDataStack {
         return saveError
     }
     
-    func getManagedEntity<T: NSManagedObject>(entity: T.Type, matchingPredicate predicate: NSPredicate, withStateSettingFunction function: (T) -> ()) -> T {
-        if let managedEntity = getSingleEntity(entity, matchingPredicate: predicate) {
-            return managedEntity
-        } else {
-            let newEntity = NSEntityDescription.insertNewObjectForEntityForName(entity.entityName, inManagedObjectContext: mainQueueContext) as! T
-            function(newEntity)
-            return newEntity
-        }
+    func createManagedEntity<T: NSManagedObject>(entity: T.Type) -> T {
+        return NSEntityDescription.insertNewObjectForEntityForName(entity.entityName, inManagedObjectContext: mainQueueContext) as! T
     }
     
     func fetchEntity<T: NSManagedObject>(entity: T.Type, matchingPredicate predicate: NSPredicate?, sortedBy sortDescriptors: [NSSortDescriptor]?) -> FetchResult<T> {
@@ -95,7 +89,7 @@ class CoreDataStack {
         }
     }
     
-    private func getSingleEntity<T: NSManagedObject>(entity: T.Type, matchingPredicate predicate: NSPredicate) -> T? {
+    func getSingleEntity<T: NSManagedObject>(entity: T.Type, matchingPredicate predicate: NSPredicate) -> T? {
         let fetchResult = fetchEntity(entity, matchingPredicate: predicate, sortedBy: nil)
         if case let .Success(results) = fetchResult {
             return results.first

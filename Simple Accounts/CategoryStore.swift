@@ -15,15 +15,22 @@ class CategoryStore {
         self.dataSource = dataSource
     }
     
-    func addCategory(categoryData: TransactionCategoryData) -> TransactionCategory {
-        let predicate = NSPredicate(format: "name == '\(categoryData.name)'")
-        if let category = dataSource.getSingleEntity(TransactionCategory.self, matchingPredicate: predicate) {
-            return category
+    ///adds a category to the store and returns it, or returns nil if category already exists.
+    func addCategory(categoryData: TransactionCategoryData) -> TransactionCategory? {
+        let predicate = NSPredicate(format: "name ==[c] %@", categoryData.name.trim())
+        if dataSource.getSingleEntity(TransactionCategory.self, matchingPredicate: predicate) != nil {
+            return nil
         } else {
             let category = dataSource.createManagedEntity(TransactionCategory.self)
-            category.name = categoryData.name
+            category.name = categoryData.name.trim()
             category.icon = categoryData.icon
             return category
         }
+    }
+}
+
+extension String {
+    func trim() -> String {
+        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
 }

@@ -83,6 +83,29 @@ class CoreDataStack {
         return NSEntityDescription.insertNewObjectForEntityForName(entity.entityName, inManagedObjectContext: mainQueueContext) as! T
     }
     
+    func fetchAggregate<T: NSManagedObject>(entity: T.Type,
+                        usingExpression expression: NSExpressionDescription,
+                                        matchingPredicate predicate: NSPredicate?) -> NSNumber? {
+        let dictionaryKeyName = "keyName"
+        let fetchRequest = NSFetchRequest(entityName: entity.entityName)
+        fetchRequest.predicate = predicate
+        expression.name = dictionaryKeyName
+        fetchRequest.propertiesToFetch = [expression]
+        fetchRequest.resultType = .DictionaryResultType
+        
+        var result: NSNumber?
+        
+        mainQueueContext.performBlockAndWait({
+            do {
+                if let entities = try self.mainQueueContext.executeFetchRequest(fetchRequest) as? [[String: AnyObject]], dict = entities.first {
+                    result = dict[dictionaryKeyName] as? NSNumber
+                }
+            } catch { }
+        })
+        
+        return result
+    }
+    
     func fetchEntity<T: NSManagedObject>(entity: T.Type, matchingPredicate predicate: NSPredicate?, sortedBy sortDescriptors: [NSSortDescriptor]?) -> FetchResult<T> {
         let fetchRequest = NSFetchRequest(entityName: entity.entityName)
         fetchRequest.sortDescriptors = sortDescriptors

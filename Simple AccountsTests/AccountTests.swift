@@ -49,10 +49,10 @@ class AccountTests: XCTestCase {
     }
     
     func testGetTransactionsForMonth() {
-        _ = coreDataHelper.account.addTransaction(TransactionData(amount: Money.zero(), category: defaultCategory,
+        _ = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 37), category: defaultCategory,
                                  date: februaryDate, description: nil, type: .Expense))
         let trans2 = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 24), category: defaultCategory,
-                                 date: marchDate, description: nil, type: .Expense))
+                                 date: marchDate, description: nil, type: .Income))
         let trans3 = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 53), category: defaultCategory,
                                  date: marchDate, description: nil, type: .Expense))
         XCTAssertEqual(coreDataHelper.account.transactionsForMonth(marchDate).count, [trans2, trans3].count)

@@ -7,17 +7,26 @@
 //
 
 import Foundation
+import CoreData
 
 class Account {
     private let dataSource: CoreDataStack
+    private let amountSumExpression = NSExpressionDescription()
+    private let incomePredicate = NSPredicate(format: "type == %@", NSNumber(short: TransactionType.Income.rawValue))
+    private let expensePredicate = NSPredicate(format: "type == %@", NSNumber(short: TransactionType.Expense.rawValue))
+    
     var openingBalance: Money
     var currentBalance: Money {
-        return openingBalance + allTransactions().sumAggregate
+        let totalIncome = totalOfType(.Income, usingPredicate: nil)
+        let totalExpenses = totalOfType(.Expense, usingPredicate: nil)
+        return openingBalance + totalIncome - totalExpenses
     }
     
     init(openingBalance: Money, dataSource: CoreDataStack ) {
         self.dataSource = dataSource
         self.openingBalance = openingBalance
+        self.amountSumExpression.expression = NSExpression(forFunction: "sum:", arguments:[NSExpression(forKeyPath: "amount")])
+        self.amountSumExpression.expressionResultType = .DecimalAttributeType
     }
     
     func addTransaction(transactionData: TransactionData) -> Transaction {
@@ -28,6 +37,7 @@ class Account {
         newTransaction.date = transactionData.date
         newTransaction.transactionDescription = transactionData.description
         newTransaction.type = transactionData.type
+        dataSource.saveChanges()
         return newTransaction
     }
     
@@ -37,17 +47,33 @@ class Account {
         let endDate = monthInDate.dateAtTheEndOfMonth()
         let predicate = NSPredicate(format: "date >= %@ && date <= %@", startDate, endDate)
         return dataSource.fetchEntity(Transaction.self, matchingPredicate: predicate, sortedBy: nil).simpleResult()
-        //return allTransactions().filter({ $0.date.compareTo(monthInDate, toNearest: .Month).isSame })
     }
     
     func balanceAtStartOfMonth(monthInDate: TransactionDate) -> Money {
         let startDate = monthInDate.dateAtTheStartOfMonth()
         let predicate = NSPredicate(format: "date < %@", startDate)
-        return openingBalance + dataSource.fetchEntity(Transaction.self, matchingPredicate: predicate, sortedBy: nil).simpleResult().sumAggregate
-        //return openingBalance + allTransactions().filter({ $0.date.compareTo(monthInDate, toNearest: .Month).isEarlier }).sumAggregate
+        let totalIncomeBeforeMonth = totalOfType(.Income, usingPredicate: predicate)
+        let totalExpensesBeforeMonth = totalOfType(.Expense, usingPredicate: predicate)
+        return openingBalance + totalIncomeBeforeMonth - totalExpensesBeforeMonth
     }
     
     private func allTransactions() -> TransactionCollection {
         return dataSource.fetchEntity(Transaction.self, matchingPredicate: nil, sortedBy: nil).simpleResult()
     }
+    
+    private func totalOfType(type: TransactionType, usingPredicate predicate: NSPredicate?) -> Money {
+        let typePredicate = (type == .Expense) ? expensePredicate : incomePredicate
+        let predicateArray = (predicate == nil) ? [typePredicate] : [predicate!, typePredicate]
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicateArray)
+        let totalSum = dataSource.fetchAggregate(Transaction.self, usingExpression: amountSumExpression, matchingPredicate: compoundPredicate)
+        if totalSum != nil {
+            return Money(decimal: totalSum!.decimalValue)
+        } else {
+            return Money.zero()
+        }
+    }
 }
+
+
+
+

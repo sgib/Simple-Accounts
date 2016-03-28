@@ -46,6 +46,10 @@ class CoreDataStack {
         mainQueueContext.reset()
     }
     
+    func rollback() {
+        mainQueueContext.rollback()
+    }
+    
     func saveChanges() -> CoreDataError? {
         var saveError: CoreDataError?
         mainQueueContext.performBlockAndWait({
@@ -58,6 +62,21 @@ class CoreDataStack {
             }
         })
         return saveError
+    }
+    
+    func deleteEntity<T: NSManagedObject>(entity: T.Type, matchingPredicate predicate: NSPredicate?) -> CoreDataError? {
+        let fetchRequest = NSFetchRequest(entityName: entity.entityName)
+        fetchRequest.predicate = predicate
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        var deleteError: CoreDataError?
+        mainQueueContext.performBlockAndWait({
+            do {
+                try self.mainQueueContext.executeRequest(deleteRequest)
+            } catch {
+                deleteError = .DatabaseError
+            }
+        })
+        return deleteError
     }
     
     func createManagedEntity<T: NSManagedObject>(entity: T.Type) -> T {

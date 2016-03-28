@@ -57,6 +57,15 @@ class CategoryTests: XCTestCase {
         let emptyCategory = coreDataHelper.categoryStore.addCategory(categoryData)
         XCTAssertNil(emptyCategory)
     }
+    
+    func testChangingExistingCategoryNameToDuplictaeIsUnsucessful() {
+        let categoryData1 = TransactionCategoryData(name: "default", icon: 0)
+        let categoryData2 = TransactionCategoryData(name: "test", icon: 0)
+        coreDataHelper.categoryStore.addCategory(categoryData1)
+        let duplicateCategory = coreDataHelper.categoryStore.addCategory(categoryData2)
+        duplicateCategory!.name = "default"
+        XCTAssertFalse(coreDataHelper.categoryStore.updateCategory(duplicateCategory!))
+    }
 
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
@@ -66,3 +75,10 @@ class CategoryTests: XCTestCase {
 //    }
 
 }
+
+
+
+
+
+
+

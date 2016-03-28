@@ -18,12 +18,14 @@ class CoreDataTestHelper {
     let categoryStore: CategoryStore
     
     private init() {
-        self.dataSource = CoreDataStack(modelName: "AccountsModel", storeType: .InMemory)
+        self.dataSource = CoreDataStack(modelName: "AccountsModel", storeType: .Persistent)
         self.account = Account(openingBalance: Money.zero(), dataSource: self.dataSource)
         self.categoryStore = CategoryStore(dataSource: self.dataSource)
     }
     
     func resetData() {
+        dataSource.deleteEntity(Transaction.self, matchingPredicate: nil)
+        dataSource.deleteEntity(TransactionCategory.self, matchingPredicate: nil)
         dataSource.reset()
     }
 }

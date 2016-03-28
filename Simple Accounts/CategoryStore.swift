@@ -10,6 +10,7 @@ import Foundation
 
 class CategoryStore {
     private let dataSource: CoreDataStack
+    private let categoryNameSort = [NSSortDescriptor(key: "name", ascending: true)]
     
     init(dataSource: CoreDataStack) {
         self.dataSource = dataSource
@@ -22,15 +23,36 @@ class CategoryStore {
             return nil
         }
         
-        let predicate = NSPredicate(format: "name ==[c] %@", trimmedName)
-        if dataSource.getSingleEntity(TransactionCategory.self, matchingPredicate: predicate) != nil {
+        if dataSource.getSingleEntity(TransactionCategory.self, matchingPredicate: predicateForName(trimmedName)) != nil {
             return nil
         } else {
             let category = dataSource.createManagedEntity(TransactionCategory.self)
             category.name = trimmedName
             category.icon = categoryData.icon
+            dataSource.saveChanges()
             return category
         }
+    }
+    
+    func updateCategory(category: TransactionCategory) -> Bool {
+        category.name = category.name.trim()
+        let matchingNames = dataSource.fetchEntity(TransactionCategory.self, matchingPredicate: predicateForName(category.name), sortedBy: nil).simpleResult()
+        
+        if category.name.isNotEmpty && matchingNames.count == 1 {
+            dataSource.saveChanges()
+            return true
+        } else {
+            dataSource.rollback()
+            return false
+        }
+    }
+    
+    func allCategories() -> [TransactionCategory] {
+        return dataSource.fetchEntity(TransactionCategory.self, matchingPredicate: nil, sortedBy: categoryNameSort).simpleResult()
+    }
+    
+    private func predicateForName(name: String) -> NSPredicate {
+        return NSPredicate(format: "name ==[c] %@", name)
     }
 }
 

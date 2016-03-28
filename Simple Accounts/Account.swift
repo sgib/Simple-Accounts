@@ -66,11 +66,7 @@ class Account {
         let predicateArray = (predicate == nil) ? [typePredicate] : [predicate!, typePredicate]
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicateArray)
         let totalSum = dataSource.fetchAggregate(Transaction.self, usingExpression: amountSumExpression, matchingPredicate: compoundPredicate)
-        if totalSum != nil {
-            return Money(decimal: totalSum!.decimalValue)
-        } else {
-            return Money.zero()
-        }
+        return Money(decimal: totalSum.decimalValue)
     }
 }
 

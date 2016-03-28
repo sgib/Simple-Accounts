@@ -85,7 +85,7 @@ class CoreDataStack {
     
     func fetchAggregate<T: NSManagedObject>(entity: T.Type,
                         usingExpression expression: NSExpressionDescription,
-                                        matchingPredicate predicate: NSPredicate?) -> NSNumber? {
+                                        matchingPredicate predicate: NSPredicate?) -> NSNumber {
         let dictionaryKeyName = "keyName"
         let fetchRequest = NSFetchRequest(entityName: entity.entityName)
         fetchRequest.predicate = predicate
@@ -93,12 +93,12 @@ class CoreDataStack {
         fetchRequest.propertiesToFetch = [expression]
         fetchRequest.resultType = .DictionaryResultType
         
-        var result: NSNumber?
+        var result = NSNumber(double: 0)
         
         mainQueueContext.performBlockAndWait({
             do {
                 if let entities = try self.mainQueueContext.executeFetchRequest(fetchRequest) as? [[String: AnyObject]], dict = entities.first {
-                    result = dict[dictionaryKeyName] as? NSNumber
+                    result = dict[dictionaryKeyName] as! NSNumber
                 }
             } catch { }
         })

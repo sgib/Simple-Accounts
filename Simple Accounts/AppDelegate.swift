@@ -12,10 +12,24 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    let dataStack = CoreDataStack(modelName: "AccountsModel", storeType: .Persistent)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let categoryStore = CategoryStore(dataSource: dataStack)
+        
+        if let tabBar = self.window?.rootViewController as? UITabBarController {
+            for child in tabBar.childViewControllers {
+                if child is UINavigationController {
+                    if let navChild = child.childViewControllers.first as? CategoriesViewController {
+                        navChild.categoryStore = categoryStore
+                    }
+                }
+            }
+        }
+        
         return true
     }
 

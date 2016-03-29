@@ -25,8 +25,8 @@
 		B0B890E51CA7CE6B0062EE3D /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B890E41CA7CE6B0062EE3D /* CategoryTests.swift */; };
 		B0C988FD1C9EA2C400812CBD /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988FC1C9EA2C400812CBD /* TransactionType.swift */; };
 		B0D0038D1C9D48D90064690E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0038C1C9D48D90064690E /* AppDelegate.swift */; };
-		B0D0038F1C9D48D90064690E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0038E1C9D48D90064690E /* FirstViewController.swift */; };
-		B0D003911C9D48D90064690E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D003901C9D48D90064690E /* SecondViewController.swift */; };
+		B0D0038F1C9D48D90064690E /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0038E1C9D48D90064690E /* TransactionViewController.swift */; };
+		B0D003911C9D48D90064690E /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D003901C9D48D90064690E /* CategoriesViewController.swift */; };
 		B0D003941C9D48D90064690E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D003921C9D48D90064690E /* Main.storyboard */; };
 		B0D003961C9D48D90064690E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0D003951C9D48D90064690E /* Assets.xcassets */; };
 		B0D003991C9D48D90064690E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D003971C9D48D90064690E /* LaunchScreen.storyboard */; };
@@ -64,8 +64,8 @@
 		B0C988FC1C9EA2C400812CBD /* TransactionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
 		B0D003891C9D48D90064690E /* Simple Accounts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Accounts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D0038C1C9D48D90064690E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B0D0038E1C9D48D90064690E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		B0D003901C9D48D90064690E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		B0D0038E1C9D48D90064690E /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
+		B0D003901C9D48D90064690E /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		B0D003931C9D48D90064690E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B0D003951C9D48D90064690E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0D003981C9D48D90064690E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -113,8 +113,8 @@
 		B06E92501C9D8E91003D1796 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B0D0038E1C9D48D90064690E /* FirstViewController.swift */,
-				B0D003901C9D48D90064690E /* SecondViewController.swift */,
+				B0D0038E1C9D48D90064690E /* TransactionViewController.swift */,
+				B0D003901C9D48D90064690E /* CategoriesViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -292,7 +292,7 @@
 				B0C988FD1C9EA2C400812CBD /* TransactionType.swift in Sources */,
 				B0B32AF61CA13DEE0086A17A /* Money.swift in Sources */,
 				B051E8101CA54FF8006FED78 /* AccountsModel.xcdatamodeld in Sources */,
-				B0D003911C9D48D90064690E /* SecondViewController.swift in Sources */,
+				B0D003911C9D48D90064690E /* CategoriesViewController.swift in Sources */,
 				B051E81D1CA5569B006FED78 /* TransactionCategory.swift in Sources */,
 				B051E8271CA557BE006FED78 /* TransactionCategory+CoreDataProperties.swift in Sources */,
 				B04793F01CA3193D00C0F582 /* TransactionDate.swift in Sources */,
@@ -300,7 +300,7 @@
 				B046D9521CA56DC5001051FF /* CategoryStore.swift in Sources */,
 				B0B32AEC1CA132620086A17A /* Account.swift in Sources */,
 				B0D0038D1C9D48D90064690E /* AppDelegate.swift in Sources */,
-				B0D0038F1C9D48D90064690E /* FirstViewController.swift in Sources */,
+				B0D0038F1C9D48D90064690E /* TransactionViewController.swift in Sources */,
 				B051E82B1CA557BE006FED78 /* Transaction+CoreDataProperties.swift in Sources */,
 				B06E92541C9D8F4B003D1796 /* CoreDataStack.swift in Sources */,
 				B051E8211CA5569B006FED78 /* Transaction.swift in Sources */,

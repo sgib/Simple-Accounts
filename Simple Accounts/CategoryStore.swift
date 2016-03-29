@@ -34,6 +34,7 @@ class CategoryStore {
         }
     }
     
+    ///attempts to save the changes to the given category, returns true if sucessful, otherwise returns false and rolls-back any changes.
     func updateCategory(category: TransactionCategory) -> Bool {
         category.name = category.name.trim()
         let matchingNames = dataSource.fetchEntity(TransactionCategory.self, matchingPredicate: predicateForName(category.name), sortedBy: nil).simpleResult()

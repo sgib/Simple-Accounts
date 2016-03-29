@@ -29,8 +29,8 @@ class Account {
         self.amountSumExpression.expressionResultType = .DecimalAttributeType
     }
     
+    ///adds a new Transaction to the account with the given data and returns it.
     func addTransaction(transactionData: TransactionData) -> Transaction {
-        //we always create new transaction rather than matching existing one
         let newTransaction = dataSource.createManagedEntity(Transaction.self)
         newTransaction.amount = transactionData.amount.moneyRoundedToTwoDecimalPlaces()
         newTransaction.category = transactionData.category
@@ -45,15 +45,15 @@ class Account {
     func transactionsForMonth(monthInDate: TransactionDate) -> TransactionCollection {
         let startDate = monthInDate.dateAtTheStartOfMonth()
         let endDate = monthInDate.dateAtTheEndOfMonth()
-        let predicate = NSPredicate(format: "date >= %@ && date <= %@", startDate, endDate)
-        return dataSource.fetchEntity(Transaction.self, matchingPredicate: predicate, sortedBy: nil).simpleResult()
+        let dateBetweenPredicate = NSPredicate(format: "date >= %@ && date <= %@", startDate, endDate)
+        return dataSource.fetchEntity(Transaction.self, matchingPredicate: dateBetweenPredicate, sortedBy: nil).simpleResult()
     }
     
     func balanceAtStartOfMonth(monthInDate: TransactionDate) -> Money {
         let startDate = monthInDate.dateAtTheStartOfMonth()
-        let predicate = NSPredicate(format: "date < %@", startDate)
-        let totalIncomeBeforeMonth = totalOfType(.Income, usingPredicate: predicate)
-        let totalExpensesBeforeMonth = totalOfType(.Expense, usingPredicate: predicate)
+        let dateBeforePredicate = NSPredicate(format: "date < %@", startDate)
+        let totalIncomeBeforeMonth = totalOfType(.Income, usingPredicate: dateBeforePredicate)
+        let totalExpensesBeforeMonth = totalOfType(.Expense, usingPredicate: dateBeforePredicate)
         return openingBalance + totalIncomeBeforeMonth - totalExpensesBeforeMonth
     }
     

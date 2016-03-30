@@ -18,7 +18,7 @@ class CoreDataTestHelper {
     let categoryStore: CategoryStore
     
     private init() {
-        self.dataSource = CoreDataStack(modelName: "AccountsModel", storeType: .Persistent)
+        self.dataSource = CoreDataStack(modelName: "AccountsModelTest", storeType: .Persistent)
         self.account = Account(openingBalance: Money.zero(), dataSource: self.dataSource)
         self.categoryStore = CategoryStore(dataSource: self.dataSource)
     }

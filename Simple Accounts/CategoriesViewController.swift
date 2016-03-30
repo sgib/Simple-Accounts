@@ -13,6 +13,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     var categoryStore: CategoryStore!
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
     
     @IBAction func addButtonPressed(sender: UIBarButtonItem) {
     }
@@ -24,12 +25,12 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 20
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("DefaultCategoryCell", forIndexPath: indexPath)
-        cell.textLabel?.text = "Category One"
+        cell.textLabel?.text = "Category \(indexPath.row + 1)"
         cell.imageView?.image = UIImage(named: "Finance-Money-Bag-icon")
         return cell
     }
@@ -41,6 +42,10 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         // Do any additional setup after loading the view, typically from a nib.
         self.tableView.delegate = self
         self.tableView.dataSource = self
+    }
+    
+    override func viewDidLayoutSubviews() {
+        tableHeightConstraint.constant = tableView.contentSize.height
     }
 
     override func didReceiveMemoryWarning() {

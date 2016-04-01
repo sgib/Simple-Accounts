@@ -26,7 +26,7 @@ class TransactionTests: XCTestCase {
     func testSignedAmount() {
         let absoluteAmount = Money(integer: 35)
         let negativeAmount = absoluteAmount.decimalNumberByMultiplyingBy(Money(integer: -1))
-        let category = coreDataHelper.categoryStore.addCategory(TransactionCategoryData(name: "test", icon: 0))!
+        let category = coreDataHelper.categoryStore.addCategory(TransactionCategoryData(name: "test", icon: "test"))!
         let transData = TransactionData(amount: absoluteAmount, category: category, date: TransactionDate(), description: nil, type: .Income)
         let trans = coreDataHelper.account.addTransaction(transData)
         XCTAssertEqual(trans.signedAmount, absoluteAmount)

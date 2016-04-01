@@ -21,7 +21,7 @@ class AccountTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         coreDataHelper.resetData()
-        defaultCategory = coreDataHelper.categoryStore.addCategory(TransactionCategoryData(name: "default", icon: 0))
+        defaultCategory = coreDataHelper.categoryStore.addCategory(TransactionCategoryData(name: "default", icon: "default"))
         coreDataHelper.account.openingBalance = openingAmount
     }
     

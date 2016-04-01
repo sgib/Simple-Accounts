@@ -13,11 +13,9 @@ import Foundation
 import CoreData
 
 extension TransactionCategory {
-
-    typealias IconIndex = Int16
     
     @NSManaged var name: String
-    @NSManaged var icon: IconIndex
+    @NSManaged var icon: String
     @NSManaged var transactions: Set<Transaction>
 
 }

@@ -12,14 +12,12 @@ import UIKit
 class ImageResourceLoader {
     static let sharedInstance = ImageResourceLoader()
     
-    let pngImages: [UIImage]
-    let jpgImages: [UIImage]
+    let pngImageNames: [String]
+    let jpgImageNames: [String]
     
     private init() {
-        let pngPaths = NSBundle.mainBundle().pathsForResourcesOfType("png", inDirectory: nil)
-        self.pngImages = ImageResourceLoader.pathsToFileNames(pngPaths).map({ UIImage(named: $0)! })
-        let jpgPaths = NSBundle.mainBundle().pathsForResourcesOfType("jpg", inDirectory: nil)
-        self.jpgImages = ImageResourceLoader.pathsToFileNames(jpgPaths).map({ UIImage(named: $0)! })
+        self.pngImageNames = ImageResourceLoader.pathsToFileNames(NSBundle.mainBundle().pathsForResourcesOfType("png", inDirectory: nil))
+        self.jpgImageNames = ImageResourceLoader.pathsToFileNames(NSBundle.mainBundle().pathsForResourcesOfType("jpg", inDirectory: nil))
     }
     
     private static func pathsToFileNames(paths: [String]) -> [String] {

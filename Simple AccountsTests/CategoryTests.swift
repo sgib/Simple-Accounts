@@ -25,42 +25,42 @@ class CategoryTests: XCTestCase {
     }
 
     func testCreateSingleCategoryIsSucessful() {
-        let category = coreDataHelper.categoryStore.addCategory(TransactionCategoryData(name: "test", icon: 0))
+        let category = coreDataHelper.categoryStore.addCategory(TransactionCategoryData(name: "test", icon: "default"))
         XCTAssertNotNil(category)
     }
     
     func testCreateSameCategoryTwiceIsUnsucessful() {
-        let categoryData = TransactionCategoryData(name: "default", icon: 0)
+        let categoryData = TransactionCategoryData(name: "default", icon: "default")
         coreDataHelper.categoryStore.addCategory(categoryData)
         let duplicateCategory = coreDataHelper.categoryStore.addCategory(categoryData)
         XCTAssertNil(duplicateCategory)
     }
     
     func testCreateSameCategoryCaseInsensitiveIsUnsucessful() {
-        let categoryData1 = TransactionCategoryData(name: "default", icon: 0)
-        let categoryData2 = TransactionCategoryData(name: "DeFault", icon: 0)
+        let categoryData1 = TransactionCategoryData(name: "default", icon: "default")
+        let categoryData2 = TransactionCategoryData(name: "DeFault", icon: "default")
         coreDataHelper.categoryStore.addCategory(categoryData1)
         let duplicateCategory = coreDataHelper.categoryStore.addCategory(categoryData2)
         XCTAssertNil(duplicateCategory)
     }
     
     func testCreateSameCategoryWithWhitespaceIsUnsucessful() {
-        let categoryData1 = TransactionCategoryData(name: "default", icon: 0)
-        let categoryData2 = TransactionCategoryData(name: " default   ", icon: 0)
+        let categoryData1 = TransactionCategoryData(name: "default", icon: "default")
+        let categoryData2 = TransactionCategoryData(name: " default   ", icon: "default")
         coreDataHelper.categoryStore.addCategory(categoryData1)
         let duplicateCategory = coreDataHelper.categoryStore.addCategory(categoryData2)
         XCTAssertNil(duplicateCategory)
     }
     
     func testCreateCategoryWithEmptyNameIsUnsucessful() {
-        let categoryData = TransactionCategoryData(name: " ", icon: 0)
+        let categoryData = TransactionCategoryData(name: " ", icon: "default")
         let emptyCategory = coreDataHelper.categoryStore.addCategory(categoryData)
         XCTAssertNil(emptyCategory)
     }
     
     func testChangingExistingCategoryNameToDuplictaeIsUnsucessful() {
-        let categoryData1 = TransactionCategoryData(name: "default", icon: 0)
-        let categoryData2 = TransactionCategoryData(name: "test", icon: 0)
+        let categoryData1 = TransactionCategoryData(name: "default", icon: "default")
+        let categoryData2 = TransactionCategoryData(name: "test", icon: "default")
         coreDataHelper.categoryStore.addCategory(categoryData1)
         let duplicateCategory = coreDataHelper.categoryStore.addCategory(categoryData2)
         duplicateCategory!.name = "default"

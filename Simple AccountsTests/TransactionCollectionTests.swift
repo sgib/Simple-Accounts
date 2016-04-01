@@ -22,7 +22,7 @@ class TransactionCollectionTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         coreDataHelper.resetData()
-        let defaultCategory = coreDataHelper.categoryStore.addCategory(TransactionCategoryData(name: "default", icon: 0))!
+        let defaultCategory = coreDataHelper.categoryStore.addCategory(TransactionCategoryData(name: "default", icon: "default"))!
         let incomeAmounts = [Money(integer: 55), Money(integer: 37)]
         let expenseAmounts = [Money(integer: 44)]
         incomeTotal = incomeAmounts.reduce(Money.zero(), combine: +)

@@ -11,7 +11,7 @@ import CoreData
 
 struct TransactionCategoryData {
     let name: String
-    let icon: TransactionCategory.IconIndex
+    let icon: String
 }
 
 class TransactionCategory: NSManagedObject {

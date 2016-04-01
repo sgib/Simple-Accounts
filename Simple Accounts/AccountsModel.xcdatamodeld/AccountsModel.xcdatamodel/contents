@@ -9,12 +9,12 @@
         <relationship name="category" maxCount="1" deletionRule="Deny" destinationEntity="TransactionCategory" inverseName="transactions" inverseEntity="TransactionCategory" syncable="YES"/>
     </entity>
     <entity name="TransactionCategory" representedClassName=".TransactionCategory" syncable="YES">
-        <attribute name="icon" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="icon" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="transactions" toMany="YES" deletionRule="Nullify" destinationEntity="Transaction" inverseName="category" inverseEntity="Transaction" syncable="YES"/>
     </entity>
     <elements>
         <element name="Transaction" positionX="-63" positionY="-18" width="128" height="135"/>
-        <element name="TransactionCategory" positionX="-54" positionY="27" width="128" height="30"/>
+        <element name="TransactionCategory" positionX="-54" positionY="27" width="128" height="90"/>
     </elements>
 </model>

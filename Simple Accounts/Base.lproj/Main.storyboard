@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Reports" image="Reports" id="Jzw-7h-ZCx"/>
+                    <tabBarItem key="tabBarItem" title="Reports" image="Reports" selectedImage="ReportsFilled" id="Jzw-7h-ZCx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UJp-BY-ub1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -58,7 +58,7 @@
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Transactions" image="Transactions" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Transactions" image="Transactions" selectedImage="TransactionsFilled" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -143,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="YNj-aV-mmO"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" selectedImage="SettingsFilled" id="YNj-aV-mmO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6A-HK-lTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -174,7 +174,7 @@
         <scene sceneID="jem-tv-cpD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qor-Qy-3mM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Categories" image="Categories" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Categories" image="Categories" selectedImage="CategoriesFilled" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nJy-Bl-vOq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -192,8 +192,12 @@
     </scenes>
     <resources>
         <image name="Categories" width="24" height="24"/>
+        <image name="CategoriesFilled" width="24" height="24"/>
         <image name="Reports" width="24" height="24"/>
+        <image name="ReportsFilled" width="24" height="24"/>
         <image name="Settings" width="24" height="24"/>
+        <image name="SettingsFilled" width="24" height="24"/>
         <image name="Transactions" width="24" height="24"/>
+        <image name="TransactionsFilled" width="24" height="24"/>
     </resources>
 </document>

@@ -31,6 +31,9 @@
 		B0D003961C9D48D90064690E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0D003951C9D48D90064690E /* Assets.xcassets */; };
 		B0D003991C9D48D90064690E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D003971C9D48D90064690E /* LaunchScreen.storyboard */; };
 		B0D003A41C9D48DA0064690E /* TransactionCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D003A31C9D48DA0064690E /* TransactionCollectionTests.swift */; };
+		B0D0841C1CAE54770032E530 /* fishIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0D0841B1CAE54770032E530 /* fishIcon.png */; };
+		B0D0841E1CAE54830032E530 /* fishIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0D0841D1CAE54830032E530 /* fishIcon@2x.png */; };
+		B0D084201CAE57540032E530 /* ImageResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0841F1CAE57540032E530 /* ImageResourceLoader.swift */; };
 		B0DDAB241CA6800200A31C59 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DDAB231CA6800200A31C59 /* DateTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +76,9 @@
 		B0D0039F1C9D48DA0064690E /* Simple AccountsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Simple AccountsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D003A31C9D48DA0064690E /* TransactionCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollectionTests.swift; sourceTree = "<group>"; };
 		B0D003A51C9D48DA0064690E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0D0841B1CAE54770032E530 /* fishIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fishIcon.png; sourceTree = "<group>"; };
+		B0D0841D1CAE54830032E530 /* fishIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fishIcon@2x.png"; sourceTree = "<group>"; };
+		B0D0841F1CAE57540032E530 /* ImageResourceLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResourceLoader.swift; sourceTree = "<group>"; };
 		B0DDAB231CA6800200A31C59 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +121,7 @@
 			children = (
 				B0D0038E1C9D48D90064690E /* TransactionViewController.swift */,
 				B0D003901C9D48D90064690E /* CategoriesViewController.swift */,
+				B0D0841F1CAE57540032E530 /* ImageResourceLoader.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -135,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				B0D003951C9D48D90064690E /* Assets.xcassets */,
+				B0D0841A1CAE544E0032E530 /* Images */,
 				B0D003921C9D48D90064690E /* Main.storyboard */,
 				B0D003971C9D48D90064690E /* LaunchScreen.storyboard */,
 			);
@@ -183,6 +191,15 @@
 				B0D003A51C9D48DA0064690E /* Info.plist */,
 			);
 			path = "Simple AccountsTests";
+			sourceTree = "<group>";
+		};
+		B0D0841A1CAE544E0032E530 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B0D0841B1CAE54770032E530 /* fishIcon.png */,
+				B0D0841D1CAE54830032E530 /* fishIcon@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,7 +286,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0D003991C9D48D90064690E /* LaunchScreen.storyboard in Resources */,
+				B0D0841E1CAE54830032E530 /* fishIcon@2x.png in Resources */,
 				B0D003961C9D48D90064690E /* Assets.xcassets in Resources */,
+				B0D0841C1CAE54770032E530 /* fishIcon.png in Resources */,
 				B0D003941C9D48D90064690E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +323,7 @@
 				B051E82B1CA557BE006FED78 /* Transaction+CoreDataProperties.swift in Sources */,
 				B06E92541C9D8F4B003D1796 /* CoreDataStack.swift in Sources */,
 				B051E8211CA5569B006FED78 /* Transaction.swift in Sources */,
+				B0D084201CAE57540032E530 /* ImageResourceLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

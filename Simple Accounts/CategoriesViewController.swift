@@ -11,6 +11,7 @@ import UIKit
 class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var categoryStore: CategoryStore!
+    var imageResources = ImageResourceLoader.sharedInstance
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
@@ -31,7 +32,8 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("DefaultCategoryCell", forIndexPath: indexPath)
         cell.textLabel?.text = "Category \(indexPath.row + 1)"
-        cell.imageView?.image = UIImage(named: "Finance-Money-Bag-icon")
+        let image = (indexPath.row % 2 == 0) ? imageResources.pngImages.first! : UIImage(named: "Finance-Money-Bag-icon")
+        cell.imageView?.image = image
         return cell
     }
     

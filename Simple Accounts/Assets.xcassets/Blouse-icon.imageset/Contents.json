@@ -2,17 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Finance-Money-Box-icon.png",
+      "filename" : "Blouse-icon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Finance-Money-Box-icon@2x.png",
+      "filename" : "Blouse-icon@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Finance-Money-Box-icon@3x.png",
       "scale" : "3x"
     }
   ],

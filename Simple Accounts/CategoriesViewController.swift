@@ -32,7 +32,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("DefaultCategoryCell", forIndexPath: indexPath)
         cell.textLabel?.text = "Category \(indexPath.row + 1)"
-        let image = (indexPath.row % 2 == 0) ? UIImage(named: imageResources.pngImageNames.first!) : UIImage(named: "Finance-Money-Bag-icon")
+        let image = UIImage(named: imageResources.pngImageNames[indexPath.row])
         cell.imageView?.image = image
         return cell
     }

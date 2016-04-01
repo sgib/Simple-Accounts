@@ -18,6 +18,10 @@ class ImageResourceLoader {
     private init() {
         self.pngImageNames = ImageResourceLoader.pathsToFileNames(NSBundle.mainBundle().pathsForResourcesOfType("png", inDirectory: nil))
         self.jpgImageNames = ImageResourceLoader.pathsToFileNames(NSBundle.mainBundle().pathsForResourcesOfType("jpg", inDirectory: nil))
+        for name in pngImageNames {
+            print(name)
+        }
+        print(pngImageNames.count)
     }
     
     private static func pathsToFileNames(paths: [String]) -> [String] {

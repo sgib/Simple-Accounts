@@ -12,9 +12,8 @@ class IconCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    override var selected: Bool {
-        didSet {
-            backgroundColor = selected ? UIColor.grayColor() : UIColor.clearColor()
-        }
+    func setImage(image: UIImage) {
+        imageView.image = image
+        imageView.highlightedImage = image.imageWithRenderingMode(.AlwaysTemplate)
     }
 }

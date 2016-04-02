@@ -93,7 +93,7 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = iconCollectionView.dequeueReusableCellWithReuseIdentifier(reuseID, forIndexPath: indexPath) as! IconCollectionViewCell
-        cell.imageView.image = UIImage(named: imageResourceNames.pngImageNames[indexPath.item])
+        cell.setImage(UIImage(named: imageResourceNames.pngImageNames[indexPath.item])!)
         return cell
     }
 

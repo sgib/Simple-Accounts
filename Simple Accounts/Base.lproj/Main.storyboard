@@ -188,18 +188,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VJM-g5-p5J">
-                                                    <rect key="frame" x="4" y="4" width="40" height="40"/>
+                                                    <rect key="frame" x="1" y="1" width="46" height="46"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="VJM-g5-p5J" firstAttribute="top" secondItem="HkN-cR-yYl" secondAttribute="top" constant="4" id="2Nm-jw-AZk"/>
-                                            <constraint firstItem="VJM-g5-p5J" firstAttribute="leading" secondItem="HkN-cR-yYl" secondAttribute="leading" constant="4" id="a2X-Ij-4wo"/>
-                                            <constraint firstAttribute="bottom" secondItem="VJM-g5-p5J" secondAttribute="bottom" constant="4" id="cf1-zx-zxS"/>
-                                            <constraint firstAttribute="trailing" secondItem="VJM-g5-p5J" secondAttribute="trailing" constant="4" id="hfB-Lx-5fG"/>
+                                            <constraint firstItem="VJM-g5-p5J" firstAttribute="top" secondItem="HkN-cR-yYl" secondAttribute="top" constant="1" id="2Nm-jw-AZk"/>
+                                            <constraint firstItem="VJM-g5-p5J" firstAttribute="leading" secondItem="HkN-cR-yYl" secondAttribute="leading" constant="1" id="a2X-Ij-4wo"/>
+                                            <constraint firstAttribute="bottom" secondItem="VJM-g5-p5J" secondAttribute="bottom" constant="1" id="cf1-zx-zxS"/>
+                                            <constraint firstAttribute="trailing" secondItem="VJM-g5-p5J" secondAttribute="trailing" constant="1" id="hfB-Lx-5fG"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="VJM-g5-p5J" id="UUu-uK-NtV"/>

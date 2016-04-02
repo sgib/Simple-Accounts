@@ -66,8 +66,8 @@
 		B07940D61CAEDB640009F994 /* CardsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940CE1CAEDB640009F994 /* CardsIcon@2x.png */; };
 		B07940DD1CAEDB710009F994 /* GiftIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940D71CAEDB710009F994 /* GiftIcon.png */; };
 		B07940DE1CAEDB710009F994 /* GiftIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940D81CAEDB710009F994 /* GiftIcon@2x.png */; };
-		B07940DF1CAEDB710009F994 /* MoneyBagIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940D91CAEDB710009F994 /* MoneyBagIcon.png */; };
-		B07940E01CAEDB710009F994 /* MoneyBagIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940DA1CAEDB710009F994 /* MoneyBagIcon@2x.png */; };
+		B07940DF1CAEDB710009F994 /* 00MoneyBagIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940D91CAEDB710009F994 /* 00MoneyBagIcon.png */; };
+		B07940E01CAEDB710009F994 /* 00MoneyBagIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940DA1CAEDB710009F994 /* 00MoneyBagIcon@2x.png */; };
 		B07940E11CAEDB710009F994 /* SofaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940DB1CAEDB710009F994 /* SofaIcon.png */; };
 		B07940E21CAEDB710009F994 /* SofaIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940DC1CAEDB710009F994 /* SofaIcon@2x.png */; };
 		B082C2181CAEE58600B6DC29 /* BookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B082C2081CAEE58600B6DC29 /* BookIcon.png */; };
@@ -90,6 +90,8 @@
 		B082C22B1CAEE72C00B6DC29 /* CatIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B082C2291CAEE72C00B6DC29 /* CatIcon@2x.png */; };
 		B082C22E1CAEE79800B6DC29 /* SpadeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B082C22C1CAEE79800B6DC29 /* SpadeIcon.png */; };
 		B082C22F1CAEE79800B6DC29 /* SpadeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B082C22D1CAEE79800B6DC29 /* SpadeIcon@2x.png */; };
+		B082C2311CAEE8B400B6DC29 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B082C2301CAEE8B400B6DC29 /* AddCategoryViewController.swift */; };
+		B082C2331CAEF9BF00B6DC29 /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B082C2321CAEF9BF00B6DC29 /* IconCollectionViewCell.swift */; };
 		B0B32AEC1CA132620086A17A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AEB1CA132620086A17A /* Account.swift */; };
 		B0B32AF01CA135950086A17A /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AEE1CA135950086A17A /* AccountTests.swift */; };
 		B0B32AF21CA138120086A17A /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AF11CA138120086A17A /* TransactionTests.swift */; };
@@ -177,8 +179,8 @@
 		B07940CE1CAEDB640009F994 /* CardsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CardsIcon@2x.png"; sourceTree = "<group>"; };
 		B07940D71CAEDB710009F994 /* GiftIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GiftIcon.png; sourceTree = "<group>"; };
 		B07940D81CAEDB710009F994 /* GiftIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GiftIcon@2x.png"; sourceTree = "<group>"; };
-		B07940D91CAEDB710009F994 /* MoneyBagIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MoneyBagIcon.png; sourceTree = "<group>"; };
-		B07940DA1CAEDB710009F994 /* MoneyBagIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MoneyBagIcon@2x.png"; sourceTree = "<group>"; };
+		B07940D91CAEDB710009F994 /* 00MoneyBagIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 00MoneyBagIcon.png; sourceTree = "<group>"; };
+		B07940DA1CAEDB710009F994 /* 00MoneyBagIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00MoneyBagIcon@2x.png"; sourceTree = "<group>"; };
 		B07940DB1CAEDB710009F994 /* SofaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SofaIcon.png; sourceTree = "<group>"; };
 		B07940DC1CAEDB710009F994 /* SofaIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SofaIcon@2x.png"; sourceTree = "<group>"; };
 		B082C2081CAEE58600B6DC29 /* BookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BookIcon.png; sourceTree = "<group>"; };
@@ -201,6 +203,8 @@
 		B082C2291CAEE72C00B6DC29 /* CatIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CatIcon@2x.png"; sourceTree = "<group>"; };
 		B082C22C1CAEE79800B6DC29 /* SpadeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpadeIcon.png; sourceTree = "<group>"; };
 		B082C22D1CAEE79800B6DC29 /* SpadeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpadeIcon@2x.png"; sourceTree = "<group>"; };
+		B082C2301CAEE8B400B6DC29 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		B082C2321CAEF9BF00B6DC29 /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
 		B0B32AEB1CA132620086A17A /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		B0B32AEE1CA135950086A17A /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		B0B32AF11CA138120086A17A /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 			children = (
 				B0D0038E1C9D48D90064690E /* TransactionViewController.swift */,
 				B0D003901C9D48D90064690E /* CategoriesViewController.swift */,
+				B082C2301CAEE8B400B6DC29 /* AddCategoryViewController.swift */,
 				B0D0841F1CAE57540032E530 /* ImageResourceLoader.swift */,
 			);
 			name = Controllers;
@@ -285,6 +290,7 @@
 				B0D0841A1CAE544E0032E530 /* Images */,
 				B0D003921C9D48D90064690E /* Main.storyboard */,
 				B0D003971C9D48D90064690E /* LaunchScreen.storyboard */,
+				B082C2321CAEF9BF00B6DC29 /* IconCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -350,8 +356,8 @@
 				B07940801CAED4380009F994 /* FlowersIcon@2x.png */,
 				B07940D71CAEDB710009F994 /* GiftIcon.png */,
 				B07940D81CAEDB710009F994 /* GiftIcon@2x.png */,
-				B07940D91CAEDB710009F994 /* MoneyBagIcon.png */,
-				B07940DA1CAEDB710009F994 /* MoneyBagIcon@2x.png */,
+				B07940D91CAEDB710009F994 /* 00MoneyBagIcon.png */,
+				B07940DA1CAEDB710009F994 /* 00MoneyBagIcon@2x.png */,
 				B07940DB1CAEDB710009F994 /* SofaIcon.png */,
 				B07940DC1CAEDB710009F994 /* SofaIcon@2x.png */,
 				B07940811CAED4380009F994 /* MasksIcon.png */,
@@ -527,7 +533,7 @@
 				B07940BF1CAED8EB0009F994 /* PriceTagIcon.png in Resources */,
 				B082C21C1CAEE58600B6DC29 /* DataIcon.png in Resources */,
 				B07940A41CAED68F0009F994 /* RestaurantIcon@2x.png in Resources */,
-				B07940DF1CAEDB710009F994 /* MoneyBagIcon.png in Resources */,
+				B07940DF1CAEDB710009F994 /* 00MoneyBagIcon.png in Resources */,
 				B0D003961C9D48D90064690E /* Assets.xcassets in Resources */,
 				B07940881CAED4380009F994 /* FlowersIcon@2x.png in Resources */,
 				B082C2261CAEE58600B6DC29 /* WeightliftIcon.png in Resources */,
@@ -562,7 +568,7 @@
 				B07940BC1CAED8EB0009F994 /* PaintBrushIcon@2x.png in Resources */,
 				B082C21F1CAEE58600B6DC29 /* MusicIcon@2x.png in Resources */,
 				B082C21A1CAEE58600B6DC29 /* CarIcon.png in Resources */,
-				B07940E01CAEDB710009F994 /* MoneyBagIcon@2x.png in Resources */,
+				B07940E01CAEDB710009F994 /* 00MoneyBagIcon@2x.png in Resources */,
 				B07940631CAED1BC0009F994 /* BabyIcon.png in Resources */,
 				B079407B1CAED4290009F994 /* AirportIcon.png in Resources */,
 				B079409F1CAED68F0009F994 /* JoystickIcon.png in Resources */,
@@ -589,6 +595,7 @@
 			files = (
 				B06CF6521CA3001200700899 /* TransactionCollection.swift in Sources */,
 				B0C988FD1C9EA2C400812CBD /* TransactionType.swift in Sources */,
+				B082C2311CAEE8B400B6DC29 /* AddCategoryViewController.swift in Sources */,
 				B0B32AF61CA13DEE0086A17A /* Money.swift in Sources */,
 				B051E8101CA54FF8006FED78 /* AccountsModel.xcdatamodeld in Sources */,
 				B0D003911C9D48D90064690E /* CategoriesViewController.swift in Sources */,
@@ -597,6 +604,7 @@
 				B04793F01CA3193D00C0F582 /* TransactionDate.swift in Sources */,
 				B06E92561C9D8FD4003D1796 /* FetchResult.swift in Sources */,
 				B046D9521CA56DC5001051FF /* CategoryStore.swift in Sources */,
+				B082C2331CAEF9BF00B6DC29 /* IconCollectionViewCell.swift in Sources */,
 				B0B32AEC1CA132620086A17A /* Account.swift in Sources */,
 				B0D0038D1C9D48D90064690E /* AppDelegate.swift in Sources */,
 				B0D0038F1C9D48D90064690E /* TransactionViewController.swift in Sources */,

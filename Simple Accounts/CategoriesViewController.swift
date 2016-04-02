@@ -15,8 +15,24 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destVC = segue.destinationViewController as? AddCategoryViewController {
+            destVC.categoryStore = categoryStore
+            if !(sender is UIBarButtonItem) {
+                destVC.category = categoryStore.allCategories()[tableView.indexPathForSelectedRow!.row]
+                tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow!, animated: true)
+            }
+        }
+    }
     
-    @IBAction func addButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func unwindFromAdd(segue: UIStoryboardSegue) {
+        tableView.reloadData()
+        adjustTableHeight()
+    }
+    
+    private func adjustTableHeight() {
+        tableHeightConstraint.constant = tableView.contentSize.height
     }
     
     //MARK: - Table View functions
@@ -26,14 +42,14 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return categoryStore.allCategories().count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("DefaultCategoryCell", forIndexPath: indexPath)
-        cell.textLabel?.text = "Category \(indexPath.row + 1)"
-        let image = UIImage(named: imageResources.pngImageNames[indexPath.row])
-        cell.imageView?.image = image
+        let category = categoryStore.allCategories()[indexPath.row]
+        cell.textLabel?.text = category.name
+        cell.imageView?.image = UIImage(named: category.icon)
         return cell
     }
     
@@ -42,12 +58,10 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
     }
     
     override func viewDidLayoutSubviews() {
-        tableHeightConstraint.constant = tableView.contentSize.height
+        adjustTableHeight()
     }
 
     override func didReceiveMemoryWarning() {

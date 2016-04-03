@@ -16,7 +16,7 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
     private let imageResourceNames = ImageResourceLoader.sharedInstance
     
     //MARK: - Dependencies
-    var category: TransactionCategory?
+    var mode: AddEditMode<TransactionCategory>!
     var categoryStore: CategoryStore!
     
     //MARK: - Outlets
@@ -39,16 +39,17 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
         let name = nameTextField.unwrappedText.trim()
         let icon = imageResourceNames.pngImageNames[iconCollectionView.indexPathsForSelectedItems()!.first!.item]
         
-        if category == nil {
+        switch mode! {
+        case .Add:
             if categoryStore.addCategory(TransactionCategoryData(name: name, icon: icon)) != nil {
                 performSegueWithIdentifier(unwindSegueID, sender: self)
             } else {
                 displayErrorDialog(name)
             }
-        } else {
-            category!.name = name
-            category!.icon = icon
-            if categoryStore.updateCategory(category!) {
+        case .Edit(let category):
+            category.name = name
+            category.icon = icon
+            if categoryStore.updateCategory(category) {
                 performSegueWithIdentifier(unwindSegueID, sender: self)
             } else {
                 displayErrorDialog(name)
@@ -69,11 +70,15 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     private func displayErrorDialog(enteredName: String) {
-        let createOrUpdateString = (category == nil) ? "create" : "update"
+        var createOrUpdateString = "create"
+        var resetNameClosure: ((UIAlertAction) -> Void)? = nil
+        if case let .Edit(category) = mode! {
+            createOrUpdateString = "update"
+            resetNameClosure = { _ in self.nameTextField.text = category.name }
+        }
         let actionSheet = UIAlertController(title: "Information",
                                             message: "Cannot \(createOrUpdateString) category, a category called '\(enteredName)' already exists.",
                                             preferredStyle: .ActionSheet)
-        let resetNameClosure: ((UIAlertAction) -> Void)? = (category != nil) ? { _ in self.nameTextField.text = self.category!.name } : nil
         actionSheet.addAction(UIAlertAction(title: "OK", style: .Default, handler: resetNameClosure))
         presentViewController(actionSheet, animated: true, completion: nil)
     }
@@ -112,7 +117,7 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
         super.viewDidLoad()
         
         var selectedIconIndex = 0
-        if let categoryToUpdate = category {
+        if case let .Edit(categoryToUpdate) = mode! {
             let canDeleteCategory = categoryToUpdate.transactions.isEmpty
             navigationBar.title = "Edit Category"
             deleteButton.hidden = false

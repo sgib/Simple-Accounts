@@ -19,8 +19,10 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destVC = segue.destinationViewController as? AddCategoryViewController {
             destVC.categoryStore = categoryStore
+            destVC.mode = .Add
             if !(sender is UIBarButtonItem) {
-                destVC.category = categoryStore.allCategories()[tableView.indexPathForSelectedRow!.row]
+                let category = categoryStore.allCategories()[tableView.indexPathForSelectedRow!.row]
+                destVC.mode = .Edit(category)
                 tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow!, animated: true)
             }
         }

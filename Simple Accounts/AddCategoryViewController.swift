@@ -106,7 +106,6 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageResourceNames.pngImageNames.count
-        //TODO: display alternate 'creation' cell to create set of default categories if list is empty
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {

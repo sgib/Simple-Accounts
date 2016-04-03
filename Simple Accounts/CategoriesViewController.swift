@@ -40,19 +40,44 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: - Table View functions
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryStore.allCategories().count
+        let categoryCount = categoryStore.allCategories().count
+        if section == 0 {
+            return categoryCount
+        } else {
+            return (categoryCount == 0) ? 1 : 0
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("DefaultCategoryCell", forIndexPath: indexPath)
-        let category = categoryStore.allCategories()[indexPath.row]
-        cell.textLabel?.text = category.name
-        cell.imageView?.image = UIImage(named: category.icon)
-        return cell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("DefaultCategoryCell", forIndexPath: indexPath)
+            let category = categoryStore.allCategories()[indexPath.row]
+            cell.textLabel?.text = category.name
+            cell.imageView?.image = UIImage(named: category.icon)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("EmptyCategoryCell", forIndexPath: indexPath)
+            return cell
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            categoryStore.addCategory(TransactionCategoryData(name: "Salary", icon: "BanknotesIcon.png"))
+            categoryStore.addCategory(TransactionCategoryData(name: "Books", icon: "BookIcon.png"))
+            categoryStore.addCategory(TransactionCategoryData(name: "Clothes", icon: "ClothingIcon.png"))
+            categoryStore.addCategory(TransactionCategoryData(name: "Gifts", icon: "GiftIcon.png"))
+            categoryStore.addCategory(TransactionCategoryData(name: "Food", icon: "RestaurantIcon.png"))
+            categoryStore.addCategory(TransactionCategoryData(name: "Shopping", icon: "ShoppingCartIcon.png"))
+            categoryStore.addCategory(TransactionCategoryData(name: "Fuel", icon: "PetrolIcon.png"))
+            categoryStore.addCategory(TransactionCategoryData(name: "Holidays", icon: "AirportIcon.png"))
+            tableView.reloadData()
+            adjustTableHeight()
+        }
     }
     
     //MARK: - Lifecycle

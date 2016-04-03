@@ -58,15 +58,17 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     @IBAction func deleteButtonPressed(sender: UIButton) {
-        let actionSheet = UIAlertController(title: nil,
-                                            message: nil,
-                                            preferredStyle: .ActionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: { _ in
-            //TODO: create categorystore.delete
-            self.performSegueWithIdentifier(self.unwindSegueID, sender: self)
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        presentViewController(actionSheet, animated: true, completion: nil)
+        if case let .Edit(category) = mode! {
+            let actionSheet = UIAlertController(title: nil,
+                                                message: nil,
+                                                preferredStyle: .ActionSheet)
+            actionSheet.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: { _ in
+                self.categoryStore.deleteCategory(category)
+                self.performSegueWithIdentifier(self.unwindSegueID, sender: self)
+            }))
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            presentViewController(actionSheet, animated: true, completion: nil)
+        }
     }
     
     private func displayErrorDialog(enteredName: String) {

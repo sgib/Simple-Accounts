@@ -117,15 +117,15 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
         super.viewDidLoad()
         
         var selectedIconIndex = 0
-        if case let .Edit(categoryToUpdate) = mode! {
-            let canDeleteCategory = categoryToUpdate.transactions.isEmpty
+        if case let .Edit(category) = mode! {
+            let canDeleteCategory = category.transactions.isEmpty
             navigationBar.title = "Edit Category"
             deleteButton.hidden = false
             deleteButton.enabled = canDeleteCategory
             deletePreventionMessage.hidden = canDeleteCategory
-            nameTextField.text = categoryToUpdate.name
+            nameTextField.text = category.name
             saveButton.enabled = true
-            selectedIconIndex = imageResourceNames.pngImageNames.indexOf(categoryToUpdate.icon)!
+            selectedIconIndex = imageResourceNames.pngImageNames.indexOf(category.icon)!
         }
         iconCollectionView.allowsMultipleSelection = false
         iconCollectionView.selectItemAtIndexPath(NSIndexPath(forItem: selectedIconIndex, inSection: 0), animated: false, scrollPosition: .None)

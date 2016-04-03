@@ -68,6 +68,33 @@ class CategoryTests: XCTestCase {
         duplicateCategory!.name = "default"
         XCTAssertFalse(coreDataHelper.categoryStore.updateCategory(duplicateCategory!))
     }
+    
+    func testDeleteCategoryIsSucessful() {
+        let categoryData = TransactionCategoryData(name: "default", icon: "default")
+        let category = coreDataHelper.categoryStore.addCategory(categoryData)!
+        XCTAssertTrue(coreDataHelper.categoryStore.deleteCategory(category))
+    }
+    
+    func testDeleteCategoryWithTransactionsIsUnsucessful() {
+        let categoryData = TransactionCategoryData(name: "default", icon: "default")
+        let category = coreDataHelper.categoryStore.addCategory(categoryData)!
+        let transData = TransactionData(amount: Money.zero(), category: category, date: TransactionDate(), description: nil, type: .Income)
+        coreDataHelper.account.addTransaction(transData)
+        XCTAssertFalse(coreDataHelper.categoryStore.deleteCategory(category))
+    }
+    
+    func testDeleteCategoryIsPersisted() {
+        let categoryData = TransactionCategoryData(name: "default", icon: "default")
+        let category = coreDataHelper.categoryStore.addCategory(categoryData)!
+        let categoryData2 = TransactionCategoryData(name: "second", icon: "default")
+        let category2 = coreDataHelper.categoryStore.addCategory(categoryData2)!
+        coreDataHelper.categoryStore.deleteCategory(category)
+        category2.name = ""
+        //trigger 'rollback' to see if deletion is rolled back
+        XCTAssertFalse(coreDataHelper.categoryStore.updateCategory(category2))
+        //if deletion was rolled back then count would be 2
+        XCTAssertTrue(coreDataHelper.categoryStore.allCategories().count == 1)
+    }
 
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.

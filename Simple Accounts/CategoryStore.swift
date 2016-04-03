@@ -48,6 +48,15 @@ class CategoryStore {
         }
     }
     
+    ///attempts to delete the given category, returns true if sucessful, otherwise returns false.
+    func deleteCategory(category: TransactionCategory) -> Bool {
+        if category.transactions.isEmpty {
+            return dataSource.deleteEntity(TransactionCategory.self, matchingPredicate: predicateForName(category.name)) == nil
+        } else {
+            return false
+        }
+    }
+    
     func allCategories() -> [TransactionCategory] {
         return dataSource.fetchEntity(TransactionCategory.self, matchingPredicate: nil, sortedBy: categoryNameSort).simpleResult()
     }

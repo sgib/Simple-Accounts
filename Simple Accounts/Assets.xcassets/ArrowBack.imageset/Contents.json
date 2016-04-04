@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Blouse-icon.png",
+      "filename" : "Arrows-Back-icon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Blouse-icon@2x.png",
+      "filename" : "Arrows-Back-icon@2x.png",
       "scale" : "2x"
     },
     {

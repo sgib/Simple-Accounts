@@ -93,6 +93,7 @@
 		B082C22F1CAEE79800B6DC29 /* SpadeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B082C22D1CAEE79800B6DC29 /* SpadeIcon@2x.png */; };
 		B082C2311CAEE8B400B6DC29 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B082C2301CAEE8B400B6DC29 /* AddCategoryViewController.swift */; };
 		B082C2331CAEF9BF00B6DC29 /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B082C2321CAEF9BF00B6DC29 /* IconCollectionViewCell.swift */; };
+		B08AF8401CB2C017006ED574 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AF83F1CB2C017006ED574 /* BorderedButton.swift */; };
 		B0B32AEC1CA132620086A17A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AEB1CA132620086A17A /* Account.swift */; };
 		B0B32AF01CA135950086A17A /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AEE1CA135950086A17A /* AccountTests.swift */; };
 		B0B32AF21CA138120086A17A /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AF11CA138120086A17A /* TransactionTests.swift */; };
@@ -207,6 +208,7 @@
 		B082C22D1CAEE79800B6DC29 /* SpadeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SpadeIcon@2x.png"; sourceTree = "<group>"; };
 		B082C2301CAEE8B400B6DC29 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		B082C2321CAEF9BF00B6DC29 /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
+		B08AF83F1CB2C017006ED574 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		B0B32AEB1CA132620086A17A /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		B0B32AEE1CA135950086A17A /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		B0B32AF11CA138120086A17A /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				B0D0841A1CAE544E0032E530 /* Images */,
 				B0D003921C9D48D90064690E /* Main.storyboard */,
 				B0D003971C9D48D90064690E /* LaunchScreen.storyboard */,
+				B08AF83F1CB2C017006ED574 /* BorderedButton.swift */,
 				B082C2321CAEF9BF00B6DC29 /* IconCollectionViewCell.swift */,
 			);
 			name = Views;
@@ -616,6 +619,7 @@
 				B06E92541C9D8F4B003D1796 /* CoreDataStack.swift in Sources */,
 				B051E8211CA5569B006FED78 /* Transaction.swift in Sources */,
 				B0D084201CAE57540032E530 /* ImageResourceLoader.swift in Sources */,
+				B08AF8401CB2C017006ED574 /* BorderedButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

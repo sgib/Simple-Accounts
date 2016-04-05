@@ -11,6 +11,11 @@ import UIKit
 class TransactionViewController: UIViewController {
 
     @IBOutlet weak var periodButton: UIButton!
+    @IBOutlet weak var openingBalanceLabel: UILabel!
+    @IBOutlet weak var totalIncomeLabel: UILabel!
+    @IBOutlet weak var totalExpensesLabel: UILabel!
+    @IBOutlet weak var aggregateLabel: UILabel!
+    @IBOutlet weak var closingBalanceLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

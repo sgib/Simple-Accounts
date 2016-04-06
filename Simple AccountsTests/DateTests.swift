@@ -99,5 +99,74 @@ class DateTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
 
+    func testDateAtStartOfWeekCorrectWhenDateWillBePreviousMonth() {
+        let expected = TransactionDate.dateFrom(day: 29, month: 5, year: 2016)!
+        let actual = TransactionDate.dateFrom(day: 1, month: 6, year: 2016)!.dateAtStartOfWeek(.Sunday)
+        XCTAssertEqual(expected, actual)
+    }
 
+    func testDateAtStartOfWeekCorrectWhenDateWillBePreviousYear() {
+        let expected = TransactionDate.dateFrom(day: 28, month: 12, year: 2015)!
+        let actual = TransactionDate.dateFrom(day: 1, month: 1, year: 2016)!.dateAtStartOfWeek(.Monday)
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testDateAtEndOfWeekCorrectWhenDateWillBeNextMonth() {
+        let expected = TransactionDate.dateFrom(day: 4, month: 4, year: 2016)!
+        let actual = TransactionDate.dateFrom(day: 31, month: 3, year: 2016)!.dateAtEndOfWeek(.Tuesday)
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testDateAtEndOfWeekCorrectWhenDateWillBeNextYear() {
+        let expected = TransactionDate.dateFrom(day: 3, month: 1, year: 2017)!
+        let actual = TransactionDate.dateFrom(day: 30, month: 12, year: 2016)!.dateAtEndOfWeek(.Wednesday)
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testDateAtStartOfWeekCorrectWhenDayOfWeekLessThanStartOfWeek() {
+        let expected = TransactionDate.dateFrom(day: 2, month: 4, year: 2016)!
+        let actual = TransactionDate.dateFrom(day: 6, month: 4, year: 2016)!.dateAtStartOfWeek(.Saturday)
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testDateAtEndOfWeekCorrectWhenDayOfWeekLessThanStartOfWeek() {
+        let expected = TransactionDate.dateFrom(day: 6, month: 4, year: 2016)!
+        let actual = TransactionDate.dateFrom(day: 4, month: 4, year: 2016)!.dateAtEndOfWeek(.Thursday)
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testDateByAddingDaysCorrectWhenAddingMovesToFollowingMonth() {
+        let expected = TransactionDate.dateFrom(day: 3, month: 4, year: 2016)!
+        let actual = TransactionDate.dateFrom(day: 29, month: 3, year: 2016)!.dateByAddingDays(5)
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testDateByAddingDaysCorrectWhenAddingMovesToPreviousMonth() {
+        let expected = TransactionDate.dateFrom(day: 27, month: 2, year: 2016)!
+        let actual = TransactionDate.dateFrom(day: 2, month: 3, year: 2016)!.dateByAddingDays(-4)
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testDateByAddingDaysCorrectWhenAddingMovesToFollowingYear() {
+        let expected = TransactionDate.dateFrom(day: 5, month: 1, year: 2017)!
+        let actual = TransactionDate.dateFrom(day: 28, month: 12, year: 2016)!.dateByAddingDays(8)
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testDateByAddingDaysCorrectWhenAddingMovesToPreviousYear() {
+        let expected = TransactionDate.dateFrom(day: 27, month: 12, year: 2015)!
+        let actual = TransactionDate.dateFrom(day: 5, month: 1, year: 2016)!.dateByAddingDays(-9)
+        XCTAssertEqual(expected, actual)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -8,42 +8,71 @@
 
 import Foundation
 
-protocol TransactionDateRange {
-    init(dateInRange: TransactionDate)
-    var startDate: TransactionDate { get }
-    var endDate: TransactionDate { get }
-    func previous() -> TransactionDateRange
-    func next() -> TransactionDateRange
-    var displayName: String { get }
-}
-
-class TransactionDateRangeWeek: TransactionDateRange {
-    private static let formatter: NSDateFormatter = {
-        let form = NSDateFormatter()
-        form.dateFormat = "dd MMM"
-        return form
-    }()
+struct TransactionDateRange {
+    private let size: DateRangeSize
     let startDate: TransactionDate
     let endDate: TransactionDate
     
-    required init(dateInRange: TransactionDate) {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Weekday], fromDate: dateInRange)
-        let dayDifference = calendar.firstWeekday - components.weekday
-        startDate = calendar.dateByAddingUnit(.Day, value: dayDifference, toDate: dateInRange, options: .MatchStrictly)!
-        endDate = calendar.dateByAddingUnit(.Day, value: 6, toDate: startDate, options: .MatchStrictly)!
+    private init(startDate: TransactionDate, endDate: TransactionDate, size: DateRangeSize) {
+        self.startDate = startDate
+        self.endDate = endDate
+        self.size = size
+    }
+    
+    static func rangeFromDate(date: TransactionDate, withSize: DateRangeSize, weeksStartsOn: Day = .Sunday) -> TransactionDateRange {
+        switch withSize {
+        case .Week:
+            let startDate = date.dateAtStartOfWeek(weeksStartsOn)
+            let endDate = date.dateAtEndOfWeek(weeksStartsOn)
+            return TransactionDateRange(startDate: startDate, endDate: endDate, size: .Week)
+        case .Month:
+            let startDate = date.dateAtStartOfMonth()
+            let endDate = date.dateAtEndOfMonth()
+            return TransactionDateRange(startDate: startDate, endDate: endDate, size: .Month)
+        case .Year:
+            let startDate = date.dateAtStartOfYear()
+            let endDate = date.dateAtEndOfYear()
+            return TransactionDateRange(startDate: startDate, endDate: endDate, size: .Year)
+        }
     }
     
     func previous() -> TransactionDateRange {
-        let endOfLastWeek = NSCalendar.currentCalendar().dateByAddingUnit(.Day, value: -1, toDate: startDate, options: .MatchStrictly)!
-        return TransactionDateRangeWeek(dateInRange: endOfLastWeek)
+        if size == .Week {
+            return TransactionDateRange(startDate: startDate.dateByAddingDays(-7), endDate: startDate.dateByAddingDays(-1), size: .Week)
+        } else {
+            return TransactionDateRange.rangeFromDate(startDate.dateByAddingDays(-1), withSize: size)
+        }
     }
+    
     func next() -> TransactionDateRange {
-        let startOfNextWeek = NSCalendar.currentCalendar().dateByAddingUnit(.Day, value: 1, toDate: endDate, options: .MatchStrictly)!
-        return TransactionDateRangeWeek(dateInRange: startOfNextWeek)
+        if size == .Week {
+            return TransactionDateRange(startDate: endDate.dateByAddingDays(1), endDate: endDate.dateByAddingDays(7), size: .Week)
+        } else {
+            return TransactionDateRange.rangeFromDate(endDate.dateByAddingDays(1), withSize: size)
+        }
     }
     
     var displayName: String {
-        return TransactionDateRangeWeek.formatter.stringFromDate(startDate) + " - " + TransactionDateRangeWeek.formatter.stringFromDate(endDate)
+        let formatter = NSDateFormatter()
+        switch size {
+        case .Week:
+            formatter.dateFormat = "dd MMM"
+            return formatter.stringFromDate(startDate) + " - " + formatter.stringFromDate(endDate)
+        case .Month:
+            formatter.dateFormat = "MMMM"
+            let selfYear = self.startDate.year
+            let currentYear = TransactionDate.Today.year
+            let yearString = (selfYear == currentYear) ? "" : " \(selfYear)"
+            return formatter.stringFromDate(startDate) + yearString
+        case .Year:
+            formatter.dateFormat = "yyyy"
+            return formatter.stringFromDate(startDate)
+        }
     }
 }
+
+
+
+
+
+

@@ -43,14 +43,14 @@ class Account {
     
     
     func transactionsForMonth(monthInDate: TransactionDate) -> TransactionCollection {
-        let startDate = monthInDate.dateAtTheStartOfMonth()
-        let endDate = monthInDate.dateAtTheEndOfMonth()
+        let startDate = monthInDate.dateAtStartOfMonth()
+        let endDate = monthInDate.dateAtEndOfMonth()
         let dateBetweenPredicate = NSPredicate(format: "date >= %@ && date <= %@", startDate, endDate)
         return dataSource.fetchEntity(Transaction.self, matchingPredicate: dateBetweenPredicate, sortedBy: nil).simpleResult()
     }
     
     func balanceAtStartOfMonth(monthInDate: TransactionDate) -> Money {
-        let startDate = monthInDate.dateAtTheStartOfMonth()
+        let startDate = monthInDate.dateAtStartOfMonth()
         let dateBeforePredicate = NSPredicate(format: "date < %@", startDate)
         let totalIncomeBeforeMonth = totalOfType(.Income, usingPredicate: dateBeforePredicate)
         let totalExpensesBeforeMonth = totalOfType(.Expense, usingPredicate: dateBeforePredicate)

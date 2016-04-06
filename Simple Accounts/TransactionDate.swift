@@ -28,7 +28,7 @@ enum DateComparisonResult: Int {
     }
 }
 
-enum DateGranularity {
+enum DateRangeSize {
     case Week
     case Month
     case Year
@@ -45,6 +45,16 @@ enum DateGranularity {
     }
 }
 
+enum Day: Int {
+    case Sunday = 1
+    case Monday
+    case Tuesday
+    case Wednesday
+    case Thursday
+    case Friday
+    case Saturday
+}
+
 extension TransactionDate {
     private var components: NSDateComponents {
         return NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: self)
@@ -52,6 +62,10 @@ extension TransactionDate {
     
     private func dateFromComponents(components: NSDateComponents) -> NSDate {
         return NSCalendar.currentCalendar().dateFromComponents(components)!
+    }
+    
+    static var Today: TransactionDate {
+        return TransactionDate()
     }
     
     static func dateFrom(day day: Int, month: Int, year: Int) -> TransactionDate? {
@@ -63,7 +77,7 @@ extension TransactionDate {
         return NSCalendar.currentCalendar().dateFromComponents(components)
     }
     
-    func compareTo(date: TransactionDate, toNearest: DateGranularity) -> DateComparisonResult {
+    func compareTo(date: TransactionDate, toNearest: DateRangeSize) -> DateComparisonResult {
         switch NSCalendar.currentCalendar().compareDate(self, toDate: date, toUnitGranularity: toNearest.convertToCalendarUnit()) {
         case .OrderedAscending:
             return .Earlier
@@ -74,16 +88,66 @@ extension TransactionDate {
         }
     }
     
-    func dateAtTheStartOfMonth() -> TransactionDate {
+    func dateByAddingDays(days: Int) -> TransactionDate {
+        return NSCalendar.currentCalendar().dateByAddingUnit(.Day, value: days, toDate: self, options: .MatchStrictly)!
+    }
+    
+    func dateAtStartOfWeek(weekStartsOn: Day) -> TransactionDate {
+        let previousWeekModifier = (self.weekday < weekStartsOn.rawValue) ? 7 : 0
+        let dayDifference = weekStartsOn.rawValue - (self.weekday + previousWeekModifier)
+        return self.dateByAddingDays(dayDifference)
+    }
+    
+    func dateAtEndOfWeek(weekStartsOn: Day) -> TransactionDate {
+        return self.dateAtStartOfWeek(weekStartsOn).dateByAddingDays(6)
+    }
+    
+    func dateAtStartOfMonth() -> TransactionDate {
         let components = self.components
         components.day = 1
         return dateFromComponents(components)
     }
     
-    func dateAtTheEndOfMonth() -> TransactionDate {
+    func dateAtEndOfMonth() -> TransactionDate {
         let components = self.components
         components.day = NSCalendar.currentCalendar().rangeOfUnit(.Day, inUnit: .Month, forDate: self).length
         return dateFromComponents(components)
     }
+    
+    func dateAtStartOfYear() -> TransactionDate {
+        let components = self.components
+        components.day = 1
+        components.month = 1
+        return dateFromComponents(components)
+    }
 
+    func dateAtEndOfYear() -> TransactionDate {
+        let components = self.components
+        components.day = 31
+        components.month = 12
+        return dateFromComponents(components)
+    }
+    
+    var day: Int {
+        return NSCalendar.currentCalendar().component(.Day, fromDate: self)
+    }
+    
+    var month: Int {
+        return NSCalendar.currentCalendar().component(.Month, fromDate: self)
+    }
+    
+    var year: Int {
+        return NSCalendar.currentCalendar().component(.Year, fromDate: self)
+    }
+    
+    var weekday: Int {
+        return NSCalendar.currentCalendar().component(.Weekday, fromDate: self)
+    }
 }
+
+
+
+
+
+
+

@@ -51,6 +51,64 @@ class DateRangeTests: XCTestCase {
         XCTAssertEqual(expectedStartDate, actual.startDate)
         XCTAssertEqual(expectedEndDate, actual.endDate)
     }
+    
+    func testMonthRangeIsCorrectForCurrentMonth() {
+        let currentDate = TransactionDate.dateFrom(day: 7, month: 4, year: 2016)!
+        let expectedStartDate = TransactionDate.dateFrom(day: 1, month: 4, year: 2016)!
+        let expectedEndDate = TransactionDate.dateFrom(day: 30, month: 4, year: 2016)!
+        let actual = TransactionDateRange.rangeFromDate(currentDate, withSize: .Month)
+        XCTAssertEqual(expectedStartDate, actual.startDate)
+        XCTAssertEqual(expectedEndDate, actual.endDate)
+    }
+    
+    func testMonthRangeIsCorrectForPreviousMonthFromCurrentMonth() {
+        let currentDate = TransactionDate.dateFrom(day: 7, month: 4, year: 2016)!
+        let expectedStartDate = TransactionDate.dateFrom(day: 1, month: 3, year: 2016)!
+        let expectedEndDate = TransactionDate.dateFrom(day: 31, month: 3, year: 2016)!
+        let currentMonth = TransactionDateRange.rangeFromDate(currentDate, withSize: .Month)
+        let actual = currentMonth.previous()
+        XCTAssertEqual(expectedStartDate, actual.startDate)
+        XCTAssertEqual(expectedEndDate, actual.endDate)
+    }
+    
+    func testMonthRangeIsCorrectForNextMonthFromCurrentMonth() {
+        let currentDate = TransactionDate.dateFrom(day: 7, month: 4, year: 2016)!
+        let expectedStartDate = TransactionDate.dateFrom(day: 1, month: 5, year: 2016)!
+        let expectedEndDate = TransactionDate.dateFrom(day: 31, month: 5, year: 2016)!
+        let currentMonth = TransactionDateRange.rangeFromDate(currentDate, withSize: .Month)
+        let actual = currentMonth.next()
+        XCTAssertEqual(expectedStartDate, actual.startDate)
+        XCTAssertEqual(expectedEndDate, actual.endDate)
+    }
+    
+    func testYearRangeIsCorrectForCurrentYear() {
+        let currentDate = TransactionDate.dateFrom(day: 7, month: 4, year: 2016)!
+        let expectedStartDate = TransactionDate.dateFrom(day: 1, month: 1, year: 2016)!
+        let expectedEndDate = TransactionDate.dateFrom(day: 31, month: 12, year: 2016)!
+        let actual = TransactionDateRange.rangeFromDate(currentDate, withSize: .Year)
+        XCTAssertEqual(expectedStartDate, actual.startDate)
+        XCTAssertEqual(expectedEndDate, actual.endDate)
+    }
+    
+    func testYearRangeIsCorrectForPreviousYearFromCurrentYear() {
+        let currentDate = TransactionDate.dateFrom(day: 7, month: 4, year: 2016)!
+        let expectedStartDate = TransactionDate.dateFrom(day: 1, month: 1, year: 2015)!
+        let expectedEndDate = TransactionDate.dateFrom(day: 31, month: 12, year: 2015)!
+        let currentYear = TransactionDateRange.rangeFromDate(currentDate, withSize: .Year)
+        let actual = currentYear.previous()
+        XCTAssertEqual(expectedStartDate, actual.startDate)
+        XCTAssertEqual(expectedEndDate, actual.endDate)
+    }
+    
+    func testYearRangeIsCorrectForNextYearFromCurrentYear() {
+        let currentDate = TransactionDate.dateFrom(day: 7, month: 4, year: 2016)!
+        let expectedStartDate = TransactionDate.dateFrom(day: 1, month: 1, year: 2017)!
+        let expectedEndDate = TransactionDate.dateFrom(day: 31, month: 12, year: 2017)!
+        let currentYear = TransactionDateRange.rangeFromDate(currentDate, withSize: .Year)
+        let actual = currentYear.next()
+        XCTAssertEqual(expectedStartDate, actual.startDate)
+        XCTAssertEqual(expectedEndDate, actual.endDate)
+    }
 
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.

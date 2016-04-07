@@ -56,6 +56,7 @@ struct TransactionDateRange {
         let formatter = NSDateFormatter()
         switch size {
         case .Week:
+            //TODO: format week differently when it falls across year boundary and possibly also for month boundaries?
             formatter.dateFormat = "dd MMM"
             return formatter.stringFromDate(startDate) + " - " + formatter.stringFromDate(endDate)
         case .Month:

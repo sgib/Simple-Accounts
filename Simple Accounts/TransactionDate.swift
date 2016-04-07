@@ -45,7 +45,7 @@ enum DateRangeSize {
     }
 }
 
-enum Day: Int {
+enum Weekday: Int {
     case Sunday = 1
     case Monday
     case Tuesday
@@ -65,7 +65,8 @@ extension TransactionDate {
     }
     
     static var Today: TransactionDate {
-        return TransactionDate()
+        let todayComponents = TransactionDate().components
+        return NSCalendar.currentCalendar().dateFromComponents(todayComponents)!
     }
     
     static func dateFrom(day day: Int, month: Int, year: Int) -> TransactionDate? {
@@ -73,7 +74,6 @@ extension TransactionDate {
         components.day = day
         components.month = month
         components.year = year
-        
         return NSCalendar.currentCalendar().dateFromComponents(components)
     }
     
@@ -92,13 +92,13 @@ extension TransactionDate {
         return NSCalendar.currentCalendar().dateByAddingUnit(.Day, value: days, toDate: self, options: .MatchStrictly)!
     }
     
-    func dateAtStartOfWeek(weekStartsOn: Day) -> TransactionDate {
+    func dateAtStartOfWeek(weekStartsOn: Weekday) -> TransactionDate {
         let previousWeekModifier = (self.weekday < weekStartsOn.rawValue) ? 7 : 0
         let dayDifference = weekStartsOn.rawValue - (self.weekday + previousWeekModifier)
         return self.dateByAddingDays(dayDifference)
     }
     
-    func dateAtEndOfWeek(weekStartsOn: Day) -> TransactionDate {
+    func dateAtEndOfWeek(weekStartsOn: Weekday) -> TransactionDate {
         return self.dateAtStartOfWeek(weekStartsOn).dateByAddingDays(6)
     }
     

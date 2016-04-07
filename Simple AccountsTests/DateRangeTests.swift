@@ -14,9 +14,11 @@ class DateRangeTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        TransactionCalendar.sharedCalendar.changeFirstWeekdayTo(.Sunday)
     }
     
     override func tearDown() {
+        TransactionCalendar.sharedCalendar.changeFirstWeekdayTo(.Sunday)
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
@@ -25,7 +27,7 @@ class DateRangeTests: XCTestCase {
         let currentDate = TransactionDate.dateFrom(day: 7, month: 4, year: 2016)!
         let expectedStartDate = TransactionDate.dateFrom(day: 3, month: 4, year: 2016)!
         let expectedEndDate = TransactionDate.dateFrom(day: 9, month: 4, year: 2016)!
-        let actual = TransactionDateRange.rangeFromDate(currentDate, withSize: .Week, weeksStartsOn: .Sunday)
+        let actual = TransactionDateRange.rangeFromDate(currentDate, withSize: .Week)
         XCTAssertEqual(expectedStartDate, actual.startDate)
         XCTAssertEqual(expectedEndDate, actual.endDate)
     }
@@ -34,7 +36,7 @@ class DateRangeTests: XCTestCase {
         let currentDate = TransactionDate.dateFrom(day: 7, month: 4, year: 2016)!
         let expectedStartDate = TransactionDate.dateFrom(day: 27, month: 3, year: 2016)!
         let expectedEndDate = TransactionDate.dateFrom(day: 2, month: 4, year: 2016)!
-        let currentWeek = TransactionDateRange.rangeFromDate(currentDate, withSize: .Week, weeksStartsOn: .Sunday)
+        let currentWeek = TransactionDateRange.rangeFromDate(currentDate, withSize: .Week)
         let actual = currentWeek.previous()
         XCTAssertEqual(expectedStartDate, actual.startDate)
         XCTAssertEqual(expectedEndDate, actual.endDate)
@@ -44,7 +46,7 @@ class DateRangeTests: XCTestCase {
         let currentDate = TransactionDate.dateFrom(day: 7, month: 4, year: 2016)!
         let expectedStartDate = TransactionDate.dateFrom(day: 10, month: 4, year: 2016)!
         let expectedEndDate = TransactionDate.dateFrom(day: 16, month: 4, year: 2016)!
-        let currentWeek = TransactionDateRange.rangeFromDate(currentDate, withSize: .Week, weeksStartsOn: .Sunday)
+        let currentWeek = TransactionDateRange.rangeFromDate(currentDate, withSize: .Week)
         let actual = currentWeek.next()
         XCTAssertEqual(expectedStartDate, actual.startDate)
         XCTAssertEqual(expectedEndDate, actual.endDate)

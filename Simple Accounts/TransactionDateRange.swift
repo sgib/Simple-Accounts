@@ -19,11 +19,11 @@ struct TransactionDateRange {
         self.size = size
     }
     
-    static func rangeFromDate(date: TransactionDate, withSize: DateRangeSize, weeksStartsOn: Weekday = .Sunday) -> TransactionDateRange {
+    static func rangeFromDate(date: TransactionDate, withSize: DateRangeSize) -> TransactionDateRange {
         switch withSize {
         case .Week:
-            let startDate = date.dateAtStartOfWeek(weeksStartsOn)
-            let endDate = date.dateAtEndOfWeek(weeksStartsOn)
+            let startDate = date.dateAtStartOfWeek()
+            let endDate = date.dateAtEndOfWeek()
             return TransactionDateRange(startDate: startDate, endDate: endDate, size: .Week)
         case .Month:
             let startDate = date.dateAtStartOfMonth()

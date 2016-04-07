@@ -14,9 +14,11 @@ class DateTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        TransactionCalendar.sharedCalendar.changeFirstWeekdayTo(.Sunday)
     }
     
     override func tearDown() {
+        TransactionCalendar.sharedCalendar.changeFirstWeekdayTo(.Sunday)
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
@@ -100,38 +102,44 @@ class DateTests: XCTestCase {
     }
 
     func testDateAtStartOfWeekCorrectWhenDateWillBePreviousMonth() {
+        TransactionCalendar.sharedCalendar.changeFirstWeekdayTo(.Sunday)
         let expected = TransactionDate.dateFrom(day: 29, month: 5, year: 2016)!
-        let actual = TransactionDate.dateFrom(day: 1, month: 6, year: 2016)!.dateAtStartOfWeek(.Sunday)
+        let actual = TransactionDate.dateFrom(day: 1, month: 6, year: 2016)!.dateAtStartOfWeek()
         XCTAssertEqual(expected, actual)
     }
 
     func testDateAtStartOfWeekCorrectWhenDateWillBePreviousYear() {
+        TransactionCalendar.sharedCalendar.changeFirstWeekdayTo(.Monday)
         let expected = TransactionDate.dateFrom(day: 28, month: 12, year: 2015)!
-        let actual = TransactionDate.dateFrom(day: 1, month: 1, year: 2016)!.dateAtStartOfWeek(.Monday)
+        let actual = TransactionDate.dateFrom(day: 1, month: 1, year: 2016)!.dateAtStartOfWeek()
         XCTAssertEqual(expected, actual)
     }
     
     func testDateAtEndOfWeekCorrectWhenDateWillBeNextMonth() {
+        TransactionCalendar.sharedCalendar.changeFirstWeekdayTo(.Tuesday)
         let expected = TransactionDate.dateFrom(day: 4, month: 4, year: 2016)!
-        let actual = TransactionDate.dateFrom(day: 31, month: 3, year: 2016)!.dateAtEndOfWeek(.Tuesday)
+        let actual = TransactionDate.dateFrom(day: 31, month: 3, year: 2016)!.dateAtEndOfWeek()
         XCTAssertEqual(expected, actual)
     }
     
     func testDateAtEndOfWeekCorrectWhenDateWillBeNextYear() {
+        TransactionCalendar.sharedCalendar.changeFirstWeekdayTo(.Wednesday)
         let expected = TransactionDate.dateFrom(day: 3, month: 1, year: 2017)!
-        let actual = TransactionDate.dateFrom(day: 30, month: 12, year: 2016)!.dateAtEndOfWeek(.Wednesday)
+        let actual = TransactionDate.dateFrom(day: 30, month: 12, year: 2016)!.dateAtEndOfWeek()
         XCTAssertEqual(expected, actual)
     }
     
     func testDateAtStartOfWeekCorrectWhenDayOfWeekLessThanStartOfWeek() {
+        TransactionCalendar.sharedCalendar.changeFirstWeekdayTo(.Saturday)
         let expected = TransactionDate.dateFrom(day: 2, month: 4, year: 2016)!
-        let actual = TransactionDate.dateFrom(day: 6, month: 4, year: 2016)!.dateAtStartOfWeek(.Saturday)
+        let actual = TransactionDate.dateFrom(day: 6, month: 4, year: 2016)!.dateAtStartOfWeek()
         XCTAssertEqual(expected, actual)
     }
     
     func testDateAtEndOfWeekCorrectWhenDayOfWeekLessThanStartOfWeek() {
+        TransactionCalendar.sharedCalendar.changeFirstWeekdayTo(.Thursday)
         let expected = TransactionDate.dateFrom(day: 6, month: 4, year: 2016)!
-        let actual = TransactionDate.dateFrom(day: 4, month: 4, year: 2016)!.dateAtEndOfWeek(.Thursday)
+        let actual = TransactionDate.dateFrom(day: 4, month: 4, year: 2016)!.dateAtEndOfWeek()
         XCTAssertEqual(expected, actual)
     }
     

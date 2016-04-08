@@ -95,21 +95,31 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JK9-qo-bJt">
                                     <rect key="frame" x="8" y="5" width="24" height="24"/>
                                     <state key="normal" image="ArrowBack"/>
+                                    <connections>
+                                        <action selector="previousButtonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="82t-mD-ctd"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7WB-tm-n5y">
                                     <rect key="frame" x="216" y="5" width="24" height="24"/>
                                     <state key="normal" image="ArrowForward"/>
+                                    <connections>
+                                        <action selector="nextButtonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="dLZ-gX-zbH"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WlT-QT-VwM" customClass="BorderedButton" customModule="Simple_Accounts" customModuleProvider="target">
-                                    <rect key="frame" x="60" y="2" width="120" height="30"/>
+                                    <rect key="frame" x="54" y="2" width="132" height="30"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="c8F-X2-Ucn"/>
-                                        <constraint firstAttribute="width" constant="120" id="kfz-Ly-CQ1"/>
+                                        <constraint firstAttribute="width" constant="132" id="kfz-Ly-CQ1"/>
                                     </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal" title="April">
                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="rangeButtonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="tVZ-C1-VW9"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -128,6 +138,7 @@
                         <outlet property="closingBalanceLabel" destination="cR0-Jr-qir" id="2tc-C6-Q8I"/>
                         <outlet property="openingBalanceLabel" destination="1WD-rn-wJV" id="b0E-SH-sry"/>
                         <outlet property="periodButton" destination="WlT-QT-VwM" id="drD-DW-HU4"/>
+                        <outlet property="rangeDisplayButton" destination="WlT-QT-VwM" id="ahH-Aa-8ot"/>
                         <outlet property="totalExpensesLabel" destination="Guh-0L-48v" id="8Qz-DH-1sf"/>
                         <outlet property="totalIncomeLabel" destination="gni-1K-Zhh" id="zO4-zG-t0k"/>
                     </connections>

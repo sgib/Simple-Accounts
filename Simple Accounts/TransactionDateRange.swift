@@ -9,7 +9,7 @@
 import Foundation
 
 struct TransactionDateRange {
-    private let size: DateRangeSize
+    let size: DateRangeSize
     let startDate: TransactionDate
     let endDate: TransactionDate
     
@@ -63,8 +63,8 @@ struct TransactionDateRange {
             formatter.dateFormat = "MMMM"
             let selfYear = self.startDate.year
             let currentYear = TransactionDate.Today.year
-            let yearString = (selfYear == currentYear) ? "" : " \(selfYear)"
-            return formatter.stringFromDate(startDate) + yearString
+            formatter.dateFormat = (selfYear == currentYear) ? "MMMM" : "MMMM yy"
+            return formatter.stringFromDate(startDate)
         case .Year:
             formatter.dateFormat = "yyyy"
             return formatter.stringFromDate(startDate)

@@ -64,6 +64,17 @@ class TransactionViewController: UIViewController {
         presentViewController(actionSheet, animated: true, completion: nil)
     }
     
+    //MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destVC = segue.destinationViewController as? AddTransactionViewController {
+            destVC.mode = .Add
+            if !(sender is UIBarButtonItem) {
+                //edit selected transaction
+            }
+        }
+    }
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {

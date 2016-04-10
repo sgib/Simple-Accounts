@@ -138,15 +138,6 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
     
 }
 
-//MARK: - Extensions
-
-extension UITextField {
-    var unwrappedText: String {
-        return self.text ?? ""
-    }
-}
-
-
 
 
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B03566851CB109FA00E0F1FB /* AddEditMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03566841CB109FA00E0F1FB /* AddEditMode.swift */; };
+		B03CBE801CBA7F76008FCBC4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03CBE7F1CBA7F76008FCBC4 /* Extensions.swift */; };
 		B046D9521CA56DC5001051FF /* CategoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B046D9511CA56DC5001051FF /* CategoryStore.swift */; };
 		B046D9561CA573F4001051FF /* CoreDataTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B046D9551CA573F4001051FF /* CoreDataTestHelper.swift */; };
 		B04793F01CA3193D00C0F582 /* TransactionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04793EF1CA3193D00C0F582 /* TransactionDate.swift */; };
@@ -127,6 +128,7 @@
 
 /* Begin PBXFileReference section */
 		B03566841CB109FA00E0F1FB /* AddEditMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditMode.swift; sourceTree = "<group>"; };
+		B03CBE7F1CBA7F76008FCBC4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B046D9511CA56DC5001051FF /* CategoryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryStore.swift; sourceTree = "<group>"; };
 		B046D9551CA573F4001051FF /* CoreDataTestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestHelper.swift; sourceTree = "<group>"; };
 		B04793EF1CA3193D00C0F582 /* TransactionDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDate.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				B082C2301CAEE8B400B6DC29 /* AddCategoryViewController.swift */,
 				B0D0841F1CAE57540032E530 /* ImageResourceLoader.swift */,
 				B03566841CB109FA00E0F1FB /* AddEditMode.swift */,
+				B03CBE7F1CBA7F76008FCBC4 /* Extensions.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				B051E82B1CA557BE006FED78 /* Transaction+CoreDataProperties.swift in Sources */,
 				B03566851CB109FA00E0F1FB /* AddEditMode.swift in Sources */,
 				B0D0180C1CBA39D6007B1D9A /* CategorySelectionViewController.swift in Sources */,
+				B03CBE801CBA7F76008FCBC4 /* Extensions.swift in Sources */,
 				B06E92541C9D8F4B003D1796 /* CoreDataStack.swift in Sources */,
 				B051E8211CA5569B006FED78 /* Transaction.swift in Sources */,
 				B0D084201CAE57540032E530 /* ImageResourceLoader.swift in Sources */,

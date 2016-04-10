@@ -71,10 +71,11 @@ class TransactionViewController: UIViewController {
     //MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destVC = segue.destinationViewController as? AddTransactionViewController {
+        if let destVC = segue.destinationViewController.childViewControllers.first as? AddTransactionViewController {
             destVC.account = account
             destVC.categoryStore = categoryStore
             destVC.mode = .Add
+            //TODO: set default date for transaction: if today is 'contained in' current range use today, otherwise use range.startdate
             if !(sender is UIBarButtonItem) {
                 //edit selected transaction
             }

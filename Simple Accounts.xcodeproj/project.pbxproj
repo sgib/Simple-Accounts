@@ -110,6 +110,7 @@
 		B0D003961C9D48D90064690E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0D003951C9D48D90064690E /* Assets.xcassets */; };
 		B0D003991C9D48D90064690E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D003971C9D48D90064690E /* LaunchScreen.storyboard */; };
 		B0D003A41C9D48DA0064690E /* TransactionCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D003A31C9D48DA0064690E /* TransactionCollectionTests.swift */; };
+		B0D0180C1CBA39D6007B1D9A /* CategorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0180B1CBA39D6007B1D9A /* CategorySelectionViewController.swift */; };
 		B0D084201CAE57540032E530 /* ImageResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0841F1CAE57540032E530 /* ImageResourceLoader.swift */; };
 		B0DDAB241CA6800200A31C59 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DDAB231CA6800200A31C59 /* DateTests.swift */; };
 /* End PBXBuildFile section */
@@ -232,6 +233,7 @@
 		B0D0039F1C9D48DA0064690E /* Simple AccountsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Simple AccountsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D003A31C9D48DA0064690E /* TransactionCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCollectionTests.swift; sourceTree = "<group>"; };
 		B0D003A51C9D48DA0064690E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0D0180B1CBA39D6007B1D9A /* CategorySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectionViewController.swift; sourceTree = "<group>"; };
 		B0D0841F1CAE57540032E530 /* ImageResourceLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResourceLoader.swift; sourceTree = "<group>"; };
 		B0DDAB231CA6800200A31C59 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -276,6 +278,7 @@
 			children = (
 				B0D0038E1C9D48D90064690E /* TransactionViewController.swift */,
 				B0B6C3AF1CB8E55F005A3C8F /* AddTransactionViewController.swift */,
+				B0D0180B1CBA39D6007B1D9A /* CategorySelectionViewController.swift */,
 				B0D003901C9D48D90064690E /* CategoriesViewController.swift */,
 				B082C2301CAEE8B400B6DC29 /* AddCategoryViewController.swift */,
 				B0D0841F1CAE57540032E530 /* ImageResourceLoader.swift */,
@@ -627,6 +630,7 @@
 				B0D0038F1C9D48D90064690E /* TransactionViewController.swift in Sources */,
 				B051E82B1CA557BE006FED78 /* Transaction+CoreDataProperties.swift in Sources */,
 				B03566851CB109FA00E0F1FB /* AddEditMode.swift in Sources */,
+				B0D0180C1CBA39D6007B1D9A /* CategorySelectionViewController.swift in Sources */,
 				B06E92541C9D8F4B003D1796 /* CoreDataStack.swift in Sources */,
 				B051E8211CA5569B006FED78 /* Transaction.swift in Sources */,
 				B0D084201CAE57540032E530 /* ImageResourceLoader.swift in Sources */,

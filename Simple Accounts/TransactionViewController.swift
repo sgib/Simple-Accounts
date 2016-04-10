@@ -12,6 +12,10 @@ class TransactionViewController: UIViewController {
 
     private var currentRange: TransactionDateRange!
     
+    //MARK: - Dependencies
+    var account: Account!
+    var categoryStore: CategoryStore!
+    
     //MARK: - Outlets
     
     @IBOutlet weak var periodButton: UIButton!
@@ -68,6 +72,8 @@ class TransactionViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destVC = segue.destinationViewController as? AddTransactionViewController {
+            destVC.account = account
+            destVC.categoryStore = categoryStore
             destVC.mode = .Add
             if !(sender is UIBarButtonItem) {
                 //edit selected transaction

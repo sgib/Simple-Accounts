@@ -11,13 +11,14 @@ import UIKit
 class AddTransactionViewController: UITableViewController {
 
     private var datePickerVisible = false
+    private var chosenCategory: TransactionCategory?
     
     //MARK: - Dependencies
     var mode: AddEditMode<Transaction>!
     var account: Account!
+    var categoryStore: CategoryStore!
     
     //MARK: - Outlets
-    
     
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var typeSegmentControl: UISegmentedControl!
@@ -28,6 +29,29 @@ class AddTransactionViewController: UITableViewController {
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var deleteButton: UIButton!
     
+    //MARK: - Navigation
+    
+    @IBAction func unwindFromCategorySelection(segue: UIStoryboardSegue) {
+        if let categorySelection = segue.sourceViewController as? CategorySelectionViewController {
+            if let category = categorySelection.chosenCategory {
+                chosenCategory = category
+                updateCategoryDisplay(category)
+                if case let .Edit(transaction) = mode! {
+                    transaction.category = category
+                }
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destVC = segue.destinationViewController as? CategorySelectionViewController {
+            destVC.categoryStore = categoryStore
+            destVC.chosenCategory = chosenCategory
+            if case let .Edit(transaction) = mode! {
+                destVC.chosenCategory = transaction.category
+            }
+        }
+    }
     
     //MARK: - Actions
     
@@ -81,6 +105,10 @@ class AddTransactionViewController: UITableViewController {
         dateDisplayLabel.text = formatter.stringFromDate(date)
     }
     
+    private func updateCategoryDisplay(category: TransactionCategory?) {
+        categoryDisplayLabel.text = category?.name ?? "None"
+    }
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -91,7 +119,7 @@ class AddTransactionViewController: UITableViewController {
             deleteButton.hidden = false
             typeSegmentControl.selectedSegmentIndex = (transaction.type == .Expense) ? 0 : 1
             updateDateDisplay(transaction.date)
-            categoryDisplayLabel.text = transaction.category.name
+            updateCategoryDisplay(transaction.category)
             amountTextField.text = "£ \(transaction.amount)"
             descriptionTextField.text = transaction.transactionDescription
         } else {

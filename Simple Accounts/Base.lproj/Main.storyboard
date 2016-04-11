@@ -28,7 +28,7 @@
         <!--Transaction View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="TransactionViewController" customModule="Simple_Accounts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="9pv-A4-QxB" customClass="TransactionViewController" customModule="Simple_Accounts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -77,12 +77,74 @@
                                     <constraint firstAttribute="height" constant="32" id="emE-zm-Doc"/>
                                 </constraints>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PBw-fa-BBi">
+                                <rect key="frame" x="0.0" y="112" width="600" height="431"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TransactionCell" id="Lzj-yY-7fn" customClass="TransactionTableViewCell" customModule="Simple_Accounts" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lzj-yY-7fn" id="ILW-CE-xkU">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="icF-DB-ZeT">
+                                                    <rect key="frame" x="15" y="5" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="9dS-4O-seJ"/>
+                                                        <constraint firstAttribute="width" constant="32" id="NfG-ge-7Ly"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nny-mG-YAI">
+                                                    <rect key="frame" x="62" y="25" width="29" height="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIb-6h-B4a">
+                                                    <rect key="frame" x="519" y="12" width="40" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQj-nD-IpT">
+                                                    <rect key="frame" x="62" y="5" width="40" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="icF-DB-ZeT" firstAttribute="leading" secondItem="ILW-CE-xkU" secondAttribute="leadingMargin" constant="7" id="IvS-6z-YzR"/>
+                                                <constraint firstItem="Nny-mG-YAI" firstAttribute="top" secondItem="EQj-nD-IpT" secondAttribute="bottom" id="PXN-jb-hSL"/>
+                                                <constraint firstItem="EQj-nD-IpT" firstAttribute="top" secondItem="ILW-CE-xkU" secondAttribute="topMargin" constant="-3" id="SPu-Cv-j0F"/>
+                                                <constraint firstItem="Nny-mG-YAI" firstAttribute="leading" secondItem="EQj-nD-IpT" secondAttribute="leading" id="cVm-Au-sOT"/>
+                                                <constraint firstItem="icF-DB-ZeT" firstAttribute="top" secondItem="ILW-CE-xkU" secondAttribute="topMargin" constant="-3" id="eb8-bM-9K8"/>
+                                                <constraint firstItem="EQj-nD-IpT" firstAttribute="leading" secondItem="ILW-CE-xkU" secondAttribute="leadingMargin" constant="54" id="kNt-cE-SUF"/>
+                                                <constraint firstItem="LIb-6h-B4a" firstAttribute="centerY" secondItem="ILW-CE-xkU" secondAttribute="centerY" id="uQS-1r-BaJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="LIb-6h-B4a" secondAttribute="trailing" id="usE-HN-KAN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="amountLabel" destination="LIb-6h-B4a" id="QL0-4g-9Nf"/>
+                                            <outlet property="categoryImageView" destination="icF-DB-ZeT" id="gJT-qy-ycQ"/>
+                                            <outlet property="dateLabel" destination="Nny-mG-YAI" id="j9y-5R-XsX"/>
+                                            <outlet property="descriptionLabel" destination="EQj-nD-IpT" id="bXy-gW-VeS"/>
+                                            <outlet property="imageView" destination="icF-DB-ZeT" id="TgM-oi-8Xh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="PBw-fa-BBi" secondAttribute="bottom" constant="8" symbolic="YES" id="A1M-4c-E8D"/>
                             <constraint firstItem="fec-KZ-wPe" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="H8x-VA-RFh"/>
+                            <constraint firstItem="PBw-fa-BBi" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="MO9-rq-2pn"/>
+                            <constraint firstItem="PBw-fa-BBi" firstAttribute="top" secondItem="fec-KZ-wPe" secondAttribute="bottom" constant="8" symbolic="YES" id="N2u-jg-n4z"/>
                             <constraint firstItem="fec-KZ-wPe" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="Rx7-QA-sB7"/>
                             <constraint firstAttribute="trailing" secondItem="fec-KZ-wPe" secondAttribute="trailing" id="mo1-cn-IiL"/>
+                            <constraint firstAttribute="trailing" secondItem="PBw-fa-BBi" secondAttribute="trailing" id="tS8-4D-sXm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iB3-e2-IPg">

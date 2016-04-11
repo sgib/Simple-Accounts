@@ -8,9 +8,11 @@
 
 import UIKit
 
-class TransactionViewController: UIViewController {
+class TransactionViewController: UIViewController, UITableViewDataSource {
 
+    private let reuseID = "TransactionCell"
     private var currentRange: TransactionDateRange!
+    private var currentTransactions = TransactionCollection()
     
     //MARK: - Dependencies
     var account: Account!
@@ -80,6 +82,20 @@ class TransactionViewController: UIViewController {
                 //edit selected transaction
             }
         }
+    }
+    
+    //MARK: - Table view
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return currentTransactions.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
     }
     
     //MARK: - Lifecycle

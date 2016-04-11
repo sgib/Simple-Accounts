@@ -11,6 +11,8 @@ import UIKit
 class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
 
     private var datePickerVisible = false
+    private let dateDisplayIndexPath = NSIndexPath(forRow: 1, inSection: 0)
+    private let datePickerIndexPath = NSIndexPath(forRow: 2, inSection: 0)
     private var chosenCategory: TransactionCategory?
     private var enteredAmount = Money.zero()
     
@@ -73,7 +75,7 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 1 && indexPath.section == 0 {
+        if indexPath == dateDisplayIndexPath {
             setDatePickerVisible(!datePickerVisible)
         } else {
             setDatePickerVisible(false)
@@ -81,7 +83,7 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if !datePickerVisible && indexPath.section == 0 && indexPath.row == 2 {
+        if !datePickerVisible && indexPath == datePickerIndexPath {
             return 0
         } else {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)

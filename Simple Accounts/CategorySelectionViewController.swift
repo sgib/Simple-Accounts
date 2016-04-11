@@ -11,6 +11,7 @@ import UIKit
 class CategorySelectionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     private let unwindSegueID = "unwindFromCategorySelect"
+    private let reuseID = "DefaultCategoryCell"
     var chosenCategory: TransactionCategory?
     
     //MARK: - Dependencies
@@ -40,7 +41,7 @@ class CategorySelectionViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("DefaultCategoryCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
         let category = categoryStore.allCategories()[indexPath.row]
         cell.textLabel?.text = category.name
         cell.imageView?.image = UIImage(named: category.icon)

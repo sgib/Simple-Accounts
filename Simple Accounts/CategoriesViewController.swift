@@ -10,12 +10,21 @@ import UIKit
 
 class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    private var imageResources = ImageResourceLoader.sharedInstance
+    private let defaultReuseID = "DefaultCategoryCell"
+    private let emptyReuseID = "EmptyCategoryCell"
+    
+    //MARK: - Dependencies
+    
     var categoryStore: CategoryStore!
-    var imageResources = ImageResourceLoader.sharedInstance
+    
+    //MARK: - Outlets
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
 
+    //MARK: - Navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destVC = segue.destinationViewController as? AddCategoryViewController {
             destVC.categoryStore = categoryStore
@@ -32,6 +41,8 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadData()
         adjustTableHeight()
     }
+    
+    //MARK: - Private functions
     
     private func adjustTableHeight() {
         tableHeightConstraint.constant = tableView.contentSize.height
@@ -54,13 +65,13 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("DefaultCategoryCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier(defaultReuseID, forIndexPath: indexPath)
             let category = categoryStore.allCategories()[indexPath.row]
             cell.textLabel?.text = category.name
             cell.imageView?.image = UIImage(named: category.icon)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("EmptyCategoryCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier(emptyReuseID, forIndexPath: indexPath)
             return cell
         }
     }

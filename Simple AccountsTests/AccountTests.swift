@@ -33,39 +33,62 @@ class AccountTests: XCTestCase {
     }
     
     func testAccountCreation() {
-        XCTAssertEqual(coreDataHelper.account.currentBalance, openingAmount)
+        XCTAssertEqual(openingAmount, coreDataHelper.account.currentBalance)
     }
     
     func testAddIncomeTransactionIncreasesCurrentBalance() {
         let transAmount = Money(integer: 38)
-        coreDataHelper.account.addTransaction(TransactionData(amount: transAmount, category: defaultCategory, date: TransactionDate(), description: nil, type: .Income))
-        
-        XCTAssertEqual(coreDataHelper.account.currentBalance, openingAmount + transAmount)
+        coreDataHelper.account.addTransaction(TransactionData(amount: transAmount,
+            category: defaultCategory,
+            date: TransactionDate(),
+            description: nil,
+            type: .Income))
+        XCTAssertEqual(openingAmount + transAmount, coreDataHelper.account.currentBalance)
     }
     
     func testAddExpenseTransactionDecreasesCurrentBalance() {
         let transAmount = Money(integer: 38)
-        coreDataHelper.account.addTransaction(TransactionData(amount: transAmount, category: defaultCategory, date: TransactionDate(), description: nil, type: .Expense))
-        
-        XCTAssertEqual(coreDataHelper.account.currentBalance, openingAmount - transAmount)
+        coreDataHelper.account.addTransaction(TransactionData(amount: transAmount,
+            category: defaultCategory,
+            date: TransactionDate(),
+            description: nil,
+            type: .Expense))
+        XCTAssertEqual(openingAmount - transAmount, coreDataHelper.account.currentBalance)
     }
     
-    func testGetTransactionsForMonth() {
-        _ = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 37), category: defaultCategory,
-                                 date: februaryDate, description: nil, type: .Expense))
-        let trans2 = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 24), category: defaultCategory,
-                                 date: marchDate, description: nil, type: .Income))
-        let trans3 = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 53), category: defaultCategory,
-                                 date: marchDate, description: nil, type: .Expense))
-        XCTAssertEqual(coreDataHelper.account.transactionsForMonth(marchDate).count, [trans2, trans3].count)
+    func testGetTransactionsForRangeCorrectForMonth() {
+        coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 37),
+            category: defaultCategory,
+            date: februaryDate,
+            description: nil,
+            type: .Expense))
+        let trans2 = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 24),
+            category: defaultCategory,
+            date: marchDate,
+            description: nil,
+            type: .Income))
+        let trans3 = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 53),
+            category: defaultCategory,
+            date: marchDate,
+            description: nil,
+            type: .Expense))
+        let marchRange = TransactionDateRange.rangeFromDate(marchDate, withSize: .Month)
+        XCTAssertEqual([trans2, trans3], coreDataHelper.account.transactionsForRange(marchRange))
     }
     
-    func testGetOpeningBalanceForMonth() {
-        let trans1 = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 49), category: defaultCategory,
-                                 date: februaryDate, description: nil, type: .Expense))
-        _ = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 24), category: defaultCategory,
-                                 date: marchDate, description: nil, type: .Expense))
-        XCTAssertEqual(coreDataHelper.account.balanceAtStartOfMonth(marchDate), openingAmount + trans1.signedAmount)
+    func testGetOpeningBalanceForRangeCorrectForMonth() {
+        let trans1 = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 49),
+            category: defaultCategory,
+            date: februaryDate,
+            description: nil,
+            type: .Expense))
+        coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 24),
+            category: defaultCategory,
+            date: marchDate,
+            description: nil,
+            type: .Expense))
+        let marchRange = TransactionDateRange.rangeFromDate(marchDate, withSize: .Month)
+        XCTAssertEqual(openingAmount + trans1.signedAmount, coreDataHelper.account.balanceAtStartOfRange(marchRange))
     }
     
 //    func testPerformanceExample() {

@@ -77,7 +77,7 @@ class TransactionViewController: UIViewController, UITableViewDataSource {
             destVC.account = account
             destVC.categoryStore = categoryStore
             destVC.mode = .Add
-            //TODO: set default date for transaction: if today is 'contained in' current range use today, otherwise use range.startdate
+            destVC.defaultDateForNewTransactions = (currentRange.contains(TransactionDate.Today)) ? TransactionDate.Today : currentRange.startDate
             if !(sender is UIBarButtonItem) {
                 //edit selected transaction
             }

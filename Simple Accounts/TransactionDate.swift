@@ -119,6 +119,14 @@ extension TransactionDate {
     }
 }
 
+func <=(left: TransactionDate, right: TransactionDate) -> Bool {
+    return left.earlierDate(right) === left
+}
+
+func >=(left: TransactionDate, right: TransactionDate) -> Bool {
+    return left.laterDate(right) === left
+}
+
 
 
 

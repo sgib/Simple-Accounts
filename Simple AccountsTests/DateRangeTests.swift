@@ -109,6 +109,39 @@ class DateRangeTests: XCTestCase {
         XCTAssertEqual(expectedStartDate, actual.startDate)
         XCTAssertEqual(expectedEndDate, actual.endDate)
     }
+    
+    func testRangeContainsDateIsCorrectForWeekRange() {
+        let currentDate = TransactionDate.dateFrom(day: 11, month: 4, year: 2016)!
+        let dateInCurrentWeek = TransactionDate.dateFrom(day: 16, month: 4, year: 2016)!
+        let earlierDate = TransactionDate.dateFrom(day: 9, month: 4, year: 2016)!
+        let laterDate = TransactionDate.dateFrom(day: 17, month: 4, year: 2016)!
+        let currentWeek = TransactionDateRange.rangeFromDate(currentDate, withSize: .Week)
+        XCTAssertTrue(currentWeek.contains(dateInCurrentWeek))
+        XCTAssertFalse(currentWeek.contains(earlierDate))
+        XCTAssertFalse(currentWeek.contains(laterDate))
+    }
+    
+    func testRangeContainsDateIsCorrectForMonthRange() {
+        let currentDate = TransactionDate.dateFrom(day: 11, month: 4, year: 2016)!
+        let dateInCurrentMonth = TransactionDate.dateFrom(day: 30, month: 4, year: 2016)!
+        let earlierDate = TransactionDate.dateFrom(day: 11, month: 4, year: 2015)!
+        let laterDate = TransactionDate.dateFrom(day: 1, month: 5, year: 2016)!
+        let currentMonth = TransactionDateRange.rangeFromDate(currentDate, withSize: .Month)
+        XCTAssertTrue(currentMonth.contains(dateInCurrentMonth))
+        XCTAssertFalse(currentMonth.contains(earlierDate))
+        XCTAssertFalse(currentMonth.contains(laterDate))
+    }
+    
+    func testRangeContainsDateIsCorrectForYearRange() {
+        let currentDate = TransactionDate.dateFrom(day: 11, month: 4, year: 2016)!
+        let dateInCurrentYear = TransactionDate.dateFrom(day: 11, month: 11, year: 2016)!
+        let earlierDate = TransactionDate.dateFrom(day: 31, month: 12, year: 2015)!
+        let laterDate = TransactionDate.dateFrom(day: 1, month: 1, year: 2017)!
+        let currentYear = TransactionDateRange.rangeFromDate(currentDate, withSize: .Year)
+        XCTAssertTrue(currentYear.contains(dateInCurrentYear))
+        XCTAssertFalse(currentYear.contains(earlierDate))
+        XCTAssertFalse(currentYear.contains(laterDate))
+    }
 
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
@@ -118,3 +151,8 @@ class DateRangeTests: XCTestCase {
 //    }
 
 }
+
+
+
+
+

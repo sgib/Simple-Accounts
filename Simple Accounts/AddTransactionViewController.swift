@@ -20,6 +20,7 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
     var mode: AddEditMode<Transaction>!
     var account: Account!
     var categoryStore: CategoryStore!
+    var defaultDateForNewTransactions = TransactionDate.Today
     
     //MARK: - Outlets
     
@@ -65,7 +66,9 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func dateValueChanged() {
-        updateDateDisplay(datePicker.date)
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "dd MMMM yyyy"
+        dateDisplayLabel.text = formatter.stringFromDate(datePicker.date)
     }
     
     //MARK: - Table view functions
@@ -133,12 +136,6 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
         tableView.endUpdates()
     }
     
-    private func updateDateDisplay(date: TransactionDate) {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "dd MMMM yyyy"
-        dateDisplayLabel.text = formatter.stringFromDate(date)
-    }
-    
     private func updateCategoryDisplay(category: TransactionCategory) {
         chosenCategory = category
         saveButton.enabled = true
@@ -161,14 +158,15 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
             saveButton.enabled = true
             deleteButton.hidden = false
             typeSegmentControl.selectedSegmentIndex = (transaction.type == .Expense) ? 0 : 1
-            updateDateDisplay(transaction.date)
+            datePicker.date = transaction.date
             updateCategoryDisplay(transaction.category)
             updateAmountDisplay(transaction.amount)
             descriptionTextField.text = transaction.transactionDescription
         } else {
-            dateValueChanged()
+            datePicker.date = defaultDateForNewTransactions
             updateAmountDisplay(Money.zero())
         }
+        dateValueChanged()
     }
 
     override func didReceiveMemoryWarning() {

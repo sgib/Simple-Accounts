@@ -36,6 +36,10 @@ struct TransactionDateRange {
         }
     }
     
+    func contains(date: TransactionDate) -> Bool {
+        return date >= startDate && date <= endDate
+    }
+    
     func previous() -> TransactionDateRange {
         if size == .Week {
             return TransactionDateRange(startDate: startDate.dateByAddingDays(-7), endDate: startDate.dateByAddingDays(-1), size: .Week)

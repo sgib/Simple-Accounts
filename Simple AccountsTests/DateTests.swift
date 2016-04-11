@@ -166,6 +166,26 @@ class DateTests: XCTestCase {
         let actual = TransactionDate.dateFrom(day: 5, month: 1, year: 2016)!.dateByAddingDays(-9)
         XCTAssertEqual(expected, actual)
     }
+    
+    func testLessThanOfEqualOperatorCorrect() {
+        let baseDate = TransactionDate.dateFrom(day: 11, month: 4, year: 2016)!
+        let earlierDate = TransactionDate.dateFrom(day: 10, month: 4, year: 2016)!
+        let sameDate = TransactionDate.dateFrom(day: 11, month: 4, year: 2016)!
+        let laterDate = TransactionDate.dateFrom(day: 12, month: 4, year: 2016)!
+        XCTAssertTrue(earlierDate <= baseDate)
+        XCTAssertTrue(sameDate <= baseDate)
+        XCTAssertFalse(laterDate <= baseDate)
+    }
+    
+    func testGreaterThanOfEqualOperatorCorrect() {
+        let baseDate = TransactionDate.dateFrom(day: 11, month: 4, year: 2016)!
+        let earlierDate = TransactionDate.dateFrom(day: 10, month: 4, year: 2016)!
+        let sameDate = TransactionDate.dateFrom(day: 11, month: 4, year: 2016)!
+        let laterDate = TransactionDate.dateFrom(day: 12, month: 4, year: 2016)!
+        XCTAssertFalse(earlierDate >= baseDate)
+        XCTAssertTrue(sameDate >= baseDate)
+        XCTAssertTrue(laterDate >= baseDate)
+    }
 }
 
 

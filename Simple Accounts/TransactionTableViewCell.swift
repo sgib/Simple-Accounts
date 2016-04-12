@@ -14,7 +14,14 @@ class TransactionTableViewCell: UITableViewCell {
     var transaction: Transaction! {
         didSet {
             categoryImageView.image = UIImage(named: transaction.category.icon)
-            descriptionLabel.text = transaction.category.name //TODO: combine category & description
+            let unwrappedDescription: String = transaction.transactionDescription ?? ""
+            if unwrappedDescription.isEmpty {
+                categoryLabel.text = transaction.category.name
+                descriptionLabel.text = ""
+            } else {
+                categoryLabel.text = ""
+                descriptionLabel.text = unwrappedDescription
+            }
             let formatter = NSDateFormatter()
             formatter.dateFormat = "dd MMMM yyyy"
             dateLabel.text = formatter.stringFromDate(transaction.date)
@@ -26,9 +33,10 @@ class TransactionTableViewCell: UITableViewCell {
     //MARK: - Outlets
     
     @IBOutlet weak var categoryImageView: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

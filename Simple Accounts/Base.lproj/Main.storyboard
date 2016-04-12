@@ -113,13 +113,22 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBO-kq-vmX">
+                                                    <rect key="frame" x="62" y="6" width="37" height="18"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Nny-mG-YAI" firstAttribute="top" secondItem="ILW-CE-xkU" secondAttribute="topMargin" constant="17" id="0TJ-ty-gqd"/>
+                                                <constraint firstItem="UBO-kq-vmX" firstAttribute="top" secondItem="ILW-CE-xkU" secondAttribute="topMargin" constant="-2" id="CZA-QA-CYS"/>
+                                                <constraint firstItem="Nny-mG-YAI" firstAttribute="leading" secondItem="ILW-CE-xkU" secondAttribute="leadingMargin" constant="54" id="CiV-bP-F8d"/>
                                                 <constraint firstItem="icF-DB-ZeT" firstAttribute="leading" secondItem="ILW-CE-xkU" secondAttribute="leadingMargin" constant="7" id="IvS-6z-YzR"/>
-                                                <constraint firstItem="Nny-mG-YAI" firstAttribute="top" secondItem="EQj-nD-IpT" secondAttribute="bottom" id="PXN-jb-hSL"/>
+                                                <constraint firstItem="UBO-kq-vmX" firstAttribute="leading" secondItem="ILW-CE-xkU" secondAttribute="leadingMargin" constant="54" id="Q2n-EJ-5JH"/>
                                                 <constraint firstItem="EQj-nD-IpT" firstAttribute="top" secondItem="ILW-CE-xkU" secondAttribute="topMargin" constant="-3" id="SPu-Cv-j0F"/>
-                                                <constraint firstItem="Nny-mG-YAI" firstAttribute="leading" secondItem="EQj-nD-IpT" secondAttribute="leading" id="cVm-Au-sOT"/>
                                                 <constraint firstItem="icF-DB-ZeT" firstAttribute="top" secondItem="ILW-CE-xkU" secondAttribute="topMargin" constant="-3" id="eb8-bM-9K8"/>
+                                                <constraint firstItem="LIb-6h-B4a" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UBO-kq-vmX" secondAttribute="trailing" constant="8" id="hWb-Tk-Q36"/>
                                                 <constraint firstItem="EQj-nD-IpT" firstAttribute="leading" secondItem="ILW-CE-xkU" secondAttribute="leadingMargin" constant="54" id="kNt-cE-SUF"/>
                                                 <constraint firstItem="LIb-6h-B4a" firstAttribute="centerY" secondItem="ILW-CE-xkU" secondAttribute="centerY" id="uQS-1r-BaJ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="LIb-6h-B4a" secondAttribute="trailing" id="usE-HN-KAN"/>
@@ -130,8 +139,9 @@
                                         <connections>
                                             <outlet property="amountLabel" destination="LIb-6h-B4a" id="QL0-4g-9Nf"/>
                                             <outlet property="categoryImageView" destination="icF-DB-ZeT" id="gJT-qy-ycQ"/>
+                                            <outlet property="categoryLabel" destination="EQj-nD-IpT" id="X18-SH-rsZ"/>
                                             <outlet property="dateLabel" destination="Nny-mG-YAI" id="j9y-5R-XsX"/>
-                                            <outlet property="descriptionLabel" destination="EQj-nD-IpT" id="bXy-gW-VeS"/>
+                                            <outlet property="descriptionLabel" destination="UBO-kq-vmX" id="xdL-G2-0VP"/>
                                             <outlet property="imageView" destination="icF-DB-ZeT" id="TgM-oi-8Xh"/>
                                             <segue destination="Mph-PX-lsl" kind="presentation" identifier="Edit Transaction" modalPresentationStyle="formSheet" id="vOH-yT-y6V"/>
                                         </connections>
@@ -717,8 +727,8 @@
                                 </connections>
                             </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmA-s9-aRQ">
-                                <rect key="frame" x="223" y="502" width="155" height="36"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <rect key="frame" x="225" y="502" width="150" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="contentEdgeInsets" minX="16" minY="8" maxX="16" maxY="8"/>
                                 <state key="normal" title="Delete Category"/>
                                 <connections>
@@ -727,7 +737,7 @@
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category cannot be deleted because it has one or more transactions associated with it." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSe-Un-kYx">
                                 <rect key="frame" x="71" y="546" width="458" height="14"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>

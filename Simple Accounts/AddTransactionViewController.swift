@@ -74,7 +74,7 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
                 transaction.date = datePicker.date
                 transaction.transactionDescription = description
                 transaction.type = transType
-                account.editTransaction(transaction)
+                account.updateTransaction(transaction)
             }
             performSegueWithIdentifier(unwindSegueID, sender: self)
         }

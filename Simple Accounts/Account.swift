@@ -42,7 +42,7 @@ class Account {
     }
     
     ///saves the changes to the given transaction
-    func editTransaction(transaction: Transaction) {
+    func updateTransaction(transaction: Transaction) {
         transaction.amount = transaction.amount.moneyRoundedToTwoDecimalPlaces()
         transaction.transactionDescription?.trim()
         dataSource.saveChanges()
@@ -63,10 +63,6 @@ class Account {
         let totalIncomeBeforeRange = totalOfType(.Income, usingPredicate: dateBeforePredicate)
         let totalExpensesBeforeRange = totalOfType(.Expense, usingPredicate: dateBeforePredicate)
         return openingBalance + totalIncomeBeforeRange - totalExpensesBeforeRange
-    }
-    
-    private func allTransactions() -> TransactionCollection {
-        return dataSource.fetchEntity(Transaction.self, matchingPredicate: nil, sortedBy: nil).simpleResult()
     }
     
     private func totalOfType(type: TransactionType, usingPredicate predicate: NSPredicate?) -> Money {

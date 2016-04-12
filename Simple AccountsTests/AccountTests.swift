@@ -91,6 +91,41 @@ class AccountTests: XCTestCase {
         XCTAssertEqual(openingAmount + trans1.signedAmount, coreDataHelper.account.balanceAtStartOfRange(marchRange))
     }
     
+    func testUpdateTransactionIsSucessful() {
+        let trans = coreDataHelper.account.addTransaction(TransactionData(amount: Money.zero(),
+            category: defaultCategory,
+            date: TransactionDate.Today,
+            description: nil,
+            type: .Income))
+        let newAmount = Money(integer: 33)
+        let newDate = TransactionDate.dateFrom(day: 13, month: 4, year: 2016)!
+        let newDescription = "new description"
+        let newType = TransactionType.Expense
+        trans.amount = newAmount
+        trans.date = newDate
+        trans.transactionDescription = newDescription
+        trans.type = newType
+        coreDataHelper.account.updateTransaction(trans)
+        let range = TransactionDateRange.rangeFromDate(newDate, withSize: .Week)
+        let retrievedTrans = coreDataHelper.account.transactionsForRange(range).first!
+        XCTAssertEqual(newAmount, retrievedTrans.amount)
+        XCTAssertEqual(newDate, retrievedTrans.date)
+        XCTAssertEqual(newDescription, retrievedTrans.transactionDescription)
+        XCTAssertEqual(newType, retrievedTrans.type)
+    }
+    
+    func testDeleteTransactionIsSucessful() {
+        let trans = coreDataHelper.account.addTransaction(TransactionData(amount: Money.zero(),
+            category: defaultCategory,
+            date: TransactionDate.Today,
+            description: nil,
+            type: .Income))
+        let currentMonthRange = TransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: .Month)
+        XCTAssertEqual(1, coreDataHelper.account.transactionsForRange(currentMonthRange).count)
+        coreDataHelper.account.deleteTransaction(trans)
+        XCTAssertEqual(0, coreDataHelper.account.transactionsForRange(currentMonthRange).count)
+    }
+    
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
 //        for _ in 1...5000 {

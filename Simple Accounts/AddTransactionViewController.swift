@@ -64,13 +64,34 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
         if let category = chosenCategory {
             let transType: TransactionType = (typeSegmentControl.selectedSegmentIndex == 0) ? .Expense : .Income
             let description: String? = (descriptionTextField.unwrappedText.isNotEmpty) ? descriptionTextField.unwrappedText : nil
-            let data = TransactionData(amount: enteredAmount, category: category, date: datePicker.date, description: description, type: transType)
-            account.addTransaction(data)
+            switch mode! {
+            case .Add:
+                let data = TransactionData(amount: enteredAmount, category: category, date: datePicker.date, description: description, type: transType)
+                account.addTransaction(data)
+            case .Edit(let transaction):
+                transaction.amount = enteredAmount
+                transaction.category = category
+                transaction.date = datePicker.date
+                transaction.transactionDescription = description
+                transaction.type = transType
+                account.editTransaction(transaction)
+            }
             performSegueWithIdentifier(unwindSegueID, sender: self)
         }
     }
     
     @IBAction func deleteButtonPressed(sender: UIButton) {
+        if case let .Edit(transaction) = mode! {
+            let actionSheet = UIAlertController(title: nil,
+                                                message: nil,
+                                                preferredStyle: .ActionSheet)
+            actionSheet.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: { _ in
+                self.account.deleteTransaction(transaction)
+                self.performSegueWithIdentifier(self.unwindSegueID, sender: self)
+            }))
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            presentViewController(actionSheet, animated: true, completion: nil)
+        }
     }
     
     @IBAction func dateValueChanged() {

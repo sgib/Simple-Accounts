@@ -52,6 +52,7 @@ class TransactionViewController: UIViewController, UITableViewDataSource, UITabl
     private func loadTransactionData() {
         currentTransactions = account.transactionsForRange(currentRange)
         transactionTableView.reloadData()
+        //TODO: update all 'balance' labels
     }
     
     //MARK: - Actions
@@ -85,7 +86,8 @@ class TransactionViewController: UIViewController, UITableViewDataSource, UITabl
             destVC.mode = .Add
             destVC.defaultDateForNewTransactions = (currentRange.contains(TransactionDate.Today)) ? TransactionDate.Today : currentRange.startDate
             if !(sender is UIBarButtonItem) {
-                //edit selected transaction
+                let transaction = currentTransactions[transactionTableView.indexPathForSelectedRow!.row]
+                destVC.mode = .Edit(transaction)
             }
         }
     }

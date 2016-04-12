@@ -35,12 +35,23 @@ class Account {
         newTransaction.amount = transactionData.amount.moneyRoundedToTwoDecimalPlaces()
         newTransaction.category = transactionData.category
         newTransaction.date = transactionData.date
-        newTransaction.transactionDescription = transactionData.description
+        newTransaction.transactionDescription = transactionData.description?.trim()
         newTransaction.type = transactionData.type
         dataSource.saveChanges()
         return newTransaction
     }
     
+    ///saves the changes to the given transaction
+    func editTransaction(transaction: Transaction) {
+        transaction.amount = transaction.amount.moneyRoundedToTwoDecimalPlaces()
+        transaction.transactionDescription?.trim()
+        dataSource.saveChanges()
+    }
+    
+    ///deletes the given transaction
+    func deleteTransaction(transaction: Transaction) {
+        dataSource.deleteEntity(Transaction.self, matchingPredicate: NSPredicate(format: "transactionID == %@", transaction.transactionID))
+    }
     
     func transactionsForRange(dateRange: TransactionDateRange) -> TransactionCollection {
         let dateBetweenPredicate = NSPredicate(format: "date >= %@ && date <= %@", dateRange.startDate, dateRange.endDate)

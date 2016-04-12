@@ -98,19 +98,19 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nny-mG-YAI">
                                                     <rect key="frame" x="62" y="25" width="29" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIb-6h-B4a">
                                                     <rect key="frame" x="519" y="12" width="40" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQj-nD-IpT">
                                                     <rect key="frame" x="62" y="5" width="40" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -125,15 +125,22 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="LIb-6h-B4a" secondAttribute="trailing" id="usE-HN-KAN"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="8"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="amountLabel" destination="LIb-6h-B4a" id="QL0-4g-9Nf"/>
                                             <outlet property="categoryImageView" destination="icF-DB-ZeT" id="gJT-qy-ycQ"/>
                                             <outlet property="dateLabel" destination="Nny-mG-YAI" id="j9y-5R-XsX"/>
                                             <outlet property="descriptionLabel" destination="EQj-nD-IpT" id="bXy-gW-VeS"/>
                                             <outlet property="imageView" destination="icF-DB-ZeT" id="TgM-oi-8Xh"/>
+                                            <segue destination="Mph-PX-lsl" kind="presentation" identifier="Edit Transaction" modalPresentationStyle="formSheet" id="vOH-yT-y6V"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9pv-A4-QxB" id="8MU-Nx-S4l"/>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="Qnk-oy-FPQ"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -207,6 +214,7 @@
                         <outlet property="rangeDisplayButton" destination="WlT-QT-VwM" id="ahH-Aa-8ot"/>
                         <outlet property="totalExpensesLabel" destination="Guh-0L-48v" id="8Qz-DH-1sf"/>
                         <outlet property="totalIncomeLabel" destination="gni-1K-Zhh" id="zO4-zG-t0k"/>
+                        <outlet property="transactionTableView" destination="PBw-fa-BBi" id="Gmo-g7-u6H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -546,9 +554,11 @@
                         <outlet property="descriptionTextField" destination="ogl-Qf-cA3" id="wFP-SJ-Kcy"/>
                         <outlet property="saveButton" destination="0Xs-k0-DhL" id="p0j-jk-ILG"/>
                         <outlet property="typeSegmentControl" destination="W3G-e8-mfx" id="bpu-ar-L6K"/>
+                        <segue destination="9na-vi-UHe" kind="unwind" identifier="unwindFromAddTransaction" unwindAction="unwindFromAddTransaction:" id="Hhu-KD-BRS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQ5-Y4-r1W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="9na-vi-UHe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3063" y="-320"/>
         </scene>
@@ -866,6 +876,7 @@
         <image name="TransactionsFilled" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vOH-yT-y6V"/>
         <segue reference="N3z-S6-86g"/>
     </inferredMetricsTieBreakers>
 </document>

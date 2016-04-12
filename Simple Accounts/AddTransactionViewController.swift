@@ -11,6 +11,7 @@ import UIKit
 class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
 
     private var datePickerVisible = false
+    private let unwindSegueID = "unwindFromAddTransaction"
     private let dateDisplayIndexPath = NSIndexPath(forRow: 1, inSection: 0)
     private let datePickerIndexPath = NSIndexPath(forRow: 2, inSection: 0)
     private var chosenCategory: TransactionCategory?
@@ -60,6 +61,13 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveButtonPressed(sender: UIBarButtonItem) {
+        if let category = chosenCategory {
+            let transType: TransactionType = (typeSegmentControl.selectedSegmentIndex == 0) ? .Expense : .Income
+            let description: String? = (descriptionTextField.unwrappedText.isNotEmpty) ? descriptionTextField.unwrappedText : nil
+            let data = TransactionData(amount: enteredAmount, category: category, date: datePicker.date, description: description, type: transType)
+            account.addTransaction(data)
+            performSegueWithIdentifier(unwindSegueID, sender: self)
+        }
     }
     
     @IBAction func deleteButtonPressed(sender: UIButton) {

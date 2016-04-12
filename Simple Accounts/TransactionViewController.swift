@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransactionViewController: UIViewController, UITableViewDataSource {
+class TransactionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     private let reuseID = "TransactionCell"
     private var currentRange: TransactionDateRange!
@@ -20,6 +20,7 @@ class TransactionViewController: UIViewController, UITableViewDataSource {
     
     //MARK: - Outlets
     
+    @IBOutlet weak var transactionTableView: UITableView!
     @IBOutlet weak var periodButton: UIButton!
     @IBOutlet weak var openingBalanceLabel: UILabel!
     @IBOutlet weak var totalIncomeLabel: UILabel!
@@ -38,7 +39,7 @@ class TransactionViewController: UIViewController, UITableViewDataSource {
     
     private func updateRangeDisplay() {
         rangeDisplayButton.setTitle(currentRange.displayName, forState: .Normal)
-        //TODO: load transactions for range from database
+        loadTransactionData()
     }
     
     private func changeRangeLengthTo(size: DateRangeSize) {
@@ -46,6 +47,11 @@ class TransactionViewController: UIViewController, UITableViewDataSource {
             currentRange = TransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: size)
             updateRangeDisplay()
         }
+    }
+    
+    private func loadTransactionData() {
+        currentTransactions = account.transactionsForRange(currentRange)
+        transactionTableView.reloadData()
     }
     
     //MARK: - Actions
@@ -84,6 +90,10 @@ class TransactionViewController: UIViewController, UITableViewDataSource {
         }
     }
     
+    @IBAction func unwindFromAddTransaction(segue: UIStoryboardSegue) {
+        loadTransactionData()
+    }
+    
     //MARK: - Table view
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -95,7 +105,9 @@ class TransactionViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath) as! TransactionTableViewCell
+        cell.transaction = currentTransactions[indexPath.row]
+        return cell
     }
     
     //MARK: - Lifecycle

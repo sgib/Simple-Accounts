@@ -11,7 +11,17 @@ import UIKit
 class TransactionTableViewCell: UITableViewCell {
 
     //MARK: - Dependencies
-    var transaction: Transaction!
+    var transaction: Transaction! {
+        didSet {
+            categoryImageView.image = UIImage(named: transaction.category.icon)
+            descriptionLabel.text = transaction.category.name //TODO: combine category & description
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "dd MMMM yyyy"
+            dateLabel.text = formatter.stringFromDate(transaction.date)
+            amountLabel.text = NSNumberFormatter.localizedStringFromNumber(transaction.amount, numberStyle: .CurrencyStyle)
+            amountLabel.textColor = (transaction.type == .Expense) ? UIColor.redColor() : UIColor.greenColor()
+        }
+    }
     
     //MARK: - Outlets
     
@@ -23,13 +33,7 @@ class TransactionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        categoryImageView.image = UIImage(named: transaction.category.icon)
-        descriptionLabel.text = transaction.category.name //TODO: combine category & description
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "dd MMMM yyyy"
-        dateLabel.text = formatter.stringFromDate(transaction.date)
-        amountLabel.text = NSNumberFormatter.localizedStringFromNumber(transaction.amount, numberStyle: .CurrencyStyle)
-        amountLabel.textColor = (transaction.type == .Expense) ? UIColor.redColor() : UIColor.greenColor()
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

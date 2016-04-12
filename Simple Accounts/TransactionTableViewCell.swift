@@ -9,6 +9,8 @@
 import UIKit
 
 class TransactionTableViewCell: UITableViewCell {
+    private let midRedColour = UIColor(red: 0.5, green: 0, blue: 0, alpha: 1)
+    private let midGreenColour = UIColor(red: 0, green: 0.5, blue: 0, alpha: 1)
 
     //MARK: - Dependencies
     var transaction: Transaction! {
@@ -26,7 +28,7 @@ class TransactionTableViewCell: UITableViewCell {
             formatter.dateFormat = "dd MMMM yyyy"
             dateLabel.text = formatter.stringFromDate(transaction.date)
             amountLabel.text = NSNumberFormatter.localizedStringFromNumber(transaction.amount, numberStyle: .CurrencyStyle)
-            amountLabel.textColor = (transaction.type == .Expense) ? UIColor.redColor() : UIColor.greenColor()
+            amountLabel.textColor = (transaction.type == .Expense) ? midRedColour : midGreenColour
         }
     }
     
@@ -37,6 +39,8 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    
+    //MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()

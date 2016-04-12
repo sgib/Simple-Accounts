@@ -52,7 +52,18 @@ class TransactionViewController: UIViewController, UITableViewDataSource, UITabl
     private func loadTransactionData() {
         currentTransactions = account.transactionsForRange(currentRange)
         transactionTableView.reloadData()
-        //TODO: update all 'balance' labels
+        updateBalanceDisplays()
+    }
+    
+    private func updateBalanceDisplays() {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        let openingBalance = account.balanceAtStartOfRange(currentRange)
+        openingBalanceLabel.text = "Opening: \(formatter.stringFromNumber(openingBalance)!)"
+        totalIncomeLabel.text = formatter.stringFromNumber(currentTransactions.sumIncome)!
+        aggregateLabel.text = "Net: \(formatter.stringFromNumber(currentTransactions.sumAggregate)!)"
+        totalExpensesLabel.text = formatter.stringFromNumber(currentTransactions.sumExpenses)!
+        closingBalanceLabel.text = "Closing: \(formatter.stringFromNumber(openingBalance + currentTransactions.sumAggregate)!)"
     }
     
     //MARK: - Actions

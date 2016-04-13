@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AddEditCategoryDelegate: class {
+    func addCategoryController(controller: AddCategoryViewController, didAddEdit: AddEditResult<TransactionCategory>)
+}
+
 class AddCategoryViewController: UIViewController, UICollectionViewDataSource, UITextFieldDelegate {
     
     private let numberOfItemsPerRow = 6
@@ -18,6 +22,7 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
     //MARK: - Dependencies
     var mode: AddEditMode<TransactionCategory>!
     var categoryStore: CategoryStore!
+    weak var delegate: AddEditCategoryDelegate?
     
     //MARK: - Outlets
     
@@ -41,8 +46,9 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
         
         switch mode! {
         case .Add:
-            if categoryStore.addCategory(TransactionCategoryData(name: name, icon: icon)) != nil {
-                performSegueWithIdentifier(unwindSegueID, sender: self)
+            if let category = categoryStore.addCategory(TransactionCategoryData(name: name, icon: icon)) {
+                //performSegueWithIdentifier(unwindSegueID, sender: self)
+                delegate?.addCategoryController(self, didAddEdit: .DidAdd(category))
             } else {
                 displayErrorDialog(name)
             }
@@ -50,7 +56,8 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
             category.name = name
             category.icon = icon
             if categoryStore.updateCategory(category) {
-                performSegueWithIdentifier(unwindSegueID, sender: self)
+                //performSegueWithIdentifier(unwindSegueID, sender: self)
+                delegate?.addCategoryController(self, didAddEdit: .DidEdit(category))
             } else {
                 displayErrorDialog(name)
             }
@@ -64,7 +71,8 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
                                                 preferredStyle: .ActionSheet)
             actionSheet.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: { _ in
                 self.categoryStore.deleteCategory(category)
-                self.performSegueWithIdentifier(self.unwindSegueID, sender: self)
+                //self.performSegueWithIdentifier(self.unwindSegueID, sender: self)
+                self.delegate?.addCategoryController(self, didAddEdit: .DidDelete)
             }))
             actionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
             presentViewController(actionSheet, animated: true, completion: nil)

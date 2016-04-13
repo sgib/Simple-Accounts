@@ -768,11 +768,9 @@
                         <outlet property="nameTextField" destination="YFJ-KO-RQw" id="3Ml-Bj-Qqs"/>
                         <outlet property="navigationBar" destination="Avo-2h-ETE" id="4lZ-0C-uJr"/>
                         <outlet property="saveButton" destination="OGh-X0-e8b" id="ypS-AQ-qiW"/>
-                        <segue destination="5a9-Ql-vMn" kind="unwind" identifier="unwindFromAdd" unwindAction="unwindFromAdd:" id="QpF-Bu-XuG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CMI-KF-tix" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="5a9-Ql-vMn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2251" y="360"/>
         </scene>

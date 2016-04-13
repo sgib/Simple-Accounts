@@ -12,3 +12,9 @@ enum AddEditMode<T> {
     case Add
     case Edit(T)
 }
+
+enum AddEditResult<T> {
+    case DidAdd(T)
+    case DidEdit(T)
+    case DidDelete
+}

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddEditCategoryDelegate {
 
     private var imageResources = ImageResourceLoader.sharedInstance
     private let defaultReuseID = "DefaultCategoryCell"
@@ -27,6 +27,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destVC = segue.destinationViewController as? AddCategoryViewController {
+            destVC.delegate = self
             destVC.categoryStore = categoryStore
             destVC.mode = .Add
             if !(sender is UIBarButtonItem) {
@@ -37,7 +38,8 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    @IBAction func unwindFromAdd(segue: UIStoryboardSegue) {
+    func addCategoryController(controller: AddCategoryViewController, didAddEdit: AddEditResult<TransactionCategory>) {
+        dismissViewControllerAnimated(true, completion: nil)
         tableView.reloadData()
         adjustTableHeight()
     }

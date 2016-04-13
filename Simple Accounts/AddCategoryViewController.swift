@@ -32,7 +32,6 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var collectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var deletePreventionMessage: UILabel!
-    @IBOutlet weak var navigationBar: UINavigationItem!
     
     //MARK: - Actions
     
@@ -125,7 +124,7 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
         var selectedIconIndex = 0
         if case let .Edit(category) = mode! {
             let canDeleteCategory = category.transactions.isEmpty
-            navigationBar.title = "Edit Category"
+            self.title = "Edit Category"
             deleteButton.hidden = false
             deleteButton.enabled = canDeleteCategory
             deletePreventionMessage.hidden = canDeleteCategory

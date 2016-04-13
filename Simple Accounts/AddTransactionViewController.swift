@@ -48,9 +48,6 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
         if let destVC = segue.destinationViewController as? CategorySelectionViewController {
             destVC.categoryStore = categoryStore
             destVC.chosenCategory = chosenCategory
-            if case let .Edit(transaction) = mode! {
-                destVC.chosenCategory = transaction.category
-            }
         }
     }
     

@@ -269,7 +269,7 @@
                                         <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="8"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <segue destination="Hv5-X5-3H6" kind="presentation" identifier="Edit Category" modalPresentationStyle="formSheet" id="q44-2Z-54y"/>
+                                            <segue destination="R65-Dc-bzD" kind="presentation" identifier="Edit Category" modalPresentationStyle="formSheet" id="q44-2Z-54y"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmptyCategoryCell" textLabel="pRp-Zv-oM9" style="IBUITableViewCellStyleDefault" id="hKl-Tv-4OM">
@@ -308,7 +308,7 @@
                     <navigationItem key="navigationItem" title="Categories" id="4g0-Nc-eEr">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="HMc-tN-8Qy">
                             <connections>
-                                <segue destination="Hv5-X5-3H6" kind="presentation" identifier="Add Category" modalPresentationStyle="formSheet" id="N3z-S6-86g"/>
+                                <segue destination="R65-Dc-bzD" kind="presentation" identifier="Add Category" modalPresentationStyle="formSheet" id="N3z-S6-86g"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -586,9 +586,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="i5O-CL-HNU">
                                 <rect key="frame" x="0.0" y="44" width="600" height="512"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="CuJ-PX-exi"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DefaultCategoryCell" textLabel="il3-UA-cvs" style="IBUITableViewCellStyleDefault" id="zGa-sd-PgH">
                                         <rect key="frame" x="0.0" y="50" width="600" height="44"/>
@@ -626,15 +623,10 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <segue destination="Hv5-X5-3H6" kind="show" id="1DW-Vg-Ux3"/>
+                                            <segue destination="Hv5-X5-3H6" kind="show" identifier="New Category" id="26c-sm-g1t"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="CuJ-PX-exi"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="RIb-92-F8l" id="GhH-Zr-E2c"/>
                                     <outlet property="delegate" destination="RIb-92-F8l" id="tuv-Ly-Mo6"/>
@@ -651,7 +643,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Select Category" id="4sm-ga-Kex">
-                        <barButtonItem key="backBarButtonItem" title="Category List" id="EO4-zN-6IE"/>
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="EO4-zN-6IE"/>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="xn0-cL-wRX">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="RIb-92-F8l" id="ob8-WC-egQ"/>
@@ -661,7 +653,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="doneButton" destination="xn0-cL-wRX" id="Kpi-Rn-DqK"/>
-                        <outlet property="tableHeightConstraint" destination="CuJ-PX-exi" id="Kst-TS-rm3"/>
                         <outlet property="tableView" destination="i5O-CL-HNU" id="hXd-Y3-qZJ"/>
                         <segue destination="bld-PU-ogc" kind="unwind" identifier="unwindFromCategorySelect" unwindAction="unwindFromCategorySelection:" id="Mvc-L3-07h"/>
                     </connections>
@@ -669,9 +660,9 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmh-W6-lvp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="bld-PU-ogc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3063" y="417"/>
+            <point key="canvasLocation" x="3818" y="-320"/>
         </scene>
-        <!--Add Category View Controller-->
+        <!--New Category-->
         <scene sceneID="rGY-Qh-lON">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="Hv5-X5-3H6" customClass="AddCategoryViewController" customModule="Simple_Accounts" customModuleProvider="target" sceneMemberID="viewController">
@@ -683,23 +674,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FeO-Ck-thi">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="New Category" id="Avo-2h-ETE">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Odx-1e-RU1">
-                                            <connections>
-                                                <action selector="cancelButtonPressed:" destination="Hv5-X5-3H6" id="cbn-Lt-gkA"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="OGh-X0-e8b">
-                                            <connections>
-                                                <action selector="saveButtonPressed:" destination="Hv5-X5-3H6" id="MBV-gf-TFR"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NNr-fL-2Sf">
                                 <rect key="frame" x="20" y="114" width="560" height="380"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -772,33 +746,41 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="YFJ-KO-RQw" secondAttribute="trailing" id="0X5-ZV-sVS"/>
                             <constraint firstItem="YFJ-KO-RQw" firstAttribute="leading" secondItem="oR9-XS-QTt" secondAttribute="leadingMargin" id="75l-fj-LvT"/>
-                            <constraint firstAttribute="trailing" secondItem="FeO-Ck-thi" secondAttribute="trailing" id="8Vd-vy-uGE"/>
                             <constraint firstItem="NNr-fL-2Sf" firstAttribute="top" secondItem="YFJ-KO-RQw" secondAttribute="bottom" constant="20" id="Bh6-Kq-IY1"/>
+                            <constraint firstItem="YFJ-KO-RQw" firstAttribute="top" secondItem="yG6-kw-n81" secondAttribute="bottom" constant="20" id="CgD-U8-7uX"/>
                             <constraint firstItem="NNr-fL-2Sf" firstAttribute="leading" secondItem="oR9-XS-QTt" secondAttribute="leadingMargin" id="EGB-qH-67F"/>
                             <constraint firstItem="nmA-s9-aRQ" firstAttribute="centerX" secondItem="oR9-XS-QTt" secondAttribute="centerX" id="K3Z-6S-bwe"/>
                             <constraint firstItem="nmA-s9-aRQ" firstAttribute="top" secondItem="NNr-fL-2Sf" secondAttribute="bottom" constant="8" id="Me9-Ee-KcV"/>
-                            <constraint firstItem="FeO-Ck-thi" firstAttribute="top" secondItem="yG6-kw-n81" secondAttribute="bottom" id="P01-Cv-v6g"/>
                             <constraint firstItem="FSe-Un-kYx" firstAttribute="centerX" secondItem="oR9-XS-QTt" secondAttribute="centerX" id="Xe6-hB-Ngg"/>
                             <constraint firstItem="NNr-fL-2Sf" firstAttribute="trailing" secondItem="oR9-XS-QTt" secondAttribute="trailingMargin" id="azU-pf-aCX"/>
                             <constraint firstItem="FSe-Un-kYx" firstAttribute="top" secondItem="nmA-s9-aRQ" secondAttribute="bottom" constant="8" id="c3E-qD-yYd"/>
                             <constraint firstItem="q5U-Qm-JQJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NNr-fL-2Sf" secondAttribute="bottom" constant="20" id="dJ3-RL-VNH"/>
-                            <constraint firstItem="FeO-Ck-thi" firstAttribute="leading" secondItem="oR9-XS-QTt" secondAttribute="leading" id="hCB-Kd-h1Z"/>
-                            <constraint firstItem="YFJ-KO-RQw" firstAttribute="top" secondItem="FeO-Ck-thi" secondAttribute="bottom" constant="20" id="kxF-Wz-ed0"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="New Category" id="sGB-I2-BCg">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Odx-1e-RU1">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="Hv5-X5-3H6" id="cbn-Lt-gkA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="OGh-X0-e8b">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="Hv5-X5-3H6" id="MBV-gf-TFR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionHeightConstraint" destination="skZ-v9-jn7" id="GIF-tX-KZP"/>
                         <outlet property="deleteButton" destination="nmA-s9-aRQ" id="fk2-ab-nTo"/>
                         <outlet property="deletePreventionMessage" destination="FSe-Un-kYx" id="BY9-Cf-Im8"/>
                         <outlet property="iconCollectionView" destination="NNr-fL-2Sf" id="okZ-c7-QfT"/>
                         <outlet property="nameTextField" destination="YFJ-KO-RQw" id="3Ml-Bj-Qqs"/>
-                        <outlet property="navigationBar" destination="Avo-2h-ETE" id="4lZ-0C-uJr"/>
                         <outlet property="saveButton" destination="OGh-X0-e8b" id="ypS-AQ-qiW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CMI-KF-tix" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2251" y="360"/>
+            <point key="canvasLocation" x="3063" y="360"/>
         </scene>
         <!--Settings-->
         <scene sceneID="t0t-lh-XAF">
@@ -896,6 +878,24 @@
             </objects>
             <point key="canvasLocation" x="2251" y="-320"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dZW-Vg-l6A">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R65-Dc-bzD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KLq-wE-fb5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Hv5-X5-3H6" kind="relationship" relationship="rootViewController" id="0yr-WN-v0e"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w32-MW-tlA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2251" y="360"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ArrowBack" width="24" height="24"/>
@@ -910,7 +910,8 @@
         <image name="TransactionsFilled" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1DW-Vg-Ux3"/>
+        <segue reference="N3z-S6-86g"/>
         <segue reference="vOH-yT-y6V"/>
+        <segue reference="26c-sm-g1t"/>
     </inferredMetricsTieBreakers>
 </document>

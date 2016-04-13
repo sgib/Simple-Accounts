@@ -26,7 +26,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destVC = segue.destinationViewController as? AddCategoryViewController {
+        if let destVC = segue.destinationViewController.childViewControllers.first as? AddCategoryViewController {
             destVC.delegate = self
             destVC.categoryStore = categoryStore
             destVC.mode = .Add

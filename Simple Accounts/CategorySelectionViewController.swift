@@ -22,7 +22,6 @@ class CategorySelectionViewController: UIViewController, UITableViewDataSource, 
     //MARK: - Outlets
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     //MARK: - Actions
@@ -70,6 +69,7 @@ class CategorySelectionViewController: UIViewController, UITableViewDataSource, 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destVC = segue.destinationViewController as? AddCategoryViewController {
+            destVC.navigationItem.leftBarButtonItems?.removeAll()
             destVC.mode = .Add
             destVC.categoryStore = categoryStore
             destVC.delegate = self
@@ -88,17 +88,15 @@ class CategorySelectionViewController: UIViewController, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         if let category = chosenCategory {
             let categoryIndex = categoryStore.allCategories().indexOf(category)!
-            tableView.selectRowAtIndexPath(NSIndexPath(forItem: categoryIndex, inSection: 0), animated: false, scrollPosition: .None)
+            tableView.selectRowAtIndexPath(NSIndexPath(forRow: categoryIndex, inSection: 0), animated: false, scrollPosition: .None)
             doneButton.enabled = true
         }
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        tableHeightConstraint.constant = tableView.contentSize.height
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

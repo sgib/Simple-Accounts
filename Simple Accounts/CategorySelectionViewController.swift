@@ -8,10 +8,11 @@
 
 import UIKit
 
-class CategorySelectionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CategorySelectionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddEditCategoryDelegate {
 
     private let unwindSegueID = "unwindFromCategorySelect"
-    private let reuseID = "DefaultCategoryCell"
+    private let defaultCellReuseID = "DefaultCategoryCell"
+    private let addCellReuseID = "AddCategoryCell"
     var chosenCategory: TransactionCategory?
     
     //MARK: - Dependencies
@@ -33,26 +34,54 @@ class CategorySelectionViewController: UIViewController, UITableViewDataSource, 
     //MARK: - Table data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryStore.allCategories().count
+        if section == 0 {
+            return categoryStore.allCategories().count
+        } else {
+            return 1
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath)
-        let category = categoryStore.allCategories()[indexPath.row]
-        cell.textLabel?.text = category.name
-        cell.imageView?.image = UIImage(named: category.icon)
-        return cell
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(defaultCellReuseID, forIndexPath: indexPath)
+            let category = categoryStore.allCategories()[indexPath.row]
+            cell.textLabel?.text = category.name
+            cell.imageView?.image = UIImage(named: category.icon)
+            return cell
+        } else {
+            return tableView.dequeueReusableCellWithIdentifier(addCellReuseID, forIndexPath: indexPath)
+        }
     }
     
     //MARK: - Table delegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        chosenCategory = categoryStore.allCategories()[indexPath.row]
-        doneButton.enabled = true
+        if indexPath.section == 0 {
+            chosenCategory = categoryStore.allCategories()[indexPath.row]
+            doneButton.enabled = true
+        }
+    }
+    
+    //MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destVC = segue.destinationViewController as? AddCategoryViewController {
+            destVC.mode = .Add
+            destVC.categoryStore = categoryStore
+            destVC.delegate = self
+        }
+    }
+    
+    func addCategoryController(controller: AddCategoryViewController, didAddEdit: AddEditResult<TransactionCategory>) {
+        if case let .DidAdd(category) = didAddEdit {
+            chosenCategory = category
+            navigationController?.popViewControllerAnimated(true)
+            performSegueWithIdentifier(unwindSegueID, sender: self)
+        }
     }
     
     //MARK: - Lifecycle
@@ -67,9 +96,9 @@ class CategorySelectionViewController: UIViewController, UITableViewDataSource, 
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        tableHeightConstraint.constant = tableView.contentSize.height
-    }
+//    override func viewDidLayoutSubviews() {
+//        tableHeightConstraint.constant = tableView.contentSize.height
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

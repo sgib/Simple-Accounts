@@ -51,6 +51,7 @@ class Account {
     ///deletes the given transaction
     func deleteTransaction(transaction: Transaction) {
         dataSource.deleteEntity(Transaction.self, matchingPredicate: NSPredicate(format: "transactionID == %@", transaction.transactionID))
+        dataSource.reset()
     }
     
     func transactionsForRange(dateRange: TransactionDateRange) -> TransactionCollection {

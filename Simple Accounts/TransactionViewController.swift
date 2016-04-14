@@ -99,6 +99,7 @@ class TransactionViewController: UIViewController, UITableViewDataSource, UITabl
             if !(sender is UIBarButtonItem) {
                 let transaction = currentTransactions[transactionTableView.indexPathForSelectedRow!.row]
                 destVC.mode = .Edit(transaction)
+                transactionTableView.deselectRowAtIndexPath(transactionTableView.indexPathForSelectedRow!, animated: true)
             }
         }
     }
@@ -129,6 +130,13 @@ class TransactionViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         loadRange()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //Categories may have been edited on Category tab
+        transactionTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

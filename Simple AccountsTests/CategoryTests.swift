@@ -83,6 +83,15 @@ class CategoryTests: XCTestCase {
         XCTAssertFalse(coreDataHelper.categoryStore.deleteCategory(category))
     }
     
+    func testDeleteCategorySucessfulAfterDeletingCategoriesTransactions() {
+        let categoryData = TransactionCategoryData(name: "default", icon: "default")
+        let category = coreDataHelper.categoryStore.addCategory(categoryData)!
+        let transData = TransactionData(amount: Money.zero(), category: category, date: TransactionDate(), description: nil, type: .Income)
+        let transaction = coreDataHelper.account.addTransaction(transData)
+        coreDataHelper.account.deleteTransaction(transaction)
+        XCTAssertTrue(coreDataHelper.categoryStore.deleteCategory(category))
+    }
+    
     func testDeleteCategoryIsPersisted() {
         let categoryData = TransactionCategoryData(name: "default", icon: "default")
         let category = coreDataHelper.categoryStore.addCategory(categoryData)!

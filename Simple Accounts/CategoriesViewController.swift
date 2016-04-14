@@ -58,6 +58,13 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, AddEditCa
         tableDataSource.categoryStore = self.categoryStore
         tableView.dataSource = tableDataSource
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //Categories may have been added in Transaction tab
+        tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

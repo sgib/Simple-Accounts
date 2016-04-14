@@ -104,6 +104,7 @@
 		B0B32AF61CA13DEE0086A17A /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AF51CA13DEE0086A17A /* Money.swift */; };
 		B0B6C3B01CB8E55F005A3C8F /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B6C3AF1CB8E55F005A3C8F /* AddTransactionViewController.swift */; };
 		B0B890E51CA7CE6B0062EE3D /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B890E41CA7CE6B0062EE3D /* CategoryTests.swift */; };
+		B0C101621CBF742D00E5CDE0 /* CategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C101611CBF742D00E5CDE0 /* CategoriesDataSource.swift */; };
 		B0C988FD1C9EA2C400812CBD /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C988FC1C9EA2C400812CBD /* TransactionType.swift */; };
 		B0D0038D1C9D48D90064690E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0038C1C9D48D90064690E /* AppDelegate.swift */; };
 		B0D0038F1C9D48D90064690E /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D0038E1C9D48D90064690E /* TransactionViewController.swift */; };
@@ -225,6 +226,7 @@
 		B0B32AF51CA13DEE0086A17A /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 		B0B6C3AF1CB8E55F005A3C8F /* AddTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
 		B0B890E41CA7CE6B0062EE3D /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTests.swift; sourceTree = "<group>"; };
+		B0C101611CBF742D00E5CDE0 /* CategoriesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesDataSource.swift; sourceTree = "<group>"; };
 		B0C988FC1C9EA2C400812CBD /* TransactionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
 		B0D003891C9D48D90064690E /* Simple Accounts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Accounts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0D0038C1C9D48D90064690E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				B0D0180B1CBA39D6007B1D9A /* CategorySelectionViewController.swift */,
 				B0D003901C9D48D90064690E /* CategoriesViewController.swift */,
 				B082C2301CAEE8B400B6DC29 /* AddCategoryViewController.swift */,
+				B0C101611CBF742D00E5CDE0 /* CategoriesDataSource.swift */,
 				B0D0841F1CAE57540032E530 /* ImageResourceLoader.swift */,
 				B03566841CB109FA00E0F1FB /* AddEditMode.swift */,
 				B03CBE7F1CBA7F76008FCBC4 /* Extensions.swift */,
@@ -627,6 +630,7 @@
 				B051E8101CA54FF8006FED78 /* AccountsModel.xcdatamodeld in Sources */,
 				B0D003911C9D48D90064690E /* CategoriesViewController.swift in Sources */,
 				B051E81D1CA5569B006FED78 /* TransactionCategory.swift in Sources */,
+				B0C101621CBF742D00E5CDE0 /* CategoriesDataSource.swift in Sources */,
 				B051E8271CA557BE006FED78 /* TransactionCategory+CoreDataProperties.swift in Sources */,
 				B04793F01CA3193D00C0F582 /* TransactionDate.swift in Sources */,
 				B06E92561C9D8FD4003D1796 /* FetchResult.swift in Sources */,

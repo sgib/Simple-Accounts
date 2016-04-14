@@ -8,11 +8,10 @@
 
 import UIKit
 
-class CategoriesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddEditCategoryDelegate {
+class CategoriesViewController: UIViewController, UITableViewDelegate, AddEditCategoryDelegate {
 
     private var imageResources = ImageResourceLoader.sharedInstance
-    private let defaultReuseID = "DefaultCategoryCell"
-    private let emptyReuseID = "EmptyCategoryCell"
+    private let tableDataSource = CategoriesDataSource()
     
     //MARK: - Dependencies
     
@@ -21,7 +20,6 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: - Outlets
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
 
     //MARK: - Navigation
     
@@ -41,55 +39,14 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     func addCategoryController(controller: AddCategoryViewController, didAddEdit: AddEditResult<TransactionCategory>) {
         dismissViewControllerAnimated(true, completion: nil)
         tableView.reloadData()
-        adjustTableHeight()
-    }
-    
-    //MARK: - Private functions
-    
-    private func adjustTableHeight() {
-        tableHeightConstraint.constant = tableView.contentSize.height
     }
     
     //MARK: - Table View functions
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let categoryCount = categoryStore.allCategories().count
-        if section == 0 {
-            return categoryCount
-        } else {
-            return (categoryCount == 0) ? 1 : 0
-        }
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(defaultReuseID, forIndexPath: indexPath)
-            let category = categoryStore.allCategories()[indexPath.row]
-            cell.textLabel?.text = category.name
-            cell.imageView?.image = UIImage(named: category.icon)
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(emptyReuseID, forIndexPath: indexPath)
-            return cell
-        }
-    }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
-            categoryStore.addCategory(TransactionCategoryData(name: "Salary", icon: "BanknotesIcon.png"))
-            categoryStore.addCategory(TransactionCategoryData(name: "Books", icon: "BookIcon.png"))
-            categoryStore.addCategory(TransactionCategoryData(name: "Clothes", icon: "ClothingIcon.png"))
-            categoryStore.addCategory(TransactionCategoryData(name: "Gifts", icon: "GiftIcon.png"))
-            categoryStore.addCategory(TransactionCategoryData(name: "Food", icon: "RestaurantIcon.png"))
-            categoryStore.addCategory(TransactionCategoryData(name: "Shopping", icon: "ShoppingCartIcon.png"))
-            categoryStore.addCategory(TransactionCategoryData(name: "Fuel", icon: "PetrolIcon.png"))
-            categoryStore.addCategory(TransactionCategoryData(name: "Holidays", icon: "AirportIcon.png"))
+        if indexPath.section == CategoriesDataSource.DataSection.emptyListMessageSection.rawValue {
+            tableDataSource.createDefaultCategories()
             tableView.reloadData()
-            adjustTableHeight()
         }
     }
     
@@ -97,11 +54,9 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    override func viewDidLayoutSubviews() {
-        adjustTableHeight()
+        
+        tableDataSource.categoryStore = self.categoryStore
+        tableView.dataSource = tableDataSource
     }
 
     override func didReceiveMemoryWarning() {

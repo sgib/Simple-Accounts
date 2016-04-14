@@ -8,11 +8,10 @@
 
 import UIKit
 
-class CategorySelectionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddEditCategoryDelegate {
+class CategorySelectionViewController: UIViewController, UITableViewDelegate, AddEditCategoryDelegate {
 
     private let unwindSegueID = "unwindFromCategorySelect"
-    private let defaultCellReuseID = "DefaultCategoryCell"
-    private let addCellReuseID = "AddCategoryCell"
+    private let tableDataSource = CategoriesDataSource()
     var chosenCategory: TransactionCategory?
     
     //MARK: - Dependencies
@@ -30,38 +29,15 @@ class CategorySelectionViewController: UIViewController, UITableViewDataSource, 
         performSegueWithIdentifier(unwindSegueID, sender: self)
     }
     
-    //MARK: - Table data source
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return categoryStore.allCategories().count
-        } else {
-            return 1
-        }
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(defaultCellReuseID, forIndexPath: indexPath)
-            let category = categoryStore.allCategories()[indexPath.row]
-            cell.textLabel?.text = category.name
-            cell.imageView?.image = UIImage(named: category.icon)
-            return cell
-        } else {
-            return tableView.dequeueReusableCellWithIdentifier(addCellReuseID, forIndexPath: indexPath)
-        }
-    }
-    
     //MARK: - Table delegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 {
+        if indexPath.section == CategoriesDataSource.DataSection.categoryListSection.rawValue {
             chosenCategory = categoryStore.allCategories()[indexPath.row]
             doneButton.enabled = true
+        } else if indexPath.section == CategoriesDataSource.DataSection.emptyListMessageSection.rawValue {
+            tableDataSource.createDefaultCategories()
+            tableView.reloadData()
         }
     }
     
@@ -88,6 +64,10 @@ class CategorySelectionViewController: UIViewController, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableDataSource.categoryStore = self.categoryStore
+        tableDataSource.showsAddCategoryRow = true
+        tableView.dataSource = tableDataSource
     }
     
     override func viewDidAppear(animated: Bool) {

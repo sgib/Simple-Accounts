@@ -66,12 +66,3 @@ class CategoryStore {
     }
 }
 
-extension String {
-    func trim() -> String {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-    }
-    
-    var isNotEmpty: Bool {
-        return !self.isEmpty
-    }
-}

@@ -290,7 +290,6 @@
 				B0C101611CBF742D00E5CDE0 /* CategoriesDataSource.swift */,
 				B0D0841F1CAE57540032E530 /* ImageResourceLoader.swift */,
 				B03566841CB109FA00E0F1FB /* AddEditMode.swift */,
-				B03CBE7F1CBA7F76008FCBC4 /* Extensions.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -342,8 +341,9 @@
 		B0D0038B1C9D48D90064690E /* Simple Accounts */ = {
 			isa = PBXGroup;
 			children = (
-				B0D0038C1C9D48D90064690E /* AppDelegate.swift */,
 				B0D0039A1C9D48D90064690E /* Info.plist */,
+				B0D0038C1C9D48D90064690E /* AppDelegate.swift */,
+				B03CBE7F1CBA7F76008FCBC4 /* Extensions.swift */,
 				B06E92501C9D8E91003D1796 /* Controllers */,
 				B06E924F1C9D8E7A003D1796 /* Model */,
 				B06E92521C9D8EF8003D1796 /* Views */,

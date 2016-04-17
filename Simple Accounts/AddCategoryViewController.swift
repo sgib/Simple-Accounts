@@ -12,7 +12,7 @@ protocol AddEditCategoryDelegate: class {
     func addCategoryController(controller: AddCategoryViewController, didAddEdit: AddEditResult<TransactionCategory>)
 }
 
-class AddCategoryViewController: UIViewController, UICollectionViewDataSource, UITextFieldDelegate {
+class AddCategoryViewController: UIViewController {
     
     private let numberOfItemsPerRow = 6
     private let reuseID = "CategoryIconCell"
@@ -89,34 +89,11 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
         presentViewController(actionSheet, animated: true, completion: nil)
     }
     
-    //MARK: - TextField functions
-    
     @IBAction func nameFieldChanged(sender: UITextField) {
         saveButton.enabled = sender.unwrappedText.trim().isNotEmpty
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    //MARK: - CollectionView Data Source
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = iconCollectionView.dequeueReusableCellWithReuseIdentifier(reuseID, forIndexPath: indexPath) as! IconCollectionViewCell
-        cell.setImage(UIImage(named: imageResourceNames.pngImageNames[indexPath.item])!)
-        return cell
-    }
-
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageResourceNames.pngImageNames.count
-    }
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    //MARK: - View Lifecycle
+    //MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,7 +119,30 @@ class AddCategoryViewController: UIViewController, UICollectionViewDataSource, U
     
 }
 
+//MARK: - Text field delegate
+extension AddCategoryViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
 
-
-
+//MARK: - Collection view data source
+extension AddCategoryViewController: UICollectionViewDataSource {
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = iconCollectionView.dequeueReusableCellWithReuseIdentifier(reuseID, forIndexPath: indexPath) as! IconCollectionViewCell
+        cell.setImage(UIImage(named: imageResourceNames.pngImageNames[indexPath.item])!)
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imageResourceNames.pngImageNames.count
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+}
 

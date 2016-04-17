@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategorySelectionViewController: UIViewController, UITableViewDelegate, AddEditCategoryDelegate {
+class CategorySelectionViewController: UIViewController {
 
     private let unwindSegueID = "unwindFromCategorySelect"
     private let tableDataSource = CategoriesDataSource()
@@ -28,19 +28,7 @@ class CategorySelectionViewController: UIViewController, UITableViewDelegate, Ad
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
         performSegueWithIdentifier(unwindSegueID, sender: self)
     }
-    
-    //MARK: - Table delegate
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == CategoriesDataSource.DataSection.categoryListSection.rawValue {
-            chosenCategory = categoryStore.allCategories()[indexPath.row]
-            doneButton.enabled = true
-        } else if indexPath.section == CategoriesDataSource.DataSection.emptyListMessageSection.rawValue {
-            tableDataSource.createDefaultCategories()
-            tableView.reloadData()
-        }
-    }
-    
+
     //MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -52,15 +40,7 @@ class CategorySelectionViewController: UIViewController, UITableViewDelegate, Ad
         }
     }
     
-    func addCategoryController(controller: AddCategoryViewController, didAddEdit: AddEditResult<TransactionCategory>) {
-        if case let .DidAdd(category) = didAddEdit {
-            chosenCategory = category
-            navigationController?.popViewControllerAnimated(true)
-            performSegueWithIdentifier(unwindSegueID, sender: self)
-        }
-    }
-    
-    //MARK: - Lifecycle
+    //MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,10 +57,32 @@ class CategorySelectionViewController: UIViewController, UITableViewDelegate, Ad
             doneButton.enabled = true
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
+
+//MARK: - Table view delegate
+extension CategorySelectionViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == CategoriesDataSource.DataSection.categoryListSection.rawValue {
+            chosenCategory = categoryStore.allCategories()[indexPath.row]
+            doneButton.enabled = true
+        } else if indexPath.section == CategoriesDataSource.DataSection.emptyListMessageSection.rawValue {
+            tableDataSource.createDefaultCategories()
+            tableView.reloadData()
+        }
+    }
+}
+
+//MARK: - AddEdit delegate
+extension CategorySelectionViewController: AddEditCategoryDelegate {
+    
+    func addCategoryController(controller: AddCategoryViewController, didAddEdit: AddEditResult<TransactionCategory>) {
+        if case let .DidAdd(category) = didAddEdit {
+            chosenCategory = category
+            navigationController?.popViewControllerAnimated(true)
+            performSegueWithIdentifier(unwindSegueID, sender: self)
+        }
+    }
+}
+
+

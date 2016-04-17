@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
+class AddTransactionViewController: UITableViewController {
 
     private var datePickerVisible = false
     private let unwindSegueID = "unwindFromAddTransaction"
@@ -33,23 +33,6 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var deleteButton: UIButton!
-    
-    //MARK: - Navigation
-    
-    @IBAction func unwindFromCategorySelection(segue: UIStoryboardSegue) {
-        if let categorySelection = segue.sourceViewController as? CategorySelectionViewController {
-            if let category = categorySelection.chosenCategory {
-                updateCategoryDisplay(category)
-            }
-        }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destVC = segue.destinationViewController as? CategorySelectionViewController {
-            destVC.categoryStore = categoryStore
-            destVC.chosenCategory = chosenCategory
-        }
-    }
     
     //MARK: - Actions
     
@@ -97,6 +80,33 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
         dateDisplayLabel.text = formatter.stringFromDate(datePicker.date)
     }
     
+    @IBAction func amountEntryBegan(sender: UITextField) {
+        amountTextField.text = (enteredAmount != Money.zero()) ? "\(enteredAmount)" : ""
+    }
+    
+    @IBAction func amountEntryEnded(sender: UITextField) {
+        let inputAmount = Money(string: amountTextField.unwrappedText)
+        let amount = (inputAmount == Money.notANumber()) ? Money.zero() : inputAmount
+        updateAmountDisplay(amount)
+    }
+    
+    //MARK: - Navigation
+    
+    @IBAction func unwindFromCategorySelection(segue: UIStoryboardSegue) {
+        if let categorySelection = segue.sourceViewController as? CategorySelectionViewController {
+            if let category = categorySelection.chosenCategory {
+                updateCategoryDisplay(category)
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destVC = segue.destinationViewController as? CategorySelectionViewController {
+            destVC.categoryStore = categoryStore
+            destVC.chosenCategory = chosenCategory
+        }
+    }
+    
     //MARK: - Table view functions
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -119,7 +129,50 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    //MARK: - TextField functions
+    //MARK: - Private functions
+    
+    private func setDatePickerVisible(visible: Bool) {
+        tableView.beginUpdates()
+        datePickerVisible = visible
+        tableView.endUpdates()
+    }
+    
+    private func updateCategoryDisplay(category: TransactionCategory) {
+        chosenCategory = category
+        saveButton.enabled = true
+        categoryDisplayLabel.text = category.name
+    }
+    
+    private func updateAmountDisplay(amount: Money) {
+        enteredAmount = amount.moneyRoundedToTwoDecimalPlaces()
+        amountTextField.text = NSNumberFormatter.localizedStringFromNumber(enteredAmount, numberStyle: .CurrencyStyle)
+    }
+    
+    //MARK: - View lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        amountTextField.placeholder = NSNumberFormatter.localizedStringFromNumber(Money.zero(), numberStyle: .CurrencyStyle)
+        if case let .Edit(transaction) = mode! {
+            self.title = "Edit Transaction"
+            saveButton.enabled = true
+            deleteButton.hidden = false
+            typeSegmentControl.selectedSegmentIndex = (transaction.type == .Expense) ? 0 : 1
+            datePicker.date = transaction.date
+            updateCategoryDisplay(transaction.category)
+            updateAmountDisplay(transaction.amount)
+            descriptionTextField.text = transaction.transactionDescription
+        } else {
+            datePicker.date = defaultDateForNewTransactions
+            updateAmountDisplay(Money.zero())
+        }
+        dateValueChanged()
+    }
+}
+
+//MARK: Text field delegate
+extension AddTransactionViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -143,61 +196,8 @@ class AddTransactionViewController: UITableViewController, UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
         setDatePickerVisible(false)
     }
-    
-    @IBAction func amountEntryBegan(sender: UITextField) {
-        amountTextField.text = (enteredAmount != Money.zero()) ? "\(enteredAmount)" : ""
-    }
-    
-    @IBAction func amountEntryEnded(sender: UITextField) {
-        let inputAmount = Money(string: amountTextField.unwrappedText)
-        let amount = (inputAmount == Money.notANumber()) ? Money.zero() : inputAmount
-        updateAmountDisplay(amount)
-    }
-    
-    //MARK: - Private functions
-    
-    private func setDatePickerVisible(visible: Bool) {
-        tableView.beginUpdates()
-        datePickerVisible = visible
-        tableView.endUpdates()
-    }
-    
-    private func updateCategoryDisplay(category: TransactionCategory) {
-        chosenCategory = category
-        saveButton.enabled = true
-        categoryDisplayLabel.text = category.name
-    }
-    
-    private func updateAmountDisplay(amount: Money) {
-        enteredAmount = amount.moneyRoundedToTwoDecimalPlaces()
-        amountTextField.text = NSNumberFormatter.localizedStringFromNumber(enteredAmount, numberStyle: .CurrencyStyle)
-    }
-    
-    //MARK: - Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        amountTextField.placeholder = NSNumberFormatter.localizedStringFromNumber(Money.zero(), numberStyle: .CurrencyStyle)
-        if case let .Edit(transaction) = mode! {
-            self.title = "Edit Transaction"
-            saveButton.enabled = true
-            deleteButton.hidden = false
-            typeSegmentControl.selectedSegmentIndex = (transaction.type == .Expense) ? 0 : 1
-            datePicker.date = transaction.date
-            updateCategoryDisplay(transaction.category)
-            updateAmountDisplay(transaction.amount)
-            descriptionTextField.text = transaction.transactionDescription
-        } else {
-            datePicker.date = defaultDateForNewTransactions
-            updateAmountDisplay(Money.zero())
-        }
-        dateValueChanged()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
+
+
+
+

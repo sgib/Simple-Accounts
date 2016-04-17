@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoriesViewController: UIViewController, UITableViewDelegate, AddEditCategoryDelegate {
+class CategoriesViewController: UIViewController {
 
     private var imageResources = ImageResourceLoader.sharedInstance
     private let tableDataSource = CategoriesDataSource()
@@ -36,21 +36,7 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, AddEditCa
         }
     }
     
-    func addCategoryController(controller: AddCategoryViewController, didAddEdit: AddEditResult<TransactionCategory>) {
-        dismissViewControllerAnimated(true, completion: nil)
-        tableView.reloadData()
-    }
-    
-    //MARK: - Table View functions
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == CategoriesDataSource.DataSection.emptyListMessageSection.rawValue {
-            tableDataSource.createDefaultCategories()
-            tableView.reloadData()
-        }
-    }
-    
-    //MARK: - Lifecycle
+    //MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,12 +51,24 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, AddEditCa
         //Categories may have been added in Transaction tab
         tableView.reloadData()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
+//MARK: - Table view Delegate
+extension CategoriesViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == CategoriesDataSource.DataSection.emptyListMessageSection.rawValue {
+            tableDataSource.createDefaultCategories()
+            tableView.reloadData()
+        }
+    }
+}
+
+//MARK: - AddEdit delegate
+extension CategoriesViewController: AddEditCategoryDelegate {
+    
+    func addCategoryController(controller: AddCategoryViewController, didAddEdit: AddEditResult<TransactionCategory>) {
+        dismissViewControllerAnimated(true, completion: nil)
+        tableView.reloadData()
+    }
+}

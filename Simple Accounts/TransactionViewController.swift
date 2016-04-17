@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransactionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TransactionViewController: UIViewController {
 
     private let reuseID = "TransactionCell"
     private var currentRange: TransactionDateRange!
@@ -28,43 +28,6 @@ class TransactionViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var aggregateLabel: UILabel!
     @IBOutlet weak var closingBalanceLabel: UILabel!
     @IBOutlet weak var rangeDisplayButton: BorderedButton!
-    
-    //MARK: - Private functions
-    
-    private func loadRange() {
-        //TODO: if can load from UserDefaults, else...
-        currentRange = TransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: .Month)
-        updateRangeDisplay()
-    }
-    
-    private func updateRangeDisplay() {
-        rangeDisplayButton.setTitle(currentRange.displayName, forState: .Normal)
-        loadTransactionData()
-    }
-    
-    private func changeRangeLengthTo(size: DateRangeSize) {
-        if currentRange.size != size {
-            currentRange = TransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: size)
-            updateRangeDisplay()
-        }
-    }
-    
-    private func loadTransactionData() {
-        currentTransactions = account.transactionsForRange(currentRange)
-        transactionTableView.reloadData()
-        updateBalanceDisplays()
-    }
-    
-    private func updateBalanceDisplays() {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .CurrencyStyle
-        let openingBalance = account.balanceAtStartOfRange(currentRange)
-        openingBalanceLabel.text = "Opening: \(formatter.stringFromNumber(openingBalance)!)"
-        totalIncomeLabel.text = formatter.stringFromNumber(currentTransactions.sumIncome)!
-        aggregateLabel.text = "Net: \(formatter.stringFromNumber(currentTransactions.sumAggregate)!)"
-        totalExpensesLabel.text = formatter.stringFromNumber(currentTransactions.sumExpenses)!
-        closingBalanceLabel.text = "Closing: \(formatter.stringFromNumber(openingBalance + currentTransactions.sumAggregate)!)"
-    }
     
     //MARK: - Actions
     
@@ -108,7 +71,61 @@ class TransactionViewController: UIViewController, UITableViewDataSource, UITabl
         loadTransactionData()
     }
     
-    //MARK: - Table view
+    //MARK: - Private functions
+    
+    private func loadRange() {
+        //TODO: if can load from UserDefaults, else...
+        currentRange = TransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: .Month)
+        updateRangeDisplay()
+    }
+    
+    private func updateRangeDisplay() {
+        rangeDisplayButton.setTitle(currentRange.displayName, forState: .Normal)
+        loadTransactionData()
+    }
+    
+    private func changeRangeLengthTo(size: DateRangeSize) {
+        if currentRange.size != size {
+            currentRange = TransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: size)
+            updateRangeDisplay()
+        }
+    }
+    
+    private func loadTransactionData() {
+        currentTransactions = account.transactionsForRange(currentRange)
+        transactionTableView.reloadData()
+        updateBalanceDisplays()
+    }
+    
+    private func updateBalanceDisplays() {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        let openingBalance = account.balanceAtStartOfRange(currentRange)
+        openingBalanceLabel.text = "Opening: \(formatter.stringFromNumber(openingBalance)!)"
+        totalIncomeLabel.text = formatter.stringFromNumber(currentTransactions.sumIncome)!
+        aggregateLabel.text = "Net: \(formatter.stringFromNumber(currentTransactions.sumAggregate)!)"
+        totalExpensesLabel.text = formatter.stringFromNumber(currentTransactions.sumExpenses)!
+        closingBalanceLabel.text = "Closing: \(formatter.stringFromNumber(openingBalance + currentTransactions.sumAggregate)!)"
+    }
+    
+    //MARK: - View lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        loadRange()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //Categories may have been edited on Category tab
+        transactionTableView.reloadData()
+    }
+}
+
+//MARK: - Table view data source
+extension TransactionViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -123,31 +140,7 @@ class TransactionViewController: UIViewController, UITableViewDataSource, UITabl
         cell.transaction = currentTransactions[indexPath.row]
         return cell
     }
-    
-    //MARK: - Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        loadRange()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        //Categories may have been edited on Category tab
-        transactionTableView.reloadData()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
-
-
 
 
 

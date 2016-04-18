@@ -43,33 +43,33 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opening: £1000.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1WD-rn-wJV">
                                         <rect key="frame" x="0.0" y="0.0" width="121" height="32"/>
                                         <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£555.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gni-1K-Zhh">
                                         <rect key="frame" x="120" y="0.0" width="121" height="32"/>
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Net: -£256.77" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeJ-IZ-K4u">
                                         <rect key="frame" x="240" y="0.0" width="120" height="32"/>
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£799.23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guh-0L-48v">
                                         <rect key="frame" x="359" y="0.0" width="121" height="32"/>
                                         <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Closing: £495.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cR0-Jr-qir">
                                         <rect key="frame" x="479" y="0.0" width="121" height="32"/>
                                         <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -799,7 +799,7 @@
         <!--Settings-->
         <scene sceneID="t0t-lh-XAF">
             <objects>
-                <viewController id="XKp-J8-Kqt" sceneMemberID="viewController">
+                <viewController id="XKp-J8-Kqt" customClass="SettingsViewController" customModule="Simple_Accounts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="b1j-T8-Gts"/>
                         <viewControllerLayoutGuide type="bottom" id="1EE-fi-Feb"/>
@@ -807,7 +807,50 @@
                     <view key="view" contentMode="scaleToFill" id="rMX-QE-dYa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGA-Xc-ehD">
+                                <rect key="frame" x="20" y="268" width="560" height="275"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="275" id="Vr8-cf-8zh"/>
+                                </constraints>
+                                <string key="text">Credits  
+The icons used for Categories are from the 'Windows 8 Icons' set at: 
+http://www.iconarchive.com/show/windows-8-icons-by-icons8.html
+
+The App Icon is from:
+http://www.iconarchive.com/show/ecommerce-business-icons-by-designcontest/piggy-bank-icon.html
+
+The tab-bar icons are all from the 'iOS 7 Icons' set:
+http://www.iconarchive.com/show/ios7-icons-by-icons8/Finance-Money-Box-icon.html
+http://www.iconarchive.com/show/ios7-icons-by-icons8/Very-Basic-Archive-icon.html
+http://www.iconarchive.com/show/ios7-icons-by-icons8/Very-Basic-Presentation-icon.html
+http://www.iconarchive.com/show/ios7-icons-by-icons8/Very-Basic-Settings-icon.html</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TGA-Xc-ehD" firstAttribute="top" secondItem="b1j-T8-Gts" secondAttribute="bottom" id="6iA-M4-jds"/>
+                            <constraint firstItem="TGA-Xc-ehD" firstAttribute="trailing" secondItem="rMX-QE-dYa" secondAttribute="trailingMargin" id="A5z-Q6-2QB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TGA-Xc-ehD" secondAttribute="trailing" id="A8X-JY-irO"/>
+                            <constraint firstItem="TGA-Xc-ehD" firstAttribute="top" secondItem="b1j-T8-Gts" secondAttribute="bottom" constant="8" symbolic="YES" id="DUI-QN-iMZ"/>
+                            <constraint firstItem="1EE-fi-Feb" firstAttribute="top" secondItem="TGA-Xc-ehD" secondAttribute="bottom" constant="8" symbolic="YES" id="ewT-0h-l9e"/>
+                            <constraint firstItem="1EE-fi-Feb" firstAttribute="top" secondItem="TGA-Xc-ehD" secondAttribute="bottom" constant="8" id="jgL-0L-T5Q"/>
+                            <constraint firstItem="TGA-Xc-ehD" firstAttribute="leading" secondItem="rMX-QE-dYa" secondAttribute="leadingMargin" id="l4S-q8-2vI"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="TGA-Xc-ehD" secondAttribute="leading" id="sbh-9p-aOb"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6iA-M4-jds"/>
+                                <exclude reference="A8X-JY-irO"/>
+                                <exclude reference="DUI-QN-iMZ"/>
+                                <exclude reference="sbh-9p-aOb"/>
+                                <exclude reference="jgL-0L-T5Q"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="Settings" selectedImage="SettingsFilled" id="YNj-aV-mmO"/>
                 </viewController>

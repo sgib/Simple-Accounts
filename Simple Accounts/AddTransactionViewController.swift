@@ -21,6 +21,7 @@ class AddTransactionViewController: UITableViewController {
     var mode: AddEditMode<Transaction>!
     var account: Account!
     var categoryStore: CategoryStore!
+    var formatter: AccountsFormatter!
     var defaultDateForNewTransactions = TransactionDate.Today
     
     //MARK: - Outlets
@@ -75,9 +76,7 @@ class AddTransactionViewController: UITableViewController {
     }
     
     @IBAction func dateValueChanged() {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "dd MMMM yyyy"
-        dateDisplayLabel.text = formatter.stringFromDate(datePicker.date)
+        dateDisplayLabel.text = formatter.dateStringFrom(datePicker.date)
     }
     
     @IBAction func amountEntryBegan(sender: UITextField) {
@@ -145,7 +144,7 @@ class AddTransactionViewController: UITableViewController {
     
     private func updateAmountDisplay(amount: Money) {
         enteredAmount = amount.moneyRoundedToTwoDecimalPlaces()
-        amountTextField.text = NSNumberFormatter.localizedStringFromNumber(enteredAmount, numberStyle: .CurrencyStyle)
+        amountTextField.text = formatter.currencyStringFrom(enteredAmount)
     }
     
     //MARK: - View lifecycle

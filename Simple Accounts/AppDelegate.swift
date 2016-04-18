@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let categoryStore = CategoryStore(dataSource: dataStack)
         let openingBalance = Money.zero() //TODO: load/retrieve opening balance...
         let account = Account(openingBalance: openingBalance, dataSource: dataStack)
+        let formatter = AccountsFormatter(dateFormat: "dd MMMM yyyy")
         
         if let tabBar = self.window?.rootViewController as? UITabBarController {
             for child in tabBar.childViewControllers {
@@ -31,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if let navChild = child.childViewControllers.first as? TransactionViewController {
                         navChild.account = account
                         navChild.categoryStore = categoryStore
+                        navChild.formatter = formatter
                     }
                 }
             }

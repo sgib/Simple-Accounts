@@ -17,6 +17,7 @@ class TransactionViewController: UIViewController {
     //MARK: - Dependencies
     var account: Account!
     var categoryStore: CategoryStore!
+    var formatter: AccountsFormatter!
     
     //MARK: - Outlets
     
@@ -57,6 +58,7 @@ class TransactionViewController: UIViewController {
         if let destVC = segue.destinationViewController.childViewControllers.first as? AddTransactionViewController {
             destVC.account = account
             destVC.categoryStore = categoryStore
+            destVC.formatter = formatter
             destVC.mode = .Add
             destVC.defaultDateForNewTransactions = (currentRange.contains(TransactionDate.Today)) ? TransactionDate.Today : currentRange.startDate
             if !(sender is UIBarButtonItem) {
@@ -98,14 +100,12 @@ class TransactionViewController: UIViewController {
     }
     
     private func updateBalanceDisplays() {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .CurrencyStyle
         let openingBalance = account.balanceAtStartOfRange(currentRange)
-        openingBalanceLabel.text = "Opening: \(formatter.stringFromNumber(openingBalance)!)"
-        totalIncomeLabel.text = formatter.stringFromNumber(currentTransactions.sumIncome)!
-        aggregateLabel.text = "Net: \(formatter.stringFromNumber(currentTransactions.sumAggregate)!)"
-        totalExpensesLabel.text = formatter.stringFromNumber(currentTransactions.sumExpenses)!
-        closingBalanceLabel.text = "Closing: \(formatter.stringFromNumber(openingBalance + currentTransactions.sumAggregate)!)"
+        openingBalanceLabel.text = "Opening: \(formatter.currencyStringFrom(openingBalance))"
+        totalIncomeLabel.text = formatter.currencyStringFrom(currentTransactions.sumIncome)
+        aggregateLabel.text = "Net: \(formatter.currencyStringFrom(currentTransactions.sumAggregate))"
+        totalExpensesLabel.text = formatter.currencyStringFrom(currentTransactions.sumExpenses)
+        closingBalanceLabel.text = "Closing: \(formatter.currencyStringFrom(openingBalance + currentTransactions.sumAggregate))"
     }
     
     //MARK: - View lifecycle
@@ -137,6 +137,7 @@ extension TransactionViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath) as! TransactionTableViewCell
+        cell.formatter = formatter
         cell.transaction = currentTransactions[indexPath.row]
         return cell
     }

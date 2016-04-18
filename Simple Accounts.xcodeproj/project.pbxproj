@@ -72,6 +72,7 @@
 		B07940E01CAEDB710009F994 /* 00MoneyBagIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940DA1CAEDB710009F994 /* 00MoneyBagIcon@2x.png */; };
 		B07940E11CAEDB710009F994 /* SofaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940DB1CAEDB710009F994 /* SofaIcon.png */; };
 		B07940E21CAEDB710009F994 /* SofaIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940DC1CAEDB710009F994 /* SofaIcon@2x.png */; };
+		B07D154C1CC54C2900E5CF58 /* AccountsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D154B1CC54C2900E5CF58 /* AccountsFormatter.swift */; };
 		B080DB251CB4289D003F7FEB /* TransactionDateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080DB241CB4289D003F7FEB /* TransactionDateRange.swift */; };
 		B080DB271CB4371A003F7FEB /* DateRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080DB261CB4371A003F7FEB /* DateRangeTests.swift */; };
 		B082C2181CAEE58600B6DC29 /* BookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B082C2081CAEE58600B6DC29 /* BookIcon.png */; };
@@ -195,6 +196,7 @@
 		B07940DA1CAEDB710009F994 /* 00MoneyBagIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "00MoneyBagIcon@2x.png"; sourceTree = "<group>"; };
 		B07940DB1CAEDB710009F994 /* SofaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SofaIcon.png; sourceTree = "<group>"; };
 		B07940DC1CAEDB710009F994 /* SofaIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SofaIcon@2x.png"; sourceTree = "<group>"; };
+		B07D154B1CC54C2900E5CF58 /* AccountsFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsFormatter.swift; sourceTree = "<group>"; };
 		B080DB241CB4289D003F7FEB /* TransactionDateRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDateRange.swift; sourceTree = "<group>"; };
 		B080DB261CB4371A003F7FEB /* DateRangeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRangeTests.swift; sourceTree = "<group>"; };
 		B082C2081CAEE58600B6DC29 /* BookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BookIcon.png; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				B08AF83F1CB2C017006ED574 /* BorderedButton.swift */,
 				B0B294D31CBB86FA0056C232 /* TransactionTableViewCell.swift */,
 				B082C2321CAEF9BF00B6DC29 /* IconCollectionViewCell.swift */,
+				B07D154B1CC54C2900E5CF58 /* AccountsFormatter.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				B051E8101CA54FF8006FED78 /* AccountsModel.xcdatamodeld in Sources */,
 				B0D003911C9D48D90064690E /* CategoriesViewController.swift in Sources */,
 				B051E81D1CA5569B006FED78 /* TransactionCategory.swift in Sources */,
+				B07D154C1CC54C2900E5CF58 /* AccountsFormatter.swift in Sources */,
 				B0C101621CBF742D00E5CDE0 /* CategoriesDataSource.swift in Sources */,
 				B051E8271CA557BE006FED78 /* TransactionCategory+CoreDataProperties.swift in Sources */,
 				B04793F01CA3193D00C0F582 /* TransactionDate.swift in Sources */,

@@ -13,6 +13,7 @@ class TransactionTableViewCell: UITableViewCell {
     private let midGreenColour = UIColor(red: 0, green: 0.5, blue: 0, alpha: 1)
 
     //MARK: - Dependencies
+    var formatter: AccountsFormatter!
     var transaction: Transaction! {
         didSet {
             categoryImageView.image = UIImage(named: transaction.category.icon)
@@ -24,10 +25,8 @@ class TransactionTableViewCell: UITableViewCell {
                 categoryLabel.text = ""
                 descriptionLabel.text = unwrappedDescription
             }
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "dd MMMM yyyy"
-            dateLabel.text = formatter.stringFromDate(transaction.date)
-            amountLabel.text = NSNumberFormatter.localizedStringFromNumber(transaction.amount, numberStyle: .CurrencyStyle)
+            dateLabel.text = formatter.dateStringFrom(transaction.date)
+            amountLabel.text = formatter.currencyStringFrom(transaction.amount)
             amountLabel.textColor = (transaction.type == .Expense) ? midRedColour : midGreenColour
         }
     }

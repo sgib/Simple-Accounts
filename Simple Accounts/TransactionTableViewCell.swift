@@ -12,23 +12,21 @@ class TransactionTableViewCell: UITableViewCell {
     private let midRedColour = UIColor(red: 0.5, green: 0, blue: 0, alpha: 1)
     private let midGreenColour = UIColor(red: 0, green: 0.5, blue: 0, alpha: 1)
 
-    //MARK: - Dependencies
-    var formatter: AccountsFormatter!
-    var transaction: Transaction! {
-        didSet {
-            categoryImageView.image = UIImage(named: transaction.category.icon)
-            let unwrappedDescription: String = transaction.transactionDescription ?? ""
-            if unwrappedDescription.isEmpty {
-                categoryLabel.text = transaction.category.name
-                descriptionLabel.text = ""
-            } else {
-                categoryLabel.text = ""
-                descriptionLabel.text = unwrappedDescription
-            }
-            dateLabel.text = formatter.dateStringFrom(transaction.date)
-            amountLabel.text = formatter.currencyStringFrom(transaction.amount)
-            amountLabel.textColor = (transaction.type == .Expense) ? midRedColour : midGreenColour
+    //MARK: - Dependency function
+    
+    func setContent(transaction: Transaction, usingFormatter formatter: AccountsFormatter) {
+        categoryImageView.image = UIImage(named: transaction.category.icon)
+        let unwrappedDescription: String = transaction.transactionDescription ?? ""
+        if unwrappedDescription.isEmpty {
+            categoryLabel.text = transaction.category.name
+            descriptionLabel.text = ""
+        } else {
+            categoryLabel.text = ""
+            descriptionLabel.text = unwrappedDescription
         }
+        dateLabel.text = formatter.dateStringFrom(transaction.date)
+        amountLabel.text = formatter.currencyStringFrom(transaction.amount)
+        amountLabel.textColor = (transaction.type == .Expense) ? midRedColour : midGreenColour
     }
     
     //MARK: - Outlets

@@ -137,8 +137,8 @@ extension TransactionViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath) as! TransactionTableViewCell
-        cell.formatter = formatter
-        cell.transaction = currentTransactions[indexPath.row]
+        let transaction = currentTransactions[indexPath.row]
+        cell.setContent(transaction, usingFormatter: formatter)
         return cell
     }
 }

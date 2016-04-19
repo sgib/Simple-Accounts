@@ -12,8 +12,10 @@ class CurrencyTextField: UITextField {
 
     var enteredAmount: Money = Money.zero() {
         didSet {
-            enteredAmount = enteredAmount.moneyRoundedToTwoDecimalPlaces()
-            text = formatter.currencyStringFrom(enteredAmount)
+            if !editing {
+                enteredAmount = enteredAmount.moneyRoundedToTwoDecimalPlaces()
+                updateTextDisplay()
+            }
         }
     }
     
@@ -24,6 +26,17 @@ class CurrencyTextField: UITextField {
             placeholder = formatter.currencyStringFrom(Money.zero())
         }
     }
+    
+    //MARK: Private functions
+    
+    @objc private func editingChanged() {
+        let inputAmount = Money(string: unwrappedText)
+        enteredAmount = (inputAmount == Money.notANumber()) ? Money.zero() : inputAmount
+    }
+    
+    private func updateTextDisplay() {
+        text = formatter.currencyStringFrom(enteredAmount)
+    }
 
     //MARK: - View lifecycle
     
@@ -31,6 +44,7 @@ class CurrencyTextField: UITextField {
         super.init(coder: aDecoder)
         
         delegate = self
+        addTarget(self, action: #selector(editingChanged), forControlEvents: .EditingChanged)
     }
 }
 
@@ -56,8 +70,7 @@ extension CurrencyTextField: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        let inputAmount = Money(string: textField.unwrappedText)
-        enteredAmount = (inputAmount == Money.notANumber()) ? Money.zero() : inputAmount
+        updateTextDisplay()
     }
     
 

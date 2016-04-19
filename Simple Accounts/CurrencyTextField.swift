@@ -1,0 +1,64 @@
+//
+//  CurrencyTextField.swift
+//  Simple Accounts
+//
+//  Created by Steven Gibson on 19/04/2016.
+//  Copyright © 2016 Steven Gibson. All rights reserved.
+//
+
+import UIKit
+
+class CurrencyTextField: UITextField {
+
+    var enteredAmount: Money = Money.zero() {
+        didSet {
+            enteredAmount = enteredAmount.moneyRoundedToTwoDecimalPlaces()
+            text = formatter.currencyStringFrom(enteredAmount)
+        }
+    }
+    
+    //MARK: - Dependencies
+    
+    var formatter: AccountsFormatter! {
+        didSet {
+            placeholder = formatter.currencyStringFrom(Money.zero())
+        }
+    }
+
+    //MARK: - View lifecycle
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        delegate = self
+    }
+}
+
+//MARK: - Text field delegate
+extension CurrencyTextField: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let combinedStrings = (textField.unwrappedText as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        guard combinedStrings.occurrencesOfSubstring(".") <= 1 else {
+            return false
+        }
+        let newCharacters = NSCharacterSet(charactersInString: string)
+        let allowedInput = NSCharacterSet(charactersInString: "0123456789.")
+        return allowedInput.isSupersetOfSet(newCharacters)
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.text = (enteredAmount != Money.zero()) ? "\(enteredAmount)" : ""
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        let inputAmount = Money(string: textField.unwrappedText)
+        enteredAmount = (inputAmount == Money.notANumber()) ? Money.zero() : inputAmount
+    }
+    
+
+}

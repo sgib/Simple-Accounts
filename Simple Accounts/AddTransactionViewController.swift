@@ -15,7 +15,6 @@ class AddTransactionViewController: UITableViewController {
     private let dateDisplayIndexPath = NSIndexPath(forRow: 1, inSection: 0)
     private let datePickerIndexPath = NSIndexPath(forRow: 2, inSection: 0)
     private var chosenCategory: TransactionCategory?
-    private var enteredAmount = Money.zero()
     
     //MARK: - Dependencies
     var mode: AddEditMode<Transaction>!
@@ -30,7 +29,7 @@ class AddTransactionViewController: UITableViewController {
     @IBOutlet weak var dateDisplayLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var categoryDisplayLabel: UILabel!
-    @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var amountTextField: CurrencyTextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var deleteButton: UIButton!
@@ -47,10 +46,14 @@ class AddTransactionViewController: UITableViewController {
             let description: String? = (descriptionTextField.unwrappedText.isNotEmpty) ? descriptionTextField.unwrappedText : nil
             switch mode! {
             case .Add:
-                let data = TransactionData(amount: enteredAmount, category: category, date: datePicker.date, description: description, type: transType)
+                let data = TransactionData(amount: amountTextField.enteredAmount,
+                                           category: category,
+                                           date: datePicker.date,
+                                           description: description,
+                                           type: transType)
                 account.addTransaction(data)
             case .Edit(let transaction):
-                transaction.amount = enteredAmount
+                transaction.amount = amountTextField.enteredAmount
                 transaction.category = category
                 transaction.date = datePicker.date
                 transaction.transactionDescription = description
@@ -80,13 +83,7 @@ class AddTransactionViewController: UITableViewController {
     }
     
     @IBAction func amountEntryBegan(sender: UITextField) {
-        amountTextField.text = (enteredAmount != Money.zero()) ? "\(enteredAmount)" : ""
-    }
-    
-    @IBAction func amountEntryEnded(sender: UITextField) {
-        let inputAmount = Money(string: amountTextField.unwrappedText)
-        let amount = (inputAmount == Money.notANumber()) ? Money.zero() : inputAmount
-        updateAmountDisplay(amount)
+        setDatePickerVisible(false)
     }
     
     //MARK: - Navigation
@@ -142,17 +139,13 @@ class AddTransactionViewController: UITableViewController {
         categoryDisplayLabel.text = category.name
     }
     
-    private func updateAmountDisplay(amount: Money) {
-        enteredAmount = amount.moneyRoundedToTwoDecimalPlaces()
-        amountTextField.text = formatter.currencyStringFrom(enteredAmount)
-    }
-    
     //MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        amountTextField.placeholder = NSNumberFormatter.localizedStringFromNumber(Money.zero(), numberStyle: .CurrencyStyle)
+        amountTextField.formatter = formatter
+        
         if case let .Edit(transaction) = mode! {
             self.title = "Edit Transaction"
             saveButton.enabled = true
@@ -160,11 +153,10 @@ class AddTransactionViewController: UITableViewController {
             typeSegmentControl.selectedSegmentIndex = (transaction.type == .Expense) ? 0 : 1
             datePicker.date = transaction.date
             updateCategoryDisplay(transaction.category)
-            updateAmountDisplay(transaction.amount)
+            amountTextField.enteredAmount = transaction.amount
             descriptionTextField.text = transaction.transactionDescription
         } else {
             datePicker.date = defaultDateForNewTransactions
-            updateAmountDisplay(Money.zero())
         }
         dateValueChanged()
     }
@@ -176,20 +168,6 @@ extension AddTransactionViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        if textField == amountTextField {
-            let combinedStrings = (textField.unwrappedText as NSString).stringByReplacingCharactersInRange(range, withString: string)
-            guard combinedStrings.occurrencesOfSubstring(".") <= 1 else {
-                return false
-            }
-            let newCharacters = NSCharacterSet(charactersInString: string)
-            let allowedInput = NSCharacterSet(charactersInString: "0123456789.")
-            return allowedInput.isSupersetOfSet(newCharacters)
-        } else {
-            return true
-        }
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {

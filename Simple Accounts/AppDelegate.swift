@@ -26,13 +26,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let tabBar = self.window?.rootViewController as? UITabBarController {
             for child in tabBar.childViewControllers {
                 if child is UINavigationController {
-                    if let navChild = child.childViewControllers.first as? CategoriesViewController {
-                        navChild.categoryStore = categoryStore
+                    if let transactionController = child.childViewControllers.first as? TransactionViewController {
+                        transactionController.account = account
+                        transactionController.categoryStore = categoryStore
+                        transactionController.formatter = formatter
                     }
-                    if let navChild = child.childViewControllers.first as? TransactionViewController {
-                        navChild.account = account
-                        navChild.categoryStore = categoryStore
-                        navChild.formatter = formatter
+                    if let categoriesController = child.childViewControllers.first as? CategoriesViewController {
+                        categoriesController.categoryStore = categoryStore
+                    }
+                } else if let split = child as? UISplitViewController {
+                    if let masterNav = split.viewControllers.first as? UINavigationController,
+                        let reportOptionController = masterNav.childViewControllers.first as? ReportOptionsTableViewController,
+                        let detailNav = split.viewControllers.last as? UINavigationController,
+                        let reportListController = detailNav.childViewControllers.first as? ReportListTableViewController {
+                        
+                        reportOptionController.account = account
+                        reportListController.navigationItem.leftBarButtonItem = split.displayModeButtonItem()
                     }
                 }
             }

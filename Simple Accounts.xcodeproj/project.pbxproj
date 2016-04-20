@@ -20,6 +20,8 @@
 		B06CF6521CA3001200700899 /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06CF6511CA3001200700899 /* TransactionCollection.swift */; };
 		B06E92541C9D8F4B003D1796 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E92531C9D8F4B003D1796 /* CoreDataStack.swift */; };
 		B06E92561C9D8FD4003D1796 /* FetchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E92551C9D8FD4003D1796 /* FetchResult.swift */; };
+		B073BFD51CC7F95F008E32C4 /* ReportListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B073BFD41CC7F95F008E32C4 /* ReportListTableViewController.swift */; };
+		B073BFD71CC7F974008E32C4 /* ReportOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B073BFD61CC7F974008E32C4 /* ReportOptionsTableViewController.swift */; };
 		B07940631CAED1BC0009F994 /* BabyIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940611CAED1BC0009F994 /* BabyIcon.png */; };
 		B07940641CAED1BC0009F994 /* BabyIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940621CAED1BC0009F994 /* BabyIcon@2x.png */; };
 		B079406B1CAED1DD0009F994 /* DiplomaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940671CAED1DD0009F994 /* DiplomaIcon.png */; };
@@ -145,6 +147,8 @@
 		B06CF6511CA3001200700899 /* TransactionCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionCollection.swift; sourceTree = "<group>"; };
 		B06E92531C9D8F4B003D1796 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B06E92551C9D8FD4003D1796 /* FetchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchResult.swift; sourceTree = "<group>"; };
+		B073BFD41CC7F95F008E32C4 /* ReportListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportListTableViewController.swift; sourceTree = "<group>"; };
+		B073BFD61CC7F974008E32C4 /* ReportOptionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportOptionsTableViewController.swift; sourceTree = "<group>"; };
 		B07940611CAED1BC0009F994 /* BabyIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BabyIcon.png; sourceTree = "<group>"; };
 		B07940621CAED1BC0009F994 /* BabyIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BabyIcon@2x.png"; sourceTree = "<group>"; };
 		B07940671CAED1DD0009F994 /* DiplomaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiplomaIcon.png; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 				B0D0180B1CBA39D6007B1D9A /* CategorySelectionViewController.swift */,
 				B0D003901C9D48D90064690E /* CategoriesViewController.swift */,
 				B082C2301CAEE8B400B6DC29 /* AddCategoryViewController.swift */,
+				B073BFD61CC7F974008E32C4 /* ReportOptionsTableViewController.swift */,
+				B073BFD41CC7F95F008E32C4 /* ReportListTableViewController.swift */,
 				B0BEEFE31CC4BB5100D207BB /* SettingsViewController.swift */,
 				B0C101611CBF742D00E5CDE0 /* CategoriesDataSource.swift */,
 				B0D0841F1CAE57540032E530 /* ImageResourceLoader.swift */,
@@ -631,6 +637,7 @@
 			files = (
 				B0B6C3B01CB8E55F005A3C8F /* AddTransactionViewController.swift in Sources */,
 				B06CF6521CA3001200700899 /* TransactionCollection.swift in Sources */,
+				B073BFD51CC7F95F008E32C4 /* ReportListTableViewController.swift in Sources */,
 				B0C988FD1C9EA2C400812CBD /* TransactionType.swift in Sources */,
 				B080DB251CB4289D003F7FEB /* TransactionDateRange.swift in Sources */,
 				B082C2311CAEE8B400B6DC29 /* AddCategoryViewController.swift in Sources */,
@@ -644,6 +651,7 @@
 				B051E8271CA557BE006FED78 /* TransactionCategory+CoreDataProperties.swift in Sources */,
 				B04793F01CA3193D00C0F582 /* TransactionDate.swift in Sources */,
 				B06E92561C9D8FD4003D1796 /* FetchResult.swift in Sources */,
+				B073BFD71CC7F974008E32C4 /* ReportOptionsTableViewController.swift in Sources */,
 				B046D9521CA56DC5001051FF /* CategoryStore.swift in Sources */,
 				B082C2331CAEF9BF00B6DC29 /* IconCollectionViewCell.swift in Sources */,
 				B0B32AEC1CA132620086A17A /* Account.swift in Sources */,

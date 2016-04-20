@@ -34,7 +34,7 @@ class Account {
         let newTransaction = dataSource.createManagedEntity(Transaction.self)
         newTransaction.amount = transactionData.amount.moneyRoundedToTwoDecimalPlaces()
         newTransaction.category = transactionData.category
-        newTransaction.date = transactionData.date
+        newTransaction.date = transactionData.date.dateWithZeroTime()
         newTransaction.transactionDescription = transactionData.description?.trim()
         newTransaction.type = transactionData.type
         dataSource.saveChanges()
@@ -44,6 +44,7 @@ class Account {
     ///saves the changes to the given transaction
     func updateTransaction(transaction: Transaction) {
         transaction.amount = transaction.amount.moneyRoundedToTwoDecimalPlaces()
+        transaction.date = transaction.date.dateWithZeroTime()
         transaction.transactionDescription?.trim()
         dataSource.saveChanges()
     }

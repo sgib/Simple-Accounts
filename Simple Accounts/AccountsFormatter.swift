@@ -6,7 +6,7 @@
 //  Copyright © 2016 Steven Gibson. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class AccountsFormatter {
     
@@ -17,6 +17,9 @@ class AccountsFormatter {
         currencyFormatter.numberStyle = .CurrencyStyle
         dateFormatter.dateFormat = dateFormat
     }
+    
+    let positiveAmountColour = UIColor(red: 0, green: 0.5, blue: 0, alpha: 1)
+    let negativeAmountColour = UIColor(red: 0.5, green: 0, blue: 0, alpha: 1)
     
     func currencyStringFrom(money: Money) -> String {
         return currencyFormatter.stringFromNumber(money) ?? currencyFormatter.notANumberSymbol

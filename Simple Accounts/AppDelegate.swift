@@ -36,9 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 } else if let split = child as? UISplitViewController {
                     if let masterNav = split.viewControllers.first as? UINavigationController,
-                        let reportOptionController = masterNav.childViewControllers.first as? ReportOptionsTableViewController,
-                        let detailNav = split.viewControllers.last as? UINavigationController,
-                        let reportListController = detailNav.childViewControllers.first as? ReportListTableViewController {
+                        reportOptionController = masterNav.childViewControllers.first as? ReportOptionsTableViewController,
+                        detailNav = split.viewControllers.last as? UINavigationController,
+                        reportListController = detailNav.childViewControllers.first as? ReportListTableViewController {
                         
                         reportOptionController.account = account
                         reportListController.navigationItem.leftBarButtonItem = split.displayModeButtonItem()

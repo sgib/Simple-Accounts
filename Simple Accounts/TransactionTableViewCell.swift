@@ -9,8 +9,6 @@
 import UIKit
 
 class TransactionTableViewCell: UITableViewCell {
-    private let midRedColour = UIColor(red: 0.5, green: 0, blue: 0, alpha: 1)
-    private let midGreenColour = UIColor(red: 0, green: 0.5, blue: 0, alpha: 1)
 
     //MARK: - Dependency function
     
@@ -26,7 +24,7 @@ class TransactionTableViewCell: UITableViewCell {
         }
         dateLabel.text = formatter.dateStringFrom(transaction.date)
         amountLabel.text = formatter.currencyStringFrom(transaction.amount)
-        amountLabel.textColor = (transaction.type == .Expense) ? midRedColour : midGreenColour
+        amountLabel.textColor = (transaction.type == .Expense) ? formatter.negativeAmountColour : formatter.positiveAmountColour
     }
     
     //MARK: - Outlets

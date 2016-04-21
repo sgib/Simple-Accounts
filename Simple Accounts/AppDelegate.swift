@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         reportListController = detailNav.childViewControllers.first as? ReportListTableViewController {
                         
                         reportOptionController.account = account
+                        reportOptionController.categoryStore = categoryStore
                         reportListController.navigationItem.leftBarButtonItem = split.displayModeButtonItem()
                     }
                 }

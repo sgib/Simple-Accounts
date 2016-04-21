@@ -57,16 +57,15 @@ class Account {
     
     ///returns the collection of Transactions whose date lies within the specified range.
     func transactionsForRange(dateRange: TransactionDateRange) -> TransactionCollection {
-        let dateBetweenPredicate = NSPredicate(format: "date >= %@ && date <= %@", dateRange.startDate, dateRange.endDate)
-        return dataSource.fetchEntity(Transaction.self, matchingPredicate: dateBetweenPredicate, sortedBy: nil).simpleResult()
+        return dataSource.fetchEntity(Transaction.self, matchingPredicate: predicateForRange(dateRange), sortedBy: nil).simpleResult()
     }
     
     ///returns the collection of Transaction whose date lies within the specified range and whose Category matches the given Category.
     func transactionsForRange(dateRange: TransactionDateRange, inCategory category: TransactionCategory) -> TransactionCollection {
-        let dateBetweenPredicate = NSPredicate(format: "date >= %@ && date <= %@", dateRange.startDate, dateRange.endDate)
+        let dateBetweenPredicate = predicateForRange(dateRange)
         let categoryPredicate = NSPredicate(format: "category.name == %@", category.name)
-        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [dateBetweenPredicate, categoryPredicate])
-        return dataSource.fetchEntity(Transaction.self, matchingPredicate: compoundPredicate, sortedBy: nil).simpleResult()
+        let dateAndCategoryPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [dateBetweenPredicate, categoryPredicate])
+        return dataSource.fetchEntity(Transaction.self, matchingPredicate: dateAndCategoryPredicate, sortedBy: nil).simpleResult()
     }
     
     ///returns the balance of the Account upto, but not including, the given date.
@@ -83,6 +82,10 @@ class Account {
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicateArray)
         let totalSum = dataSource.fetchAggregate(Transaction.self, usingExpression: amountSumExpression, matchingPredicate: compoundPredicate)
         return Money(decimal: totalSum.decimalValue)
+    }
+    
+    private func predicateForRange(dateRange: TransactionDateRange) -> NSPredicate {
+        return NSPredicate(format: "date >= %@ && date <= %@", dateRange.startDate, dateRange.endDate)
     }
 }
 

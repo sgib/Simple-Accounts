@@ -13,6 +13,7 @@ class ReportOptionsTableViewController: UITableViewController {
     //MARK: - Dependencies
     
     var account: Account!
+    var categoryStore: CategoryStore!
     
     //MARK: - View lifecycle
     

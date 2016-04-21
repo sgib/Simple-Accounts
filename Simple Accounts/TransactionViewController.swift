@@ -100,7 +100,7 @@ class TransactionViewController: UIViewController {
     }
     
     private func updateBalanceDisplays() {
-        let openingBalance = account.balanceAtStartOfRange(currentRange)
+        let openingBalance = account.balanceAtStartOfDate(currentRange.startDate)
         openingBalanceLabel.text = "Opening: \(formatter.currencyStringFrom(openingBalance))"
         totalIncomeLabel.text = formatter.currencyStringFrom(currentTransactions.sumIncome)
         aggregateLabel.text = "Net: \(formatter.currencyStringFrom(currentTransactions.sumAggregate))"

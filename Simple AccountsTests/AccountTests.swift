@@ -76,6 +76,27 @@ class AccountTests: XCTestCase {
         XCTAssertEqual([trans2, trans3], coreDataHelper.account.transactionsForRange(marchRange))
     }
     
+    func testGetTransactionsForRangeAndCategoryCorrectForMonth() {
+        let otherCategory = coreDataHelper.categoryStore.addCategory(TransactionCategoryData(name: "other", icon: "otherIcon"))!
+        coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 37),
+            category: defaultCategory,
+            date: februaryDate,
+            description: nil,
+            type: .Expense))
+        coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 24),
+            category: otherCategory,
+            date: marchDate,
+            description: nil,
+            type: .Income))
+        let trans3 = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 53),
+            category: defaultCategory,
+            date: marchDate,
+            description: nil,
+            type: .Expense))
+        let marchRange = TransactionDateRange.rangeFromDate(marchDate, withSize: .Month)
+        XCTAssertEqual([trans3], coreDataHelper.account.transactionsForRange(marchRange, inCategory: defaultCategory))
+    }
+    
     func testGetOpeningBalanceForRangeCorrectForMonth() {
         let trans1 = coreDataHelper.account.addTransaction(TransactionData(amount: Money(integer: 49),
             category: defaultCategory,
@@ -88,7 +109,7 @@ class AccountTests: XCTestCase {
             description: nil,
             type: .Expense))
         let marchRange = TransactionDateRange.rangeFromDate(marchDate, withSize: .Month)
-        XCTAssertEqual(openingAmount + trans1.signedAmount, coreDataHelper.account.balanceAtStartOfRange(marchRange))
+        XCTAssertEqual(openingAmount + trans1.signedAmount, coreDataHelper.account.balanceAtStartOfDate(marchRange.startDate))
     }
     
     func testUpdateTransactionIsSucessful() {

@@ -29,7 +29,7 @@ class Account {
         self.amountSumExpression.expressionResultType = .DecimalAttributeType
     }
     
-    ///adds a new Transaction to the account with the given data and returns it.
+    ///adds a new Transaction to the Account with the given data and returns it.
     func addTransaction(transactionData: TransactionData) -> Transaction {
         let newTransaction = dataSource.createManagedEntity(Transaction.self)
         newTransaction.amount = transactionData.amount.moneyRoundedToTwoDecimalPlaces()
@@ -41,7 +41,7 @@ class Account {
         return newTransaction
     }
     
-    ///saves the changes to the given transaction
+    ///saves the changes to the given Transaction.
     func updateTransaction(transaction: Transaction) {
         transaction.amount = transaction.amount.moneyRoundedToTwoDecimalPlaces()
         transaction.date = transaction.date.dateWithZeroTime()
@@ -49,19 +49,29 @@ class Account {
         dataSource.saveChanges()
     }
     
-    ///deletes the given transaction
+    ///deletes the given Transaction.
     func deleteTransaction(transaction: Transaction) {
         dataSource.deleteEntity(Transaction.self, matchingPredicate: NSPredicate(format: "transactionID == %@", transaction.transactionID))
         dataSource.reset()
     }
     
+    ///returns the collection of Transactions whose date lies within the specified range.
     func transactionsForRange(dateRange: TransactionDateRange) -> TransactionCollection {
         let dateBetweenPredicate = NSPredicate(format: "date >= %@ && date <= %@", dateRange.startDate, dateRange.endDate)
         return dataSource.fetchEntity(Transaction.self, matchingPredicate: dateBetweenPredicate, sortedBy: nil).simpleResult()
     }
     
-    func balanceAtStartOfRange(dateRange: TransactionDateRange) -> Money {
-        let dateBeforePredicate = NSPredicate(format: "date < %@", dateRange.startDate)
+    ///returns the collection of Transaction whose date lies within the specified range and whose Category matches the given Category.
+    func transactionsForRange(dateRange: TransactionDateRange, inCategory category: TransactionCategory) -> TransactionCollection {
+        let dateBetweenPredicate = NSPredicate(format: "date >= %@ && date <= %@", dateRange.startDate, dateRange.endDate)
+        let categoryPredicate = NSPredicate(format: "category.name == %@", category.name)
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [dateBetweenPredicate, categoryPredicate])
+        return dataSource.fetchEntity(Transaction.self, matchingPredicate: compoundPredicate, sortedBy: nil).simpleResult()
+    }
+    
+    ///returns the balance of the Account upto, but not including, the given date.
+    func balanceAtStartOfDate(date: TransactionDate) -> Money {
+        let dateBeforePredicate = NSPredicate(format: "date < %@", date)
         let totalIncomeBeforeRange = totalOfType(.Income, usingPredicate: dateBeforePredicate)
         let totalExpensesBeforeRange = totalOfType(.Expense, usingPredicate: dateBeforePredicate)
         return openingBalance + totalIncomeBeforeRange - totalExpensesBeforeRange

@@ -8,6 +8,12 @@
 
 import UIKit
 
+extension Array {
+    var isNotEmpty: Bool {
+        return !self.isEmpty
+    }
+}
+
 extension String {
     func occurrencesOfSubstring(substring: String) -> Int {
         return self.componentsSeparatedByString(substring).count - 1

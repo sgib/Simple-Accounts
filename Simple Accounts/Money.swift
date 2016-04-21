@@ -22,6 +22,30 @@ func *(left: Money, right: Money) -> Money {
     return left.decimalNumberByMultiplyingBy(right)
 }
 
+func /(left: Money, right: Money) -> Money {
+    return left.decimalNumberByDividingBy(right)
+}
+
+func > (left:NSDecimalNumber, right:NSDecimalNumber) -> Bool
+{
+    return left.compare(right) == .OrderedDescending
+}
+
+func < (left:NSDecimalNumber, right:NSDecimalNumber) -> Bool
+{
+    return left.compare(right) == .OrderedAscending
+}
+
+func >= (left:NSDecimalNumber, right:NSDecimalNumber) -> Bool
+{
+    return left > right || left == right
+}
+
+func <= (left:NSDecimalNumber, right:NSDecimalNumber) -> Bool
+{
+    return left < right || left == right
+}
+
 extension Money {
     func moneyRoundedToTwoDecimalPlaces() -> Money {
         let handler = NSDecimalNumberHandler(roundingMode: .RoundPlain,
@@ -31,5 +55,13 @@ extension Money {
                                              raiseOnUnderflow: false,
                                              raiseOnDivideByZero: true)
         return self.decimalNumberByRoundingAccordingToBehavior(handler)
+    }
+    
+    var isPositive: Bool {
+        return self > Money.zero()
+    }
+    
+    var isNegative: Bool {
+        return self < Money.zero()
     }
 }

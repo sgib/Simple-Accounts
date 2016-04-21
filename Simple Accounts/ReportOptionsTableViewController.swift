@@ -14,6 +14,7 @@ class ReportOptionsTableViewController: UITableViewController {
     
     var account: Account!
     var categoryStore: CategoryStore!
+    var formatter: AccountsFormatter!
     
     //MARK: - View lifecycle
     

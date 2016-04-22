@@ -11,6 +11,12 @@ import UIKit
 class ReportOptionsTableViewController: UITableViewController {
 
     private let showReportSegueID = "ShowReportSegue"
+    private var startDatePickerVisible = false
+    private var endDatePickerVisible = false
+    private let startDateDisplayIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+    private let startDatePickerIndexPath = NSIndexPath(forRow: 1, inSection: 0)
+    private let endDateDisplayIndexPath = NSIndexPath(forRow: 2, inSection: 0)
+    private let endDatePickerIndexPath = NSIndexPath(forRow: 3, inSection: 0)
     
     //MARK: - Dependencies
     
@@ -24,19 +30,58 @@ class ReportOptionsTableViewController: UITableViewController {
     @IBOutlet weak var startDatePicker: UIDatePicker!
     @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var endDatePicker: UIDatePicker!
+    @IBOutlet weak var generateButton: UIButton!
     
     //MARK: - Actions
     
     @IBAction func dateChanged() {
         startDateLabel.text = formatter.dateStringFrom(startDatePicker.date)
         endDateLabel.text = formatter.dateStringFrom(endDatePicker.date)
+        
+        generateButton.enabled = (endDatePicker.date >= startDatePicker.date)
     }
     
     @IBAction func generatePressed(sender: UIButton) {
-        //TODO: check startDate <= endDate, generate report, but only segue to reportList if report is not empty
-        //so if any of above isn't correct then display 'error message'
+        //TODO: generate report & perform segue
     }
     
+    //MARK: - Table view functions
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath == startDateDisplayIndexPath {
+            setStartDatePickerVisible(!startDatePickerVisible)
+            setEndDatePickerVisible(false)
+        } else if indexPath == endDateDisplayIndexPath {
+            setEndDatePickerVisible(!endDatePickerVisible)
+            setStartDatePickerVisible(false)
+        } else {
+            setStartDatePickerVisible(false)
+            setEndDatePickerVisible(false)
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if (!startDatePickerVisible && indexPath == startDatePickerIndexPath)
+            || (!endDatePickerVisible && indexPath == endDatePickerIndexPath) {
+            return 0
+        } else {
+            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        }
+    }
+    
+    //MARK: - Private functions
+    
+    private func setStartDatePickerVisible(visible: Bool) {
+        tableView.beginUpdates()
+        startDatePickerVisible = visible
+        tableView.endUpdates()
+    }
+    
+    private func setEndDatePickerVisible(visible: Bool) {
+        tableView.beginUpdates()
+        endDatePickerVisible = visible
+        tableView.endUpdates()
+    }
     //MARK: - View lifecycle
     
     override func viewDidLoad() {

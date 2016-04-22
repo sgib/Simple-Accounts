@@ -10,33 +10,39 @@ import UIKit
 
 class ReportOptionsTableViewController: UITableViewController {
 
+    private let showReportSegueID = "ShowReportSegue"
+    
     //MARK: - Dependencies
     
     var account: Account!
     var categoryStore: CategoryStore!
     var formatter: AccountsFormatter!
     
+    //MARK: - Outlets
+    
+    @IBOutlet weak var startDateLabel: UILabel!
+    @IBOutlet weak var startDatePicker: UIDatePicker!
+    @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var endDatePicker: UIDatePicker!
+    
+    //MARK: - Actions
+    
+    @IBAction func dateChanged() {
+        startDateLabel.text = formatter.dateStringFrom(startDatePicker.date)
+        endDateLabel.text = formatter.dateStringFrom(endDatePicker.date)
+    }
+    
+    @IBAction func generatePressed(sender: UIButton) {
+        //TODO: check startDate <= endDate, generate report, but only segue to reportList if report is not empty
+        //so if any of above isn't correct then display 'error message'
+    }
+    
     //MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        dateChanged()
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

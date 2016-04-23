@@ -64,4 +64,8 @@ extension Money {
     var isNegative: Bool {
         return self < Money.zero()
     }
+    
+    var absoluteValue: Money {
+        return isNegative ? Money.zero() - self : self
+    }
 }

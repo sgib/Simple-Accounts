@@ -103,13 +103,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234.56" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTU-01-n3G">
-                                            <rect key="frame" x="487" y="10" width="81" height="24"/>
+                                            <rect key="frame" x="361" y="10" width="81" height="24"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbr-wz-mOP">
-                                            <rect key="frame" x="360" y="10" width="63" height="24"/>
+                                            <rect key="frame" x="234" y="10" width="63" height="24"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -119,7 +119,7 @@
                                         <constraint firstItem="gTU-01-n3G" firstAttribute="centerY" secondItem="thy-hl-oqM" secondAttribute="centerY" id="2Tw-Ab-KNu"/>
                                         <constraint firstItem="sbr-wz-mOP" firstAttribute="centerY" secondItem="thy-hl-oqM" secondAttribute="centerY" id="6NP-bl-pYw"/>
                                         <constraint firstItem="gTU-01-n3G" firstAttribute="leading" secondItem="sbr-wz-mOP" secondAttribute="trailing" constant="64" id="Pfr-4r-Ny7"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="gTU-01-n3G" secondAttribute="trailing" constant="24" id="pbG-8k-nAz"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="gTU-01-n3G" secondAttribute="trailing" constant="150" id="pbG-8k-nAz"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="8"/>

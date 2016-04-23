@@ -14,7 +14,7 @@ class ReportTotalTableViewCell: UITableViewCell {
     
     func setContent(amount: Money, usingFormatter formatter: AccountsFormatter) {
         totalLabel.textColor = amount.isNegative ? formatter.negativeAmountColour : formatter.positiveAmountColour
-        totalLabel.text = formatter.currencyStringFrom(amount)
+        totalLabel.text = formatter.currencyStringFrom(amount.absoluteValue)
     }
     
     //MARK: - Outlets

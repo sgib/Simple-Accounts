@@ -8,31 +8,38 @@
 
 import Foundation
 
-struct TransactionDateRange {
-    let size: DateRangeSize
+struct StandardTransactionDateRange: DateRange {
+    
+    enum Size {
+        case Week
+        case Month
+        case Year
+    }
+    
+    let size: Size
     let startDate: TransactionDate
     let endDate: TransactionDate
     
-    private init(startDate: TransactionDate, endDate: TransactionDate, size: DateRangeSize) {
+    private init(startDate: TransactionDate, endDate: TransactionDate, size: Size) {
         self.startDate = startDate
         self.endDate = endDate
         self.size = size
     }
     
-    static func rangeFromDate(date: TransactionDate, withSize: DateRangeSize) -> TransactionDateRange {
+    static func rangeFromDate(date: TransactionDate, withSize: Size) -> StandardTransactionDateRange {
         switch withSize {
         case .Week:
             let startDate = date.dateAtStartOfWeek()
             let endDate = date.dateAtEndOfWeek()
-            return TransactionDateRange(startDate: startDate, endDate: endDate, size: .Week)
+            return StandardTransactionDateRange(startDate: startDate, endDate: endDate, size: .Week)
         case .Month:
             let startDate = date.dateAtStartOfMonth()
             let endDate = date.dateAtEndOfMonth()
-            return TransactionDateRange(startDate: startDate, endDate: endDate, size: .Month)
+            return StandardTransactionDateRange(startDate: startDate, endDate: endDate, size: .Month)
         case .Year:
             let startDate = date.dateAtStartOfYear()
             let endDate = date.dateAtEndOfYear()
-            return TransactionDateRange(startDate: startDate, endDate: endDate, size: .Year)
+            return StandardTransactionDateRange(startDate: startDate, endDate: endDate, size: .Year)
         }
     }
     
@@ -40,19 +47,19 @@ struct TransactionDateRange {
         return date >= startDate && date <= endDate
     }
     
-    func previous() -> TransactionDateRange {
+    func previous() -> StandardTransactionDateRange {
         if size == .Week {
-            return TransactionDateRange(startDate: startDate.dateByAddingDays(-7), endDate: startDate.dateByAddingDays(-1), size: .Week)
+            return StandardTransactionDateRange(startDate: startDate.dateByAddingDays(-7), endDate: startDate.dateByAddingDays(-1), size: .Week)
         } else {
-            return TransactionDateRange.rangeFromDate(startDate.dateByAddingDays(-1), withSize: size)
+            return StandardTransactionDateRange.rangeFromDate(startDate.dateByAddingDays(-1), withSize: size)
         }
     }
     
-    func next() -> TransactionDateRange {
+    func next() -> StandardTransactionDateRange {
         if size == .Week {
-            return TransactionDateRange(startDate: endDate.dateByAddingDays(1), endDate: endDate.dateByAddingDays(7), size: .Week)
+            return StandardTransactionDateRange(startDate: endDate.dateByAddingDays(1), endDate: endDate.dateByAddingDays(7), size: .Week)
         } else {
-            return TransactionDateRange.rangeFromDate(endDate.dateByAddingDays(1), withSize: size)
+            return StandardTransactionDateRange.rangeFromDate(endDate.dateByAddingDays(1), withSize: size)
         }
     }
     

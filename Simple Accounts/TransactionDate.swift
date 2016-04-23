@@ -10,10 +10,9 @@ import Foundation
 
 typealias TransactionDate = NSDate
 
-enum DateRangeSize {
-    case Week
-    case Month
-    case Year
+protocol DateRange {
+    var startDate: TransactionDate { get }
+    var endDate: TransactionDate { get }
 }
 
 enum Weekday: Int {

@@ -18,6 +18,7 @@
 		B051E8271CA557BE006FED78 /* TransactionCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051E8231CA557BE006FED78 /* TransactionCategory+CoreDataProperties.swift */; };
 		B051E82B1CA557BE006FED78 /* Transaction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051E8251CA557BE006FED78 /* Transaction+CoreDataProperties.swift */; };
 		B06CF6521CA3001200700899 /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06CF6511CA3001200700899 /* TransactionCollection.swift */; };
+		B06DE68A1CCB846900A50CB8 /* CustomTransactionDateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06DE6891CCB846900A50CB8 /* CustomTransactionDateRange.swift */; };
 		B06E92541C9D8F4B003D1796 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E92531C9D8F4B003D1796 /* CoreDataStack.swift */; };
 		B06E92561C9D8FD4003D1796 /* FetchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E92551C9D8FD4003D1796 /* FetchResult.swift */; };
 		B06F32E51CC93FA8002327DB /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06F32E41CC93FA8002327DB /* ReportTableViewCell.swift */; };
@@ -77,7 +78,7 @@
 		B07940E11CAEDB710009F994 /* SofaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940DB1CAEDB710009F994 /* SofaIcon.png */; };
 		B07940E21CAEDB710009F994 /* SofaIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B07940DC1CAEDB710009F994 /* SofaIcon@2x.png */; };
 		B07D154C1CC54C2900E5CF58 /* AccountsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07D154B1CC54C2900E5CF58 /* AccountsFormatter.swift */; };
-		B080DB251CB4289D003F7FEB /* TransactionDateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080DB241CB4289D003F7FEB /* TransactionDateRange.swift */; };
+		B080DB251CB4289D003F7FEB /* StandardTransactionDateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080DB241CB4289D003F7FEB /* StandardTransactionDateRange.swift */; };
 		B080DB271CB4371A003F7FEB /* DateRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080DB261CB4371A003F7FEB /* DateRangeTests.swift */; };
 		B082C2181CAEE58600B6DC29 /* BookIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B082C2081CAEE58600B6DC29 /* BookIcon.png */; };
 		B082C2191CAEE58600B6DC29 /* BookIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B082C2091CAEE58600B6DC29 /* BookIcon@2x.png */; };
@@ -147,6 +148,7 @@
 		B051E8231CA557BE006FED78 /* TransactionCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TransactionCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B051E8251CA557BE006FED78 /* Transaction+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B06CF6511CA3001200700899 /* TransactionCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionCollection.swift; sourceTree = "<group>"; };
+		B06DE6891CCB846900A50CB8 /* CustomTransactionDateRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransactionDateRange.swift; sourceTree = "<group>"; };
 		B06E92531C9D8F4B003D1796 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B06E92551C9D8FD4003D1796 /* FetchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchResult.swift; sourceTree = "<group>"; };
 		B06F32E41CC93FA8002327DB /* ReportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
@@ -206,7 +208,7 @@
 		B07940DB1CAEDB710009F994 /* SofaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SofaIcon.png; sourceTree = "<group>"; };
 		B07940DC1CAEDB710009F994 /* SofaIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SofaIcon@2x.png"; sourceTree = "<group>"; };
 		B07D154B1CC54C2900E5CF58 /* AccountsFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsFormatter.swift; sourceTree = "<group>"; };
-		B080DB241CB4289D003F7FEB /* TransactionDateRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDateRange.swift; sourceTree = "<group>"; };
+		B080DB241CB4289D003F7FEB /* StandardTransactionDateRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardTransactionDateRange.swift; sourceTree = "<group>"; };
 		B080DB261CB4371A003F7FEB /* DateRangeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRangeTests.swift; sourceTree = "<group>"; };
 		B082C2081CAEE58600B6DC29 /* BookIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BookIcon.png; sourceTree = "<group>"; };
 		B082C2091CAEE58600B6DC29 /* BookIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BookIcon@2x.png"; sourceTree = "<group>"; };
@@ -287,7 +289,8 @@
 				B051E8181CA5569B006FED78 /* TransactionCategory.swift */,
 				B06CF6511CA3001200700899 /* TransactionCollection.swift */,
 				B04793EF1CA3193D00C0F582 /* TransactionDate.swift */,
-				B080DB241CB4289D003F7FEB /* TransactionDateRange.swift */,
+				B080DB241CB4289D003F7FEB /* StandardTransactionDateRange.swift */,
+				B06DE6891CCB846900A50CB8 /* CustomTransactionDateRange.swift */,
 				B0C988FC1C9EA2C400812CBD /* TransactionType.swift */,
 			);
 			name = Model;
@@ -645,7 +648,7 @@
 				B06CF6521CA3001200700899 /* TransactionCollection.swift in Sources */,
 				B073BFD51CC7F95F008E32C4 /* ReportListTableViewController.swift in Sources */,
 				B0C988FD1C9EA2C400812CBD /* TransactionType.swift in Sources */,
-				B080DB251CB4289D003F7FEB /* TransactionDateRange.swift in Sources */,
+				B080DB251CB4289D003F7FEB /* StandardTransactionDateRange.swift in Sources */,
 				B082C2311CAEE8B400B6DC29 /* AddCategoryViewController.swift in Sources */,
 				B0B32AF61CA13DEE0086A17A /* Money.swift in Sources */,
 				B0B294D41CBB86FA0056C232 /* TransactionTableViewCell.swift in Sources */,
@@ -665,6 +668,7 @@
 				B0B32AEC1CA132620086A17A /* Account.swift in Sources */,
 				B086F11B1CC6142100526F63 /* CurrencyTextField.swift in Sources */,
 				B0D0038D1C9D48D90064690E /* AppDelegate.swift in Sources */,
+				B06DE68A1CCB846900A50CB8 /* CustomTransactionDateRange.swift in Sources */,
 				B0D0038F1C9D48D90064690E /* TransactionViewController.swift in Sources */,
 				B051E82B1CA557BE006FED78 /* Transaction+CoreDataProperties.swift in Sources */,
 				B03566851CB109FA00E0F1FB /* AddEditMode.swift in Sources */,

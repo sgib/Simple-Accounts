@@ -11,7 +11,7 @@ import UIKit
 class TransactionViewController: UIViewController {
 
     private let reuseID = "TransactionCell"
-    private var currentRange: TransactionDateRange!
+    private var currentRange: StandardTransactionDateRange!
     private var currentTransactions = TransactionCollection()
     
     //MARK: - Dependencies
@@ -77,7 +77,7 @@ class TransactionViewController: UIViewController {
     
     private func loadRange() {
         //TODO: if can load from UserDefaults, else...
-        currentRange = TransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: .Month)
+        currentRange = StandardTransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: .Month)
         updateRangeDisplay()
     }
     
@@ -86,9 +86,9 @@ class TransactionViewController: UIViewController {
         loadTransactionData()
     }
     
-    private func changeRangeLengthTo(size: DateRangeSize) {
+    private func changeRangeLengthTo(size: StandardTransactionDateRange.Size) {
         if currentRange.size != size {
-            currentRange = TransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: size)
+            currentRange = StandardTransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: size)
             updateRangeDisplay()
         }
     }

@@ -56,12 +56,12 @@ class Account {
     }
     
     ///returns the collection of Transactions whose date lies within the specified range.
-    func transactionsForRange(dateRange: TransactionDateRange) -> TransactionCollection {
+    func transactionsForRange(dateRange: DateRange) -> TransactionCollection {
         return dataSource.fetchEntity(Transaction.self, matchingPredicate: predicateForRange(dateRange), sortedBy: nil).simpleResult()
     }
     
     ///returns the collection of Transaction whose date lies within the specified range and whose Category matches the given Category.
-    func transactionsForRange(dateRange: TransactionDateRange, inCategory category: TransactionCategory) -> TransactionCollection {
+    func transactionsForRange(dateRange: DateRange, inCategory category: TransactionCategory) -> TransactionCollection {
         let dateBetweenPredicate = predicateForRange(dateRange)
         let categoryPredicate = NSPredicate(format: "category.name == %@", category.name)
         let dateAndCategoryPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [dateBetweenPredicate, categoryPredicate])
@@ -84,7 +84,7 @@ class Account {
         return Money(decimal: totalSum.decimalValue)
     }
     
-    private func predicateForRange(dateRange: TransactionDateRange) -> NSPredicate {
+    private func predicateForRange(dateRange: DateRange) -> NSPredicate {
         return NSPredicate(format: "date >= %@ && date <= %@", dateRange.startDate, dateRange.endDate)
     }
 }

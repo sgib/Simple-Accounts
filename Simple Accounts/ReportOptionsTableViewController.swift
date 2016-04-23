@@ -41,8 +41,14 @@ class ReportOptionsTableViewController: UITableViewController {
         generateButton.enabled = (endDatePicker.date >= startDatePicker.date)
     }
     
-    @IBAction func generatePressed(sender: UIButton) {
-        //TODO: generate report & perform segue
+    //MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destVC = segue.destinationViewController.childViewControllers.first as? ReportListTableViewController {
+            destVC.formatter = formatter
+            destVC.reportData = generateReport()
+            destVC.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+        }
     }
     
     //MARK: - Table view functions
@@ -70,6 +76,20 @@ class ReportOptionsTableViewController: UITableViewController {
     }
     
     //MARK: - Private functions
+    
+    private func generateReport() -> TransactionReportData {
+        let startDate = startDatePicker.date.dateWithZeroTime()
+        let endDate = endDatePicker.date.dateWithZeroTime()
+        let reportRange = CustomTransactionDateRange(startDate: startDate, endDate: endDate)
+        var reportData = [TransactionCollection]()
+        for category in categoryStore.allCategories() {
+            let transactions = account.transactionsForRange(reportRange, inCategory: category)
+            if transactions.isNotEmpty {
+                reportData.append(transactions)
+            }
+        }
+        return TransactionReportData(range: reportRange, transactions: reportData)
+    }
     
     private func setStartDatePickerVisible(visible: Bool) {
         tableView.beginUpdates()

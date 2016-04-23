@@ -48,19 +48,19 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£299.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5QN-Of-4VD">
-                                            <rect key="frame" x="373" y="11" width="70" height="22"/>
+                                            <rect key="frame" x="372" y="11" width="70" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£299.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yel-b7-x6Z">
-                                            <rect key="frame" x="323" y="10" width="42" height="12"/>
+                                            <rect key="frame" x="322" y="10" width="42" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£299.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdd-4j-Whv">
-                                            <rect key="frame" x="323" y="22" width="42" height="12"/>
+                                            <rect key="frame" x="322" y="22" width="42" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -70,28 +70,18 @@
                                         <constraint firstItem="5QN-Of-4VD" firstAttribute="centerY" secondItem="j0Y-sr-ke0" secondAttribute="centerY" id="4xT-eP-g0W"/>
                                         <constraint firstItem="max-dO-Acf" firstAttribute="top" secondItem="j0Y-sr-ke0" secondAttribute="topMargin" constant="-3" id="CHR-9P-qns"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Apf-Zw-Yh1" secondAttribute="trailing" constant="24" id="H7B-GP-blw"/>
-                                        <constraint firstItem="Apf-Zw-Yh1" firstAttribute="leading" secondItem="5QN-Of-4VD" secondAttribute="trailing" constant="64" id="J2d-hX-s84"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="5QN-Of-4VD" secondAttribute="trailing" constant="150" id="Mcz-am-2g9"/>
                                         <constraint firstItem="max-dO-Acf" firstAttribute="leading" secondItem="fNM-cM-Tsg" secondAttribute="trailing" constant="15" id="Sou-it-1vn"/>
                                         <constraint firstItem="fNM-cM-Tsg" firstAttribute="top" secondItem="j0Y-sr-ke0" secondAttribute="topMargin" constant="-3" id="aml-B4-pof"/>
                                         <constraint firstItem="fNM-cM-Tsg" firstAttribute="leading" secondItem="j0Y-sr-ke0" secondAttribute="leadingMargin" constant="7" id="cKr-Y2-Tcz"/>
-                                        <constraint firstItem="5QN-Of-4VD" firstAttribute="leading" secondItem="yel-b7-x6Z" secondAttribute="trailing" constant="8" symbolic="YES" id="cQx-Nn-1z4"/>
                                         <constraint firstItem="Apf-Zw-Yh1" firstAttribute="centerY" secondItem="j0Y-sr-ke0" secondAttribute="centerY" id="cUu-rc-aAH"/>
-                                        <constraint firstItem="5QN-Of-4VD" firstAttribute="leading" secondItem="Tdd-4j-Whv" secondAttribute="trailing" constant="8" symbolic="YES" id="dKg-32-YaU"/>
                                         <constraint firstItem="yel-b7-x6Z" firstAttribute="centerY" secondItem="j0Y-sr-ke0" secondAttribute="centerY" constant="-6" id="edI-QJ-4Fu"/>
                                         <constraint firstItem="Tdd-4j-Whv" firstAttribute="centerY" secondItem="j0Y-sr-ke0" secondAttribute="centerY" constant="6" id="fox-j9-gfB"/>
-                                        <constraint firstAttribute="topMargin" secondItem="fNM-cM-Tsg" secondAttribute="top" constant="-3" id="gPQ-5I-bnP"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="fNM-cM-Tsg" secondAttribute="leading" constant="7" id="m2b-ee-Wd0"/>
+                                        <constraint firstItem="5QN-Of-4VD" firstAttribute="leading" secondItem="Tdd-4j-Whv" secondAttribute="trailing" constant="8" symbolic="YES" id="nrh-ya-Y0D"/>
                                         <constraint firstItem="nQx-jx-egV" firstAttribute="top" secondItem="j0Y-sr-ke0" secondAttribute="topMargin" constant="17" id="ozg-R3-MdY"/>
                                         <constraint firstItem="nQx-jx-egV" firstAttribute="leading" secondItem="j0Y-sr-ke0" secondAttribute="leadingMargin" constant="54" id="pNy-kd-Qf9"/>
-                                        <constraint firstItem="5QN-Of-4VD" firstAttribute="baseline" secondItem="max-dO-Acf" secondAttribute="baseline" id="sfa-I6-dm0"/>
+                                        <constraint firstItem="5QN-Of-4VD" firstAttribute="leading" secondItem="yel-b7-x6Z" secondAttribute="trailing" constant="8" symbolic="YES" id="vi9-Gb-2Qh"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="gPQ-5I-bnP"/>
-                                            <exclude reference="m2b-ee-Wd0"/>
-                                            <exclude reference="sfa-I6-dm0"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="8"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -289,7 +279,7 @@
                                                     <rect key="frame" x="243" y="7" width="114" height="30"/>
                                                     <state key="normal" title="Generate Report"/>
                                                     <connections>
-                                                        <action selector="generatePressed:" destination="JCG-FD-GqU" eventType="touchUpInside" id="jiF-Lm-oge"/>
+                                                        <segue destination="w67-94-eDp" kind="showDetail" identifier="ShowReportSegue" id="tMs-gw-hu3"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -314,7 +304,6 @@
                         <outlet property="generateButton" destination="xS7-6I-2y4" id="uXq-f2-WzL"/>
                         <outlet property="startDateLabel" destination="Bm6-wd-kSK" id="lsm-q1-kEa"/>
                         <outlet property="startDatePicker" destination="8tf-bb-6ZA" id="otb-qK-YzJ"/>
-                        <segue destination="w67-94-eDp" kind="showDetail" identifier="ShowReportSegue" id="EGo-3I-gHT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pah-g6-pMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1309,9 +1298,9 @@ http://www.iconarchive.com/show/ios7-icons-by-icons8/Very-Basic-Settings-icon.ht
         <image name="TransactionsFilled" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EGo-3I-gHT"/>
-        <segue reference="N3z-S6-86g"/>
         <segue reference="vOH-yT-y6V"/>
+        <segue reference="N3z-S6-86g"/>
+        <segue reference="tMs-gw-hu3"/>
         <segue reference="26c-sm-g1t"/>
     </inferredMetricsTieBreakers>
 </document>

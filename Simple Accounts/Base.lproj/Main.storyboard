@@ -108,8 +108,20 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234.56" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GB-gM-ToS">
+                                            <rect key="frame" x="313" y="10" width="40" height="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234.56" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6t-wT-iBp">
+                                            <rect key="frame" x="313" y="22" width="40" height="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbr-wz-mOP">
-                                            <rect key="frame" x="234" y="10" width="63" height="24"/>
+                                            <rect key="frame" x="63" y="10" width="63" height="24"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -118,13 +130,19 @@
                                     <constraints>
                                         <constraint firstItem="gTU-01-n3G" firstAttribute="centerY" secondItem="thy-hl-oqM" secondAttribute="centerY" id="2Tw-Ab-KNu"/>
                                         <constraint firstItem="sbr-wz-mOP" firstAttribute="centerY" secondItem="thy-hl-oqM" secondAttribute="centerY" id="6NP-bl-pYw"/>
-                                        <constraint firstItem="gTU-01-n3G" firstAttribute="leading" secondItem="sbr-wz-mOP" secondAttribute="trailing" constant="64" id="Pfr-4r-Ny7"/>
+                                        <constraint firstItem="sbr-wz-mOP" firstAttribute="leading" secondItem="thy-hl-oqM" secondAttribute="leadingMargin" constant="55" id="8dw-am-abr"/>
+                                        <constraint firstItem="y6t-wT-iBp" firstAttribute="centerY" secondItem="thy-hl-oqM" secondAttribute="centerY" constant="6" id="Kbe-9c-QIJ"/>
+                                        <constraint firstItem="1GB-gM-ToS" firstAttribute="centerY" secondItem="thy-hl-oqM" secondAttribute="centerY" constant="-6" id="Ldk-FG-eDl"/>
+                                        <constraint firstItem="gTU-01-n3G" firstAttribute="leading" secondItem="y6t-wT-iBp" secondAttribute="trailing" constant="8" symbolic="YES" id="W7F-zK-lwa"/>
+                                        <constraint firstItem="gTU-01-n3G" firstAttribute="leading" secondItem="1GB-gM-ToS" secondAttribute="trailing" constant="8" symbolic="YES" id="jVm-l2-38D"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="gTU-01-n3G" secondAttribute="trailing" constant="150" id="pbG-8k-nAz"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="8"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
+                                    <outlet property="expensesLabel" destination="y6t-wT-iBp" id="8wS-nk-ThX"/>
+                                    <outlet property="incomeLabel" destination="1GB-gM-ToS" id="Lre-Dt-SOe"/>
                                     <outlet property="totalLabel" destination="gTU-01-n3G" id="zbb-9c-ciJ"/>
                                 </connections>
                             </tableViewCell>

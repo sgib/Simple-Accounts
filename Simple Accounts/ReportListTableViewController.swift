@@ -84,8 +84,7 @@ class ReportListTableViewController: UITableViewController {
             }
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(totalReuseID, forIndexPath: indexPath) as! ReportTotalTableViewCell
-            let total = incomeTotal + expenseTotal
-            cell.setContent(total, usingFormatter: formatter)
+            cell.setContent(reportData!, usingFormatter: formatter)
             return cell
         }
     }

@@ -12,11 +12,18 @@ class ReportTotalTableViewCell: UITableViewCell {
 
     //MARK: - Dependency function
     
-    func setContent(amount: Money, usingFormatter formatter: AccountsFormatter) {
-        totalLabel.textColor = amount.isNegative ? formatter.negativeAmountColour : formatter.positiveAmountColour
-        totalLabel.text = formatter.currencyStringFrom(amount.absoluteValue)
+    func setContent(reportData: TransactionReportData, usingFormatter formatter: AccountsFormatter) {
+        let incomeTotal = reportData.transactions.map({ $0.sumIncome }).reduce(Money.zero(), combine: +)
+        let expenseTotal = reportData.transactions.map({ $0.sumExpenses }).reduce(Money.zero(), combine: -)
+        let aggregateTotal = incomeTotal + expenseTotal
+        
+        incomeLabel.setTextToMoneyAmount(incomeTotal, usingFormatter: formatter)
+        expensesLabel.setTextToMoneyAmount(expenseTotal, usingFormatter: formatter)
+        totalLabel.setTextToMoneyAmount(aggregateTotal, usingFormatter: formatter)
     }
     
     //MARK: - Outlets
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var incomeLabel: UILabel!
+    @IBOutlet weak var expensesLabel: UILabel!
 }

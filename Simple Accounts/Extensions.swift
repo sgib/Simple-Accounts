@@ -40,6 +40,13 @@ extension UIImage {
     }
 }
 
+extension UILabel {
+    func setTextToMoneyAmount(amount: Money, usingFormatter formatter: AccountsFormatter) {
+        textColor = amount.isNegative ? formatter.negativeAmountColour : formatter.positiveAmountColour
+        text = formatter.currencyStringFrom(amount.absoluteValue)
+    }
+}
+
 extension UITextField {
     var unwrappedText: String {
         return self.text ?? ""

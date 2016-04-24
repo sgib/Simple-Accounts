@@ -23,8 +23,7 @@ class TransactionTableViewCell: UITableViewCell {
             descriptionLabel.text = unwrappedDescription
         }
         dateLabel.text = formatter.dateStringFrom(transaction.date)
-        amountLabel.text = formatter.currencyStringFrom(transaction.amount)
-        amountLabel.textColor = (transaction.type == .Expense) ? formatter.negativeAmountColour : formatter.positiveAmountColour
+        amountLabel.setTextToMoneyAmount(transaction.signedAmount, usingFormatter: formatter)
     }
     
     //MARK: - Outlets

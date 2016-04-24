@@ -25,10 +25,8 @@ class ReportTableViewCell: UITableViewCell {
         sumExpensesLabel.text = formatter.currencyStringFrom(transactions.sumExpenses)
         
         let sumAggregate = transactions.sumAggregate
-        let textColour = sumAggregate.isNegative ? formatter.negativeAmountColour : formatter.positiveAmountColour
-        sumAggregateLabel.textColor = textColour
-        sumAggregateLabel.text = formatter.currencyStringFrom(sumAggregate.absoluteValue)
-        percentageLabel.textColor = textColour
+        sumAggregateLabel.setTextToMoneyAmount(sumAggregate, usingFormatter: formatter)
+        percentageLabel.textColor = sumAggregate.isNegative ? formatter.negativeAmountColour : formatter.positiveAmountColour
         percentageLabel.text = formatter.percentStringFrom(percentage)
     }
 

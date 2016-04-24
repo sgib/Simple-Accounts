@@ -518,11 +518,11 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WlT-QT-VwM" customClass="BorderedButton" customModule="Simple_Accounts" customModuleProvider="target">
-                                    <rect key="frame" x="54" y="2" width="132" height="30"/>
+                                    <rect key="frame" x="38" y="2" width="164" height="30"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="c8F-X2-Ucn"/>
-                                        <constraint firstAttribute="width" constant="132" id="kfz-Ly-CQ1"/>
+                                        <constraint firstAttribute="width" constant="164" id="kfz-Ly-CQ1"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <state key="normal" title="April">

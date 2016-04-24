@@ -64,19 +64,23 @@ struct StandardTransactionDateRange: DateRange {
     }
     
     var displayName: String {
-        let formatter = NSDateFormatter()
+        let endDateIsInCurrentYear = (endDate.year == TransactionDate.Today.year)
+        
         switch size {
         case .Week:
-            //TODO: format week differently when it falls across year boundary and possibly also for month boundaries?
-            formatter.dateFormat = "dd MMM"
-            return formatter.stringFromDate(startDate) + " - " + formatter.stringFromDate(endDate)
+            let startDateFormatter = NSDateFormatter()
+            let endDateFormatter = NSDateFormatter()
+            let startDateAndEndDateAreInSameYear = (startDate.year == endDate.year)
+            let startDateAndEndDateAreInSameMonth = (startDateAndEndDateAreInSameYear && (startDate.month == endDate.month))
+            startDateFormatter.dateFormat = (startDateAndEndDateAreInSameMonth) ? "dd" : "dd MMM"
+            endDateFormatter.dateFormat = (startDateAndEndDateAreInSameYear && endDateIsInCurrentYear) ? "dd MMM" : "dd MMM yy"
+            return startDateFormatter.stringFromDate(startDate) + " - " + endDateFormatter.stringFromDate(endDate)
         case .Month:
-            formatter.dateFormat = "MMMM"
-            let selfYear = self.startDate.year
-            let currentYear = TransactionDate.Today.year
-            formatter.dateFormat = (selfYear == currentYear) ? "MMMM" : "MMMM yy"
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = (endDateIsInCurrentYear) ? "MMMM" : "MMMM yy"
             return formatter.stringFromDate(startDate)
         case .Year:
+            let formatter = NSDateFormatter()
             formatter.dateFormat = "yyyy"
             return formatter.stringFromDate(startDate)
         }

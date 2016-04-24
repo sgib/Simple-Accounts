@@ -52,6 +52,25 @@ class TransactionViewController: UIViewController {
         presentViewController(actionSheet, animated: true, completion: nil)
     }
     
+    @IBAction func sortButtonPressed(sender: UIBarButtonItem) {
+        let actionSheet = UIAlertController(title: "Sort transactions", message: nil, preferredStyle: .ActionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Amount (High - Low)", style: .Default, handler: { _ in
+            self.sortTransactions({ $0.amount > $1.amount }) }))
+        actionSheet.addAction(UIAlertAction(title: "Amount (Low - High)", style: .Default, handler: { _ in
+            self.sortTransactions({ $0.amount < $1.amount }) }))
+        actionSheet.addAction(UIAlertAction(title: "Category (A - Z)", style: .Default, handler: { _ in
+            self.sortTransactions({ $0.category.name < $1.category.name }) }))
+        actionSheet.addAction(UIAlertAction(title: "Category (Z - A)", style: .Default, handler: { _ in
+            self.sortTransactions({ $0.category.name > $1.category.name }) }))
+        actionSheet.addAction(UIAlertAction(title: "Date (Old - New)", style: .Default, handler: { _ in
+            self.sortTransactions({ $0.date < $1.date }) }))
+        actionSheet.addAction(UIAlertAction(title: "Date (New - Old)", style: .Default, handler: { _ in
+            self.sortTransactions({ $0.date > $1.date }) }))
+        
+        actionSheet.popoverPresentationController?.barButtonItem = sender
+        presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
     //MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -106,6 +125,11 @@ class TransactionViewController: UIViewController {
         aggregateLabel.text = "Net: \(formatter.currencyStringFrom(currentTransactions.sumAggregate))"
         totalExpensesLabel.text = formatter.currencyStringFrom(currentTransactions.sumExpenses)
         closingBalanceLabel.text = "Closing: \(formatter.currencyStringFrom(openingBalance + currentTransactions.sumAggregate))"
+    }
+    
+    private func sortTransactions(sortFunction: (Transaction, Transaction) -> Bool) {
+        currentTransactions.sortInPlace(sortFunction)
+        transactionTableView.reloadData()
     }
     
     //MARK: - View lifecycle

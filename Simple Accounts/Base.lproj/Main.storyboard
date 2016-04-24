@@ -498,7 +498,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="iB3-e2-IPg">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" title="Sort" id="7iF-st-qmS"/>
+                        <barButtonItem key="leftBarButtonItem" title="Sort" id="7iF-st-qmS">
+                            <connections>
+                                <action selector="sortButtonPressed:" destination="9pv-A4-QxB" id="guw-cK-g0J"/>
+                            </connections>
+                        </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="m3W-Nr-LN1">
                             <rect key="frame" x="180" y="6" width="240" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

@@ -119,15 +119,20 @@ extension TransactionDate {
 }
 
 func <=(left: TransactionDate, right: TransactionDate) -> Bool {
-    return left.earlierDate(right) === left
+    return left < right || left == right
 }
 
 func >=(left: TransactionDate, right: TransactionDate) -> Bool {
-    return left.laterDate(right) === left
+    return left > right || left == right
 }
 
+func <(left: TransactionDate, right: TransactionDate) -> Bool {
+    return left.compare(right) == .OrderedAscending
+}
 
-
+func >(left: TransactionDate, right: TransactionDate) -> Bool {
+    return left.compare(right) == .OrderedDescending
+}
 
 
 

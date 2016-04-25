@@ -44,9 +44,9 @@ class TransactionViewController: UIViewController {
     
     @IBAction func rangeButtonPressed(sender: UIButton) {
         let actionSheet = UIAlertController(title: "Change date range", message: nil, preferredStyle: .ActionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Week", style: .Default, handler: {_ in self.changeRangeLengthTo(.Week) }))
-        actionSheet.addAction(UIAlertAction(title: "Month", style: .Default, handler: {_ in self.changeRangeLengthTo(.Month) }))
-        actionSheet.addAction(UIAlertAction(title: "Year", style: .Default, handler: {_ in self.changeRangeLengthTo(.Year) }))
+        actionSheet.addAction(createRangeChangingActionWithTitle("Week", rangeSize: .Week))
+        actionSheet.addAction(createRangeChangingActionWithTitle("Month", rangeSize: .Month))
+        actionSheet.addAction(createRangeChangingActionWithTitle("Year", rangeSize: .Year))
         actionSheet.popoverPresentationController?.sourceRect = sender.bounds
         actionSheet.popoverPresentationController?.sourceView = sender
         presentViewController(actionSheet, animated: true, completion: nil)
@@ -60,7 +60,6 @@ class TransactionViewController: UIViewController {
         actionSheet.addAction(createSortingActionWithTitle("Category (Z - A)", sortType: .categoryZToA))
         actionSheet.addAction(createSortingActionWithTitle("Date (Old - New)", sortType: .dateOldestFirst))
         actionSheet.addAction(createSortingActionWithTitle("Date (New - Old)", sortType: .dateNewestFirst))
-        
         actionSheet.popoverPresentationController?.barButtonItem = sender
         presentViewController(actionSheet, animated: true, completion: nil)
     }
@@ -99,7 +98,7 @@ class TransactionViewController: UIViewController {
         loadTransactionData()
     }
     
-    private func changeRangeLengthTo(size: StandardTransactionDateRange.Size) {
+    private func changeRangeSizeTo(size: StandardTransactionDateRange.Size) {
         if currentRange.size != size {
             currentRange = StandardTransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: size)
             updateRangeDisplay()
@@ -116,6 +115,12 @@ class TransactionViewController: UIViewController {
         return UIAlertAction(title: title, style: .Default, handler: { _ in
             self.transactionsDataSource.sortType = sortType
             self.transactionTableView.reloadData()
+        })
+    }
+    
+    private func createRangeChangingActionWithTitle(title: String, rangeSize: StandardTransactionDateRange.Size) -> UIAlertAction {
+        return  UIAlertAction(title: title, style: .Default, handler: { _ in
+            self.changeRangeSizeTo(rangeSize)
         })
     }
     

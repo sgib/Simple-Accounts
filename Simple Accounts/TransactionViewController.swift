@@ -54,24 +54,12 @@ class TransactionViewController: UIViewController {
     
     @IBAction func sortButtonPressed(sender: UIBarButtonItem) {
         let actionSheet = UIAlertController(title: "Sort transactions", message: nil, preferredStyle: .ActionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Amount (High - Low)", style: .Default, handler: { _ in
-            self.changeSortType(.amountHighToLow)
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Amount (Low - High)", style: .Default, handler: { _ in
-            self.changeSortType(.amountLowToHigh)
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Category (A - Z)", style: .Default, handler: { _ in
-            self.changeSortType(.categoryAToZ)
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Category (Z - A)", style: .Default, handler: { _ in
-            self.changeSortType(.categoryZToA)
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Date (Old - New)", style: .Default, handler: { _ in
-            self.changeSortType(.dateOldestFirst)
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Date (New - Old)", style: .Default, handler: { _ in
-            self.changeSortType(.dateNewestFirst)
-        }))
+        actionSheet.addAction(createSortingActionWithTitle("Amount (High - Low)", sortType: .amountHighToLow))
+        actionSheet.addAction(createSortingActionWithTitle("Amount (Low - High)", sortType: .amountLowToHigh))
+        actionSheet.addAction(createSortingActionWithTitle("Category (A - Z)", sortType: .categoryAToZ))
+        actionSheet.addAction(createSortingActionWithTitle("Category (Z - A)", sortType: .categoryZToA))
+        actionSheet.addAction(createSortingActionWithTitle("Date (Old - New)", sortType: .dateOldestFirst))
+        actionSheet.addAction(createSortingActionWithTitle("Date (New - Old)", sortType: .dateNewestFirst))
         
         actionSheet.popoverPresentationController?.barButtonItem = sender
         presentViewController(actionSheet, animated: true, completion: nil)
@@ -124,9 +112,11 @@ class TransactionViewController: UIViewController {
         updateBalanceDisplays()
     }
     
-    private func changeSortType(sortType: TransactionsDataSource.SortType) {
-        transactionsDataSource.sortType = sortType
-        transactionTableView.reloadData()
+    private func createSortingActionWithTitle(title: String, sortType: TransactionsDataSource.SortType) -> UIAlertAction {
+        return UIAlertAction(title: title, style: .Default, handler: { _ in
+            self.transactionsDataSource.sortType = sortType
+            self.transactionTableView.reloadData()
+        })
     }
     
     private func updateBalanceDisplays() {

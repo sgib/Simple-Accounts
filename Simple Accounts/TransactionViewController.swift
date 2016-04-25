@@ -12,7 +12,7 @@ class TransactionViewController: UIViewController {
 
     private let reuseID = "TransactionCell"
     private var currentRange: StandardTransactionDateRange!
-    private var currentTransactions = TransactionCollection()
+    private var transactionsDataSource: TransactionsDataSource!
     
     //MARK: - Dependencies
     var account: Account!
@@ -55,22 +55,28 @@ class TransactionViewController: UIViewController {
     @IBAction func sortButtonPressed(sender: UIBarButtonItem) {
         let actionSheet = UIAlertController(title: "Sort transactions", message: nil, preferredStyle: .ActionSheet)
         actionSheet.addAction(UIAlertAction(title: "Amount (High - Low)", style: .Default, handler: { _ in
-            self.sortTransactions({ $0.amount > $1.amount }) }))
+            self.changeSortType(.amountHighToLow)
+        }))
         actionSheet.addAction(UIAlertAction(title: "Amount (Low - High)", style: .Default, handler: { _ in
-            self.sortTransactions({ $0.amount < $1.amount }) }))
+            self.changeSortType(.amountLowToHigh)
+        }))
         actionSheet.addAction(UIAlertAction(title: "Category (A - Z)", style: .Default, handler: { _ in
-            self.sortTransactions({ $0.category.name < $1.category.name }) }))
+            self.changeSortType(.categoryAToZ)
+        }))
         actionSheet.addAction(UIAlertAction(title: "Category (Z - A)", style: .Default, handler: { _ in
-            self.sortTransactions({ $0.category.name > $1.category.name }) }))
+            self.changeSortType(.categoryZToA)
+        }))
         actionSheet.addAction(UIAlertAction(title: "Date (Old - New)", style: .Default, handler: { _ in
-            self.sortTransactions({ $0.date < $1.date }) }))
+            self.changeSortType(.dateOldestFirst)
+        }))
         actionSheet.addAction(UIAlertAction(title: "Date (New - Old)", style: .Default, handler: { _ in
-            self.sortTransactions({ $0.date > $1.date }) }))
+            self.changeSortType(.dateNewestFirst)
+        }))
         
         actionSheet.popoverPresentationController?.barButtonItem = sender
         presentViewController(actionSheet, animated: true, completion: nil)
     }
-    
+
     //MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -81,7 +87,7 @@ class TransactionViewController: UIViewController {
             destVC.mode = .Add
             destVC.defaultDateForNewTransactions = (currentRange.contains(TransactionDate.Today)) ? TransactionDate.Today : currentRange.startDate
             if !(sender is UIBarButtonItem) {
-                let transaction = currentTransactions[transactionTableView.indexPathForSelectedRow!.row]
+                let transaction = transactionsDataSource.currentTransactions[transactionTableView.indexPathForSelectedRow!.row]
                 destVC.mode = .Edit(transaction)
                 transactionTableView.deselectRowAtIndexPath(transactionTableView.indexPathForSelectedRow!, animated: true)
             }
@@ -113,30 +119,33 @@ class TransactionViewController: UIViewController {
     }
     
     private func loadTransactionData() {
-        currentTransactions = account.transactionsForRange(currentRange)
+        transactionsDataSource.loadDataForRange(currentRange)
         transactionTableView.reloadData()
         updateBalanceDisplays()
+    }
+    
+    private func changeSortType(sortType: TransactionsDataSource.SortType) {
+        transactionsDataSource.sortType = sortType
+        transactionTableView.reloadData()
     }
     
     private func updateBalanceDisplays() {
         let openingBalance = account.balanceAtStartOfDate(currentRange.startDate)
         openingBalanceLabel.text = "Opening: \(formatter.currencyStringFrom(openingBalance))"
-        totalIncomeLabel.text = formatter.currencyStringFrom(currentTransactions.sumIncome)
-        aggregateLabel.text = "Net: \(formatter.currencyStringFrom(currentTransactions.sumAggregate))"
-        totalExpensesLabel.text = formatter.currencyStringFrom(currentTransactions.sumExpenses)
-        closingBalanceLabel.text = "Closing: \(formatter.currencyStringFrom(openingBalance + currentTransactions.sumAggregate))"
-    }
-    
-    private func sortTransactions(sortFunction: (Transaction, Transaction) -> Bool) {
-        currentTransactions.sortInPlace(sortFunction)
-        transactionTableView.reloadData()
+        totalIncomeLabel.text = formatter.currencyStringFrom(transactionsDataSource.currentTransactions.sumIncome)
+        aggregateLabel.text = "Net: \(formatter.currencyStringFrom(transactionsDataSource.currentTransactions.sumAggregate))"
+        totalExpensesLabel.text = formatter.currencyStringFrom(transactionsDataSource.currentTransactions.sumExpenses)
+        closingBalanceLabel.text = "Closing: \(formatter.currencyStringFrom(openingBalance + transactionsDataSource.currentTransactions.sumAggregate))"
     }
     
     //MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        transactionsDataSource = TransactionsDataSource(account: account, formatter: formatter, sortType: .dateOldestFirst)
+        transactionTableView.dataSource = transactionsDataSource
+        
         loadRange()
     }
     
@@ -145,25 +154,6 @@ class TransactionViewController: UIViewController {
         
         //Categories may have been edited on Category tab
         transactionTableView.reloadData()
-    }
-}
-
-//MARK: - Table view data source
-extension TransactionViewController: UITableViewDataSource {
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentTransactions.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseID, forIndexPath: indexPath) as! TransactionTableViewCell
-        let transaction = currentTransactions[indexPath.row]
-        cell.setContent(transaction, usingFormatter: formatter)
-        return cell
     }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias SortFunction = (Transaction, Transaction) -> Bool
+typealias TransactionSortFunction = (Transaction, Transaction) -> Bool
 
 class TransactionsDataSource: NSObject, UITableViewDataSource {
     
@@ -22,7 +22,7 @@ class TransactionsDataSource: NSObject, UITableViewDataSource {
         case dateOldestFirst
         case dateNewestFirst
         
-        func sortFunction() -> SortFunction {
+        var sortFunction: TransactionSortFunction {
             switch self {
             case .amountHighToLow:
                 return { $0.amount > $1.amount }
@@ -62,7 +62,7 @@ class TransactionsDataSource: NSObject, UITableViewDataSource {
     //MARK: - Private functions
     
     private func sortTransactions() {
-        currentTransactions.sortInPlace(sortType.sortFunction())
+        currentTransactions.sortInPlace(sortType.sortFunction)
     }
     
     //MARK: - Lifecycle

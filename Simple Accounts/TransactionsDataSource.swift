@@ -22,6 +22,23 @@ class TransactionsDataSource: NSObject, UITableViewDataSource {
         case dateOldestFirst
         case dateNewestFirst
         
+        var description: String {
+            switch self {
+            case .amountHighToLow:
+                return "Amount (High - Low)"
+            case .amountLowToHigh:
+                return "Amount (Low - High)"
+            case .categoryAToZ:
+                return "Category (A - Z)"
+            case .categoryZToA:
+                return "Category (Z - A)"
+            case .dateOldestFirst:
+                return "Date (Old - New)"
+            case .dateNewestFirst:
+                return "Date (New - Old)"
+            }
+        }
+        
         var sortFunction: TransactionSortFunction {
             switch self {
             case .amountHighToLow:
@@ -38,6 +55,8 @@ class TransactionsDataSource: NSObject, UITableViewDataSource {
                 return { $0.date > $1.date }
             }
         }
+        
+        static var allCases: [SortType] = [.amountHighToLow, .amountLowToHigh, .categoryAToZ, .categoryZToA, .dateOldestFirst, .dateNewestFirst]
     }
     
     

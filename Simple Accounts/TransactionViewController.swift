@@ -54,12 +54,9 @@ class TransactionViewController: UIViewController {
     
     @IBAction func sortButtonPressed(sender: UIBarButtonItem) {
         let actionSheet = UIAlertController(title: "Sort transactions", message: nil, preferredStyle: .ActionSheet)
-        actionSheet.addAction(createSortingActionWithTitle("Amount (High - Low)", sortType: .amountHighToLow))
-        actionSheet.addAction(createSortingActionWithTitle("Amount (Low - High)", sortType: .amountLowToHigh))
-        actionSheet.addAction(createSortingActionWithTitle("Category (A - Z)", sortType: .categoryAToZ))
-        actionSheet.addAction(createSortingActionWithTitle("Category (Z - A)", sortType: .categoryZToA))
-        actionSheet.addAction(createSortingActionWithTitle("Date (Old - New)", sortType: .dateOldestFirst))
-        actionSheet.addAction(createSortingActionWithTitle("Date (New - Old)", sortType: .dateNewestFirst))
+        for sortType in TransactionsDataSource.SortType.allCases {
+            actionSheet.addAction(createSortingActionWithTitle(sortType.description, sortType: sortType))
+        }
         actionSheet.popoverPresentationController?.barButtonItem = sender
         presentViewController(actionSheet, animated: true, completion: nil)
     }

@@ -43,6 +43,7 @@ class TransactionViewController: UIViewController {
     }
     
     @IBAction func rangeButtonPressed(sender: UIButton) {
+        dismissViewControllerAnimated(true, completion: nil) //remove any other popovers
         let actionSheet = UIAlertController(title: "Change date range", message: nil, preferredStyle: .ActionSheet)
         actionSheet.addAction(createRangeChangingActionWithTitle("Week", rangeSize: .Week))
         actionSheet.addAction(createRangeChangingActionWithTitle("Month", rangeSize: .Month))
@@ -51,19 +52,11 @@ class TransactionViewController: UIViewController {
         actionSheet.popoverPresentationController?.sourceView = sender
         presentViewController(actionSheet, animated: true, completion: nil)
     }
-    
-    @IBAction func sortButtonPressed(sender: UIBarButtonItem) {
-        let actionSheet = UIAlertController(title: "Sort transactions", message: nil, preferredStyle: .ActionSheet)
-        for sortType in TransactionsDataSource.SortType.allCases {
-            actionSheet.addAction(createSortingActionWithTitle(sortType.description, sortType: sortType))
-        }
-        actionSheet.popoverPresentationController?.barButtonItem = sender
-        presentViewController(actionSheet, animated: true, completion: nil)
-    }
 
     //MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        dismissViewControllerAnimated(true, completion: nil) //remove any other popovers
         if let destVC = segue.destinationViewController.childViewControllers.first as? AddTransactionViewController {
             destVC.account = account
             destVC.categoryStore = categoryStore
@@ -75,6 +68,9 @@ class TransactionViewController: UIViewController {
                 destVC.mode = .Edit(transaction)
                 transactionTableView.deselectRowAtIndexPath(transactionTableView.indexPathForSelectedRow!, animated: true)
             }
+        } else if let destVC = segue.destinationViewController as? SortPickerViewController {
+            destVC.sortType = transactionsDataSource.sortType
+            destVC.delegate = self
         }
     }
     
@@ -108,13 +104,6 @@ class TransactionViewController: UIViewController {
         updateBalanceDisplays()
     }
     
-    private func createSortingActionWithTitle(title: String, sortType: TransactionsDataSource.SortType) -> UIAlertAction {
-        return UIAlertAction(title: title, style: .Default, handler: { _ in
-            self.transactionsDataSource.sortType = sortType
-            self.transactionTableView.reloadData()
-        })
-    }
-    
     private func createRangeChangingActionWithTitle(title: String, rangeSize: StandardTransactionDateRange.Size) -> UIAlertAction {
         return  UIAlertAction(title: title, style: .Default, handler: { _ in
             self.changeRangeSizeTo(rangeSize)
@@ -145,6 +134,13 @@ class TransactionViewController: UIViewController {
         super.viewDidAppear(animated)
         
         //Categories may have been edited on Category tab
+        transactionTableView.reloadData()
+    }
+}
+
+extension TransactionViewController: TransactionSortPickerDelegate {
+    func sortPicker(sortPicker: SortPickerViewController, didChangeSortTo sortType: TransactionSortType) {
+        transactionsDataSource.sortType = sortType
         transactionTableView.reloadData()
     }
 }

@@ -358,6 +358,49 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="-894"/>
         </scene>
+        <!--Sort Picker View Controller-->
+        <scene sceneID="eQS-NZ-q8B">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="lek-Cf-QiI" customClass="SortPickerViewController" customModule="Simple_Accounts" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4gu-r8-QPH"/>
+                        <viewControllerLayoutGuide type="bottom" id="SFq-6R-zGS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AJM-DV-ol2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort transactions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGD-QJ-UYk">
+                                <rect key="frame" x="241" y="36" width="118" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rnw-mz-Gz5">
+                                <rect key="frame" x="140" y="54" width="320" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="lek-Cf-QiI" id="bpo-fo-7hS"/>
+                                    <outlet property="delegate" destination="lek-Cf-QiI" id="8o5-VE-oSK"/>
+                                </connections>
+                            </pickerView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="rnw-mz-Gz5" firstAttribute="centerX" secondItem="AJM-DV-ol2" secondAttribute="centerX" id="Knp-fB-s2z"/>
+                            <constraint firstItem="fGD-QJ-UYk" firstAttribute="top" secondItem="4gu-r8-QPH" secondAttribute="bottom" constant="16" id="R6I-c4-STG"/>
+                            <constraint firstItem="rnw-mz-Gz5" firstAttribute="top" secondItem="fGD-QJ-UYk" secondAttribute="bottom" id="rwe-2c-sO2"/>
+                            <constraint firstItem="fGD-QJ-UYk" firstAttribute="centerX" secondItem="AJM-DV-ol2" secondAttribute="centerX" id="uED-St-nR0"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="260"/>
+                    <connections>
+                        <outlet property="sortPicker" destination="rnw-mz-Gz5" id="KSH-Sj-ELz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qz4-4e-2l4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2374" y="-1024"/>
+        </scene>
         <!--Transaction View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -499,7 +542,9 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Sort" id="7iF-st-qmS">
                             <connections>
-                                <action selector="sortButtonPressed:" destination="9pv-A4-QxB" id="guw-cK-g0J"/>
+                                <segue destination="lek-Cf-QiI" kind="popoverPresentation" popoverAnchorBarButtonItem="7iF-st-qmS" id="wRB-mN-efL">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="m3W-Nr-LN1">

@@ -45,9 +45,9 @@ class TransactionViewController: UIViewController {
     @IBAction func rangeButtonPressed(sender: UIButton) {
         dismissViewControllerAnimated(true, completion: nil) //remove any other popovers
         let actionSheet = UIAlertController(title: "Change date range", message: nil, preferredStyle: .ActionSheet)
-        actionSheet.addAction(createRangeChangingActionWithTitle("Week", rangeSize: .Week))
-        actionSheet.addAction(createRangeChangingActionWithTitle("Month", rangeSize: .Month))
-        actionSheet.addAction(createRangeChangingActionWithTitle("Year", rangeSize: .Year))
+        for size in StandardTransactionDateRange.Size.allCases {
+            actionSheet.addAction(createRangeChangingActionWithTitle(size.description, rangeSize: size))
+        }
         actionSheet.popoverPresentationController?.sourceRect = sender.bounds
         actionSheet.popoverPresentationController?.sourceView = sender
         presentViewController(actionSheet, animated: true, completion: nil)
@@ -124,7 +124,7 @@ class TransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        transactionsDataSource = TransactionsDataSource(account: account, formatter: formatter, sortType: .dateOldestFirst)
+        transactionsDataSource = TransactionsDataSource(account: account, formatter: formatter, sortType: .DateOldestFirst)
         transactionTableView.dataSource = transactionsDataSource
         
         loadRange()

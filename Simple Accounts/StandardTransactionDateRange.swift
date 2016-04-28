@@ -14,6 +14,19 @@ struct StandardTransactionDateRange: DateRange {
         case Week
         case Month
         case Year
+        
+        var description: String {
+            switch self {
+            case .Week:
+                return "Week"
+            case .Month:
+                return "Month"
+            case .Year:
+                return "Year"
+            }
+        }
+        
+        static let allCases: [Size] = [.Week, .Month, .Year]
     }
     
     let size: Size

@@ -11,46 +11,46 @@ import Foundation
 typealias TransactionSortFunction = (Transaction, Transaction) -> Bool
 
 enum TransactionSortType {
-    case amountHighToLow
-    case amountLowToHigh
-    case categoryAToZ
-    case categoryZToA
-    case dateOldestFirst
-    case dateNewestFirst
+    case AmountHighToLow
+    case AmountLowToHigh
+    case CategoryAToZ
+    case CategoryZToA
+    case DateOldestFirst
+    case DateNewestFirst
     
     var description: String {
         switch self {
-        case .amountHighToLow:
+        case .AmountHighToLow:
             return "Amount (High - Low)"
-        case .amountLowToHigh:
+        case .AmountLowToHigh:
             return "Amount (Low - High)"
-        case .categoryAToZ:
+        case .CategoryAToZ:
             return "Category (A - Z)"
-        case .categoryZToA:
+        case .CategoryZToA:
             return "Category (Z - A)"
-        case .dateOldestFirst:
+        case .DateOldestFirst:
             return "Date (Old - New)"
-        case .dateNewestFirst:
+        case .DateNewestFirst:
             return "Date (New - Old)"
         }
     }
     
     var sortFunction: TransactionSortFunction {
         switch self {
-        case .amountHighToLow:
+        case .AmountHighToLow:
             return { $0.amount > $1.amount }
-        case .amountLowToHigh:
+        case .AmountLowToHigh:
             return { $0.amount < $1.amount }
-        case .categoryAToZ:
+        case .CategoryAToZ:
             return { $0.category.name < $1.category.name }
-        case .categoryZToA:
+        case .CategoryZToA:
             return { $0.category.name > $1.category.name }
-        case .dateOldestFirst:
+        case .DateOldestFirst:
             return { $0.date < $1.date }
-        case .dateNewestFirst:
+        case .DateNewestFirst:
             return { $0.date > $1.date }
         }
     }
     
-    static var allCases: [TransactionSortType] = [.amountHighToLow, .amountLowToHigh, .categoryAToZ, .categoryZToA, .dateOldestFirst, .dateNewestFirst]
+    static var allCases: [TransactionSortType] = [.AmountHighToLow, .AmountLowToHigh, .CategoryAToZ, .CategoryZToA, .DateOldestFirst, .DateNewestFirst]
 }

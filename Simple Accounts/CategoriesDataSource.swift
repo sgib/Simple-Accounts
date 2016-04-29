@@ -18,6 +18,10 @@ class CategoriesDataSource: NSObject, UITableViewDataSource {
         case categoryListSection = 0
         case emptyListMessageSection = 1
         case addCategorySection = 2
+        
+        var sectionIndex: Int {
+            return rawValue
+        }
     }
     
     var showsAddCategoryRow: Bool = false
@@ -34,9 +38,9 @@ class CategoriesDataSource: NSObject, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let categoryCount = categoryStore.allCategories().count
-        if section == DataSection.categoryListSection.rawValue {
+        if section == DataSection.categoryListSection.sectionIndex {
             return categoryCount
-        } else if section == DataSection.emptyListMessageSection.rawValue {
+        } else if section == DataSection.emptyListMessageSection.sectionIndex {
             return (categoryCount == 0) ? 1 : 0
         } else {
             return (showsAddCategoryRow) ? 1 : 0
@@ -44,13 +48,13 @@ class CategoriesDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == DataSection.categoryListSection.rawValue {
+        if indexPath.section == DataSection.categoryListSection.sectionIndex {
             let cell = tableView.dequeueReusableCellWithIdentifier(defaultReuseID, forIndexPath: indexPath)
             let category = categoryStore.allCategories()[indexPath.row]
             cell.textLabel?.text = category.name
             cell.imageView?.image = UIImage(named: category.icon)
             return cell
-        } else if indexPath.section == DataSection.emptyListMessageSection.rawValue {
+        } else if indexPath.section == DataSection.emptyListMessageSection.sectionIndex {
             return tableView.dequeueReusableCellWithIdentifier(emptyReuseID, forIndexPath: indexPath)
         } else {
             return tableView.dequeueReusableCellWithIdentifier(addCellReuseID, forIndexPath: indexPath)

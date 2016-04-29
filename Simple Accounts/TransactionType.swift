@@ -11,4 +11,8 @@ import Foundation
 @objc enum TransactionType: Int16 {
     case Expense = -1
     case Income = 1
+    
+    var sign: Int16 {
+        return rawValue
+    }
 }

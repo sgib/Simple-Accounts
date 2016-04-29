@@ -27,7 +27,7 @@ class Transaction: NSManagedObject {
     }
     
     var signedAmount: Money {
-        return amount * Money(short: type.rawValue)
+        return amount * Money(short: type.sign)
     }
 
 }

@@ -57,7 +57,7 @@ class CategoriesViewController: UIViewController {
 extension CategoriesViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == CategoriesDataSource.DataSection.emptyListMessageSection.rawValue {
+        if indexPath.section == CategoriesDataSource.DataSection.emptyListMessageSection.sectionIndex {
             tableDataSource.createDefaultCategories()
             tableView.reloadData()
         }

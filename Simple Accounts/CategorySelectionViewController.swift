@@ -63,10 +63,10 @@ class CategorySelectionViewController: UIViewController {
 extension CategorySelectionViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == CategoriesDataSource.DataSection.categoryListSection.rawValue {
+        if indexPath.section == CategoriesDataSource.DataSection.categoryListSection.sectionIndex {
             chosenCategory = categoryStore.allCategories()[indexPath.row]
             doneButton.enabled = true
-        } else if indexPath.section == CategoriesDataSource.DataSection.emptyListMessageSection.rawValue {
+        } else if indexPath.section == CategoriesDataSource.DataSection.emptyListMessageSection.sectionIndex {
             tableDataSource.createDefaultCategories()
             tableView.reloadData()
         }

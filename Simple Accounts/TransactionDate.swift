@@ -23,6 +23,10 @@ enum Weekday: Int {
     case Thursday
     case Friday
     case Saturday
+    
+    var dayNumber: Int {
+        return rawValue
+    }
 }
 
 struct TransactionCalendar {
@@ -31,7 +35,7 @@ struct TransactionCalendar {
 
 extension NSCalendar {
     func changeFirstWeekdayTo(weekday: Weekday) {
-        self.firstWeekday = weekday.rawValue
+        self.firstWeekday = weekday.dayNumber
     }
 }
 

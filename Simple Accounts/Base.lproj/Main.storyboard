@@ -401,6 +401,54 @@
             </objects>
             <point key="canvasLocation" x="2374" y="-1024"/>
         </scene>
+        <!--Range Picker View Controller-->
+        <scene sceneID="XfO-MI-8eG">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="wgo-u7-rXq" customClass="RangePickerViewController" customModule="Simple_Accounts" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oP3-G3-ezo"/>
+                        <viewControllerLayoutGuide type="bottom" id="gGu-O2-Vao"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7vs-aq-xnn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change date range" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMe-wq-Eh0">
+                                <rect key="frame" x="235" y="36" width="131" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="N7V-HX-9b7">
+                                <rect key="frame" x="20" y="70" width="560" height="29"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                    <segment title=""/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentChanged:" destination="wgo-u7-rXq" eventType="valueChanged" id="KC0-Gc-tCd"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="N7V-HX-9b7" secondAttribute="trailing" id="H0y-Fh-KW9"/>
+                            <constraint firstItem="N7V-HX-9b7" firstAttribute="top" secondItem="fMe-wq-Eh0" secondAttribute="bottom" constant="16" id="cg3-gs-O7Z"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="N7V-HX-9b7" secondAttribute="leading" id="cp9-ZM-63G"/>
+                            <constraint firstItem="fMe-wq-Eh0" firstAttribute="top" secondItem="oP3-G3-ezo" secondAttribute="bottom" constant="16" id="q8C-nf-QPO"/>
+                            <constraint firstItem="fMe-wq-Eh0" firstAttribute="centerX" secondItem="7vs-aq-xnn" secondAttribute="centerX" id="vJq-KQ-CKk"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="100"/>
+                    <connections>
+                        <outlet property="rangeSegmentControl" destination="N7V-HX-9b7" id="8Zc-vG-UBz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LKI-aI-UcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3008" y="-1024"/>
+        </scene>
         <!--Transaction View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -542,7 +590,7 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Sort" id="7iF-st-qmS">
                             <connections>
-                                <segue destination="lek-Cf-QiI" kind="popoverPresentation" popoverAnchorBarButtonItem="7iF-st-qmS" id="wRB-mN-efL">
+                                <segue destination="lek-Cf-QiI" kind="popoverPresentation" identifier="SortPickerSegue" popoverAnchorBarButtonItem="7iF-st-qmS" id="wRB-mN-efL">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -577,7 +625,9 @@
                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
-                                        <action selector="rangeButtonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="tVZ-C1-VW9"/>
+                                        <segue destination="wgo-u7-rXq" kind="popoverPresentation" identifier="RangePickerSegue" popoverAnchorView="WlT-QT-VwM" id="wMi-EO-rLC">
+                                            <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
+                                        </segue>
                                     </connections>
                                 </button>
                             </subviews>
@@ -600,7 +650,6 @@
                         <outlet property="aggregateLabel" destination="yeJ-IZ-K4u" id="hfT-eY-EMJ"/>
                         <outlet property="closingBalanceLabel" destination="cR0-Jr-qir" id="2tc-C6-Q8I"/>
                         <outlet property="openingBalanceLabel" destination="1WD-rn-wJV" id="b0E-SH-sry"/>
-                        <outlet property="periodButton" destination="WlT-QT-VwM" id="drD-DW-HU4"/>
                         <outlet property="rangeDisplayButton" destination="WlT-QT-VwM" id="ahH-Aa-8ot"/>
                         <outlet property="totalExpensesLabel" destination="Guh-0L-48v" id="8Qz-DH-1sf"/>
                         <outlet property="totalIncomeLabel" destination="gni-1K-Zhh" id="zO4-zG-t0k"/>
@@ -1365,8 +1414,8 @@ http://www.iconarchive.com/show/ios7-icons-by-icons8/Very-Basic-Settings-icon.ht
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vOH-yT-y6V"/>
+        <segue reference="26c-sm-g1t"/>
         <segue reference="N3z-S6-86g"/>
         <segue reference="tMs-gw-hu3"/>
-        <segue reference="26c-sm-g1t"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -22,7 +22,6 @@ class TransactionViewController: UIViewController {
     //MARK: - Outlets
     
     @IBOutlet weak var transactionTableView: UITableView!
-    @IBOutlet weak var periodButton: UIButton!
     @IBOutlet weak var openingBalanceLabel: UILabel!
     @IBOutlet weak var totalIncomeLabel: UILabel!
     @IBOutlet weak var totalExpensesLabel: UILabel!
@@ -40,17 +39,6 @@ class TransactionViewController: UIViewController {
     @IBAction func nextButtonPressed(sender: UIButton) {
         currentRange = currentRange.next()
         updateRangeDisplay()
-    }
-    
-    @IBAction func rangeButtonPressed(sender: UIButton) {
-        dismissViewControllerAnimated(true, completion: nil) //remove any other popovers
-        let actionSheet = UIAlertController(title: "Change date range", message: nil, preferredStyle: .ActionSheet)
-        for size in StandardTransactionDateRange.Size.allCases {
-            actionSheet.addAction(createRangeChangingActionWithTitle(size.description, rangeSize: size))
-        }
-        actionSheet.popoverPresentationController?.sourceRect = sender.bounds
-        actionSheet.popoverPresentationController?.sourceView = sender
-        presentViewController(actionSheet, animated: true, completion: nil)
     }
 
     //MARK: - Navigation
@@ -70,6 +58,11 @@ class TransactionViewController: UIViewController {
             }
         } else if let destVC = segue.destinationViewController as? SortPickerViewController {
             destVC.sortType = transactionsDataSource.sortType
+            destVC.delegate = self
+        } else if let destVC = segue.destinationViewController as? RangePickerViewController {
+            destVC.popoverPresentationController?.sourceRect = rangeDisplayButton.bounds
+            destVC.popoverPresentationController?.sourceView = rangeDisplayButton
+            destVC.size = currentRange.size
             destVC.delegate = self
         }
     }
@@ -91,23 +84,10 @@ class TransactionViewController: UIViewController {
         loadTransactionData()
     }
     
-    private func changeRangeSizeTo(size: StandardTransactionDateRange.Size) {
-        if currentRange.size != size {
-            currentRange = StandardTransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: size)
-            updateRangeDisplay()
-        }
-    }
-    
     private func loadTransactionData() {
         transactionsDataSource.loadDataForRange(currentRange)
         transactionTableView.reloadData()
         updateBalanceDisplays()
-    }
-    
-    private func createRangeChangingActionWithTitle(title: String, rangeSize: StandardTransactionDateRange.Size) -> UIAlertAction {
-        return  UIAlertAction(title: title, style: .Default, handler: { _ in
-            self.changeRangeSizeTo(rangeSize)
-        })
     }
     
     private func updateBalanceDisplays() {
@@ -138,10 +118,19 @@ class TransactionViewController: UIViewController {
     }
 }
 
+//MARK: - Sort picker delegate
 extension TransactionViewController: TransactionSortPickerDelegate {
     func sortPicker(sortPicker: SortPickerViewController, didChangeSortTo sortType: TransactionSortType) {
         transactionsDataSource.sortType = sortType
         transactionTableView.reloadData()
+    }
+}
+
+//MARK: - Range picker delegate
+extension TransactionViewController: TransactionRangePickerDelegate {
+    func rangePicker(rangePicker: RangePickerViewController, didChangeRangeSizeTo rangeSize: StandardTransactionDateRange.Size) {
+        currentRange = StandardTransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: rangeSize)
+        updateRangeDisplay()
     }
 }
 

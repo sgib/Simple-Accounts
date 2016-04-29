@@ -10,29 +10,16 @@ import Foundation
 
 typealias TransactionSortFunction = (Transaction, Transaction) -> Bool
 
-enum TransactionSortType {
-    case AmountHighToLow
-    case AmountLowToHigh
-    case CategoryAToZ
-    case CategoryZToA
-    case DateOldestFirst
-    case DateNewestFirst
+enum TransactionSortType: String {
+    case AmountHighToLow = "Amount (High - Low)"
+    case AmountLowToHigh = "Amount (Low - High)"
+    case CategoryAToZ = "Category (A - Z)"
+    case CategoryZToA = "Category (Z - A)"
+    case DateOldestFirst = "Date (Old - New)"
+    case DateNewestFirst = "Date (New - Old)"
     
     var description: String {
-        switch self {
-        case .AmountHighToLow:
-            return "Amount (High - Low)"
-        case .AmountLowToHigh:
-            return "Amount (Low - High)"
-        case .CategoryAToZ:
-            return "Category (A - Z)"
-        case .CategoryZToA:
-            return "Category (Z - A)"
-        case .DateOldestFirst:
-            return "Date (Old - New)"
-        case .DateNewestFirst:
-            return "Date (New - Old)"
-        }
+        return rawValue
     }
     
     var sortFunction: TransactionSortFunction {

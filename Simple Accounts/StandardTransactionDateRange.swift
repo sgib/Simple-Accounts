@@ -10,20 +10,13 @@ import Foundation
 
 struct StandardTransactionDateRange: DateRange {
     
-    enum Size {
-        case Week
-        case Month
-        case Year
+    enum Size: String {
+        case Week = "Week"
+        case Month = "Month"
+        case Year = "Year"
         
         var description: String {
-            switch self {
-            case .Week:
-                return "Week"
-            case .Month:
-                return "Month"
-            case .Year:
-                return "Year"
-            }
+            return rawValue
         }
         
         static let allCases: [Size] = [.Week, .Month, .Year]

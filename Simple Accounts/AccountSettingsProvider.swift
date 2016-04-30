@@ -17,17 +17,13 @@ class AccountSettingsProvider {
     private let defaultRangeSize = StandardTransactionDateRange.Size.Month
     
     
-    var transactionSortType: TransactionSortType {
-        didSet {
-            NSUserDefaults.standardUserDefaults().setObject(transactionSortType.rawValue, forKey: sortTypeKey)
-        }
-    }
+    var transactionSortType: TransactionSortType
+    var transactionDateRange: StandardTransactionDateRange
     
-    var transactionDateRange: StandardTransactionDateRange {
-        didSet {
-            NSUserDefaults.standardUserDefaults().setObject(transactionDateRange.startDate, forKey: dateRangeStartDateKey)
-            NSUserDefaults.standardUserDefaults().setObject(transactionDateRange.size.rawValue, forKey: dateRangeSizeKey)
-        }
+    func saveChanges() {
+        NSUserDefaults.standardUserDefaults().setObject(transactionSortType.rawValue, forKey: sortTypeKey)
+        NSUserDefaults.standardUserDefaults().setObject(transactionDateRange.startDate, forKey: dateRangeStartDateKey)
+        NSUserDefaults.standardUserDefaults().setObject(transactionDateRange.size.rawValue, forKey: dateRangeSizeKey)
     }
     
     init() {

@@ -18,6 +18,7 @@ class TransactionViewController: UIViewController {
     var account: Account!
     var categoryStore: CategoryStore!
     var formatter: AccountsFormatter!
+    var settingsProvider: AccountSettingsProvider!
     
     //MARK: - Outlets
     
@@ -32,13 +33,11 @@ class TransactionViewController: UIViewController {
     //MARK: - Actions
     
     @IBAction func previousButtonPressed(sender: UIButton) {
-        currentRange = currentRange.previous()
-        updateRangeDisplay()
+        changeRangeTo(currentRange.previous())
     }
     
     @IBAction func nextButtonPressed(sender: UIButton) {
-        currentRange = currentRange.next()
-        updateRangeDisplay()
+        changeRangeTo(currentRange.next())
     }
 
     //MARK: - Navigation
@@ -73,9 +72,9 @@ class TransactionViewController: UIViewController {
     
     //MARK: - Private functions
     
-    private func loadRange() {
-        //TODO: if can load from UserDefaults, else...
-        currentRange = StandardTransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: .Month)
+    private func changeRangeTo(range: StandardTransactionDateRange) {
+        currentRange = range
+        settingsProvider.transactionDateRange = range
         updateRangeDisplay()
     }
     
@@ -104,10 +103,10 @@ class TransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        transactionsDataSource = TransactionsDataSource(account: account, formatter: formatter, sortType: .DateOldestFirst)
+        transactionsDataSource = TransactionsDataSource(account: account, formatter: formatter, sortType: settingsProvider.transactionSortType)
         transactionTableView.dataSource = transactionsDataSource
         
-        loadRange()
+        changeRangeTo(settingsProvider.transactionDateRange)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -122,6 +121,7 @@ class TransactionViewController: UIViewController {
 extension TransactionViewController: TransactionSortPickerDelegate {
     func sortPicker(sortPicker: SortPickerViewController, didChangeSortTo sortType: TransactionSortType) {
         transactionsDataSource.sortType = sortType
+        settingsProvider.transactionSortType = sortType
         transactionTableView.reloadData()
     }
 }
@@ -129,8 +129,7 @@ extension TransactionViewController: TransactionSortPickerDelegate {
 //MARK: - Range picker delegate
 extension TransactionViewController: TransactionRangePickerDelegate {
     func rangePicker(rangePicker: RangePickerViewController, didChangeRangeSizeTo rangeSize: StandardTransactionDateRange.Size) {
-        currentRange = StandardTransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: rangeSize)
-        updateRangeDisplay()
+        changeRangeTo(StandardTransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: rangeSize))
     }
 }
 

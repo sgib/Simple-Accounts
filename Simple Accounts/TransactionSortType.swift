@@ -39,5 +39,5 @@ enum TransactionSortType: String {
         }
     }
     
-    static var allCases: [TransactionSortType] = [.AmountHighToLow, .AmountLowToHigh, .CategoryAToZ, .CategoryZToA, .DateOldestFirst, .DateNewestFirst]
+    static let allCases: [TransactionSortType] = [.AmountHighToLow, .AmountLowToHigh, .CategoryAToZ, .CategoryZToA, .DateOldestFirst, .DateNewestFirst]
 }

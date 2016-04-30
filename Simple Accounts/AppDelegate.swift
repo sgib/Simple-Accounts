@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        let settingsProvider = AccountSettingsProvider()
         let categoryStore = CategoryStore(dataSource: dataStack)
         let openingBalance = Money.zero() //TODO: load/retrieve opening balance...
         let account = Account(openingBalance: openingBalance, dataSource: dataStack)
@@ -30,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         transactionController.account = account
                         transactionController.categoryStore = categoryStore
                         transactionController.formatter = formatter
+                        transactionController.settingsProvider = settingsProvider
                     }
                     if let categoriesController = child.childViewControllers.first as? CategoriesViewController {
                         categoriesController.categoryStore = categoryStore

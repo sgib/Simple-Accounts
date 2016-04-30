@@ -115,6 +115,7 @@
 		B0B32AF21CA138120086A17A /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AF11CA138120086A17A /* TransactionTests.swift */; };
 		B0B32AF61CA13DEE0086A17A /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B32AF51CA13DEE0086A17A /* Money.swift */; };
 		B0B6C3B01CB8E55F005A3C8F /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B6C3AF1CB8E55F005A3C8F /* AddTransactionViewController.swift */; };
+		B0B6DE091CD496CE00FD5A9C /* AccountSettingsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B6DE081CD496CE00FD5A9C /* AccountSettingsProvider.swift */; };
 		B0B890E51CA7CE6B0062EE3D /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B890E41CA7CE6B0062EE3D /* CategoryTests.swift */; };
 		B0BEEFE41CC4BB5100D207BB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BEEFE31CC4BB5100D207BB /* SettingsViewController.swift */; };
 		B0C101621CBF742D00E5CDE0 /* CategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C101611CBF742D00E5CDE0 /* CategoriesDataSource.swift */; };
@@ -250,6 +251,7 @@
 		B0B32AF11CA138120086A17A /* TransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
 		B0B32AF51CA13DEE0086A17A /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 		B0B6C3AF1CB8E55F005A3C8F /* AddTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		B0B6DE081CD496CE00FD5A9C /* AccountSettingsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingsProvider.swift; sourceTree = "<group>"; };
 		B0B890E41CA7CE6B0062EE3D /* CategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTests.swift; sourceTree = "<group>"; };
 		B0BEEFE31CC4BB5100D207BB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B0C101611CBF742D00E5CDE0 /* CategoriesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesDataSource.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			children = (
 				B06E92511C9D8EAC003D1796 /* Database */,
 				B0B32AEB1CA132620086A17A /* Account.swift */,
+				B0B6DE081CD496CE00FD5A9C /* AccountSettingsProvider.swift */,
 				B046D9511CA56DC5001051FF /* CategoryStore.swift */,
 				B0B32AF51CA13DEE0086A17A /* Money.swift */,
 				B051E81A1CA5569B006FED78 /* Transaction.swift */,
@@ -302,6 +305,7 @@
 				B080DB241CB4289D003F7FEB /* StandardTransactionDateRange.swift */,
 				B06DE6891CCB846900A50CB8 /* CustomTransactionDateRange.swift */,
 				B06DE68B1CCB8B6700A50CB8 /* TransactionReportData.swift */,
+				B079260D1CD263E600FBC986 /* TransactionSortType.swift */,
 				B0C988FC1C9EA2C400812CBD /* TransactionType.swift */,
 			);
 			name = Model;
@@ -321,7 +325,6 @@
 				B07FFE8B1CD1F53C00A9A819 /* SortPickerViewController.swift */,
 				B05880281CD28188007B590F /* RangePickerViewController.swift */,
 				B044DC081CCE856300C8C175 /* TransactionsDataSource.swift */,
-				B079260D1CD263E600FBC986 /* TransactionSortType.swift */,
 				B0C101611CBF742D00E5CDE0 /* CategoriesDataSource.swift */,
 				B0D0841F1CAE57540032E530 /* ImageResourceLoader.swift */,
 				B03566841CB109FA00E0F1FB /* AddEditMode.swift */,
@@ -691,6 +694,7 @@
 				B0D0038F1C9D48D90064690E /* TransactionViewController.swift in Sources */,
 				B051E82B1CA557BE006FED78 /* Transaction+CoreDataProperties.swift in Sources */,
 				B03566851CB109FA00E0F1FB /* AddEditMode.swift in Sources */,
+				B0B6DE091CD496CE00FD5A9C /* AccountSettingsProvider.swift in Sources */,
 				B0D0180C1CBA39D6007B1D9A /* CategorySelectionViewController.swift in Sources */,
 				B03CBE801CBA7F76008FCBC4 /* Extensions.swift in Sources */,
 				B0BEEFE41CC4BB5100D207BB /* SettingsViewController.swift in Sources */,

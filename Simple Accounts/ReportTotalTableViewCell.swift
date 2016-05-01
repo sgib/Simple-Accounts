@@ -12,9 +12,9 @@ class ReportTotalTableViewCell: UITableViewCell {
 
     //MARK: - Dependency function
     
-    func setContent(reportData: TransactionReportData, usingFormatter formatter: AccountsFormatter) {
-        let incomeTotal = reportData.transactions.map({ $0.sumIncome }).reduce(Money.zero(), combine: +)
-        let expenseTotal = reportData.transactions.map({ $0.sumExpenses }).reduce(Money.zero(), combine: -)
+    func setContent(reportData: [TransactionCollection], usingFormatter formatter: AccountsFormatter) {
+        let incomeTotal = reportData.map({ $0.sumIncome }).reduce(Money.zero(), combine: +)
+        let expenseTotal = reportData.map({ $0.sumExpenses }).reduce(Money.zero(), combine: -)
         let aggregateTotal = incomeTotal + expenseTotal
         
         incomeLabel.setTextToMoneyAmount(incomeTotal, usingFormatter: formatter)

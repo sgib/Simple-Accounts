@@ -21,7 +21,6 @@
 		B05880291CD28188007B590F /* RangePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05880281CD28188007B590F /* RangePickerViewController.swift */; };
 		B06CF6521CA3001200700899 /* TransactionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06CF6511CA3001200700899 /* TransactionCollection.swift */; };
 		B06DE68A1CCB846900A50CB8 /* CustomTransactionDateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06DE6891CCB846900A50CB8 /* CustomTransactionDateRange.swift */; };
-		B06DE68C1CCB8B6700A50CB8 /* TransactionReportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06DE68B1CCB8B6700A50CB8 /* TransactionReportData.swift */; };
 		B06E92541C9D8F4B003D1796 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E92531C9D8F4B003D1796 /* CoreDataStack.swift */; };
 		B06E92561C9D8FD4003D1796 /* FetchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06E92551C9D8FD4003D1796 /* FetchResult.swift */; };
 		B06F32E51CC93FA8002327DB /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06F32E41CC93FA8002327DB /* ReportTableViewCell.swift */; };
@@ -157,7 +156,6 @@
 		B05880281CD28188007B590F /* RangePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangePickerViewController.swift; sourceTree = "<group>"; };
 		B06CF6511CA3001200700899 /* TransactionCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionCollection.swift; sourceTree = "<group>"; };
 		B06DE6891CCB846900A50CB8 /* CustomTransactionDateRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransactionDateRange.swift; sourceTree = "<group>"; };
-		B06DE68B1CCB8B6700A50CB8 /* TransactionReportData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionReportData.swift; sourceTree = "<group>"; };
 		B06E92531C9D8F4B003D1796 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B06E92551C9D8FD4003D1796 /* FetchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchResult.swift; sourceTree = "<group>"; };
 		B06F32E41CC93FA8002327DB /* ReportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
@@ -304,7 +302,6 @@
 				B04793EF1CA3193D00C0F582 /* TransactionDate.swift */,
 				B080DB241CB4289D003F7FEB /* StandardTransactionDateRange.swift */,
 				B06DE6891CCB846900A50CB8 /* CustomTransactionDateRange.swift */,
-				B06DE68B1CCB8B6700A50CB8 /* TransactionReportData.swift */,
 				B079260D1CD263E600FBC986 /* TransactionSortType.swift */,
 				B0C988FC1C9EA2C400812CBD /* TransactionType.swift */,
 			);
@@ -669,7 +666,6 @@
 				B080DB251CB4289D003F7FEB /* StandardTransactionDateRange.swift in Sources */,
 				B082C2311CAEE8B400B6DC29 /* AddCategoryViewController.swift in Sources */,
 				B079260E1CD263E600FBC986 /* TransactionSortType.swift in Sources */,
-				B06DE68C1CCB8B6700A50CB8 /* TransactionReportData.swift in Sources */,
 				B0B32AF61CA13DEE0086A17A /* Money.swift in Sources */,
 				B0B294D41CBB86FA0056C232 /* TransactionTableViewCell.swift in Sources */,
 				B051E8101CA54FF8006FED78 /* AccountsModel.xcdatamodeld in Sources */,

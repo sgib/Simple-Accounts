@@ -45,8 +45,10 @@ class ReportOptionsTableViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destVC = segue.destinationViewController.childViewControllers.first as? ReportListTableViewController {
+            destVC.account = account
+            destVC.categoryStore = categoryStore
             destVC.formatter = formatter
-            destVC.reportData = generateReport()
+            destVC.reportRange = generateReportRange()
             destVC.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
         }
     }
@@ -77,18 +79,10 @@ class ReportOptionsTableViewController: UITableViewController {
     
     //MARK: - Private functions
     
-    private func generateReport() -> TransactionReportData {
+    private func generateReportRange() -> CustomTransactionDateRange {
         let startDate = startDatePicker.date.dateWithZeroTime()
         let endDate = endDatePicker.date.dateWithZeroTime()
-        let reportRange = CustomTransactionDateRange(startDate: startDate, endDate: endDate)
-        var reportData = [TransactionCollection]()
-        for category in categoryStore.allCategories() {
-            let transactions = account.transactionsForRange(reportRange, inCategory: category)
-            if transactions.isNotEmpty {
-                reportData.append(transactions)
-            }
-        }
-        return TransactionReportData(range: reportRange, transactions: reportData)
+        return CustomTransactionDateRange(startDate: startDate, endDate: endDate)
     }
     
     private func setStartDatePickerVisible(visible: Bool) {

@@ -93,7 +93,7 @@
                                     <outlet property="sumAggregateLabel" destination="5QN-Of-4VD" id="b8c-HI-KHM"/>
                                     <outlet property="sumExpensesLabel" destination="Tdd-4j-Whv" id="YFL-Ki-V9i"/>
                                     <outlet property="sumIncomeLabel" destination="yel-b7-x6Z" id="MQ5-Rp-zlP"/>
-                                    <segue destination="ckF-d0-mEn" kind="show" identifier="ReportTransactionDetailsSegue" id="8si-cZ-hKJ"/>
+                                    <segue destination="ckF-d0-mEn" kind="show" identifier="ReportTransDetailSegue" id="thF-qW-2S1"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReportTotalCell" id="BKz-77-NXo" customClass="ReportTotalTableViewCell" customModule="Simple_Accounts" customModuleProvider="target">
@@ -185,7 +185,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="WJZ-Z3-sXD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionCell" id="26J-Xs-tpw" customClass="TransactionTableViewCell" customModule="Simple_Accounts" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
@@ -204,13 +204,13 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdY-cl-2OU">
                                             <rect key="frame" x="552" y="12" width="40" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4r-n6-Xbk">
                                             <rect key="frame" x="62" y="5" width="40" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkg-iF-zQg">
@@ -221,7 +221,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ab0-G1-goH">
                                             <rect key="frame" x="62" y="25" width="29" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -252,10 +252,19 @@
                             <outlet property="delegate" destination="ckF-d0-mEn" id="fQU-c5-2MP"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="uic-rw-a6p">
+                        <barButtonItem key="rightBarButtonItem" title="Sort" id="Mv5-pt-zIK">
+                            <connections>
+                                <segue destination="lek-Cf-QiI" kind="popoverPresentation" identifier="ReportTransSortSegue" popoverAnchorBarButtonItem="Mv5-pt-zIK" id="pvF-PR-KFa">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LN6-av-818" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2276" y="-1729"/>
+            <point key="canvasLocation" x="2374" y="-1793"/>
         </scene>
         <!--Report-->
         <scene sceneID="0dZ-UM-dYJ">
@@ -1497,9 +1506,10 @@ http://www.iconarchive.com/show/ios7-icons-by-icons8/Very-Basic-Settings-icon.ht
         <image name="TransactionsFilled" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="tMs-gw-hu3"/>
         <segue reference="N3z-S6-86g"/>
         <segue reference="qKw-0A-bBB"/>
         <segue reference="26c-sm-g1t"/>
-        <segue reference="tMs-gw-hu3"/>
+        <segue reference="pvF-PR-KFa"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -11,11 +11,22 @@ import UIKit
 class ReportTransactionDetailsTableViewController: UITableViewController {
  
     private var transactionsDataSource: TransactionsDataSource!
+    private let sortOptions = TransactionSortType.amountCases + TransactionSortType.dateCases
     
     //MARK: - Dependencies
     
     var transactionData: TransactionCollection!
     var formatter: AccountsFormatter!
+    
+    //MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destVC = segue.destinationViewController as? SortPickerViewController {
+            destVC.sortType = transactionsDataSource.sortType
+            destVC.sortOptions = sortOptions
+            destVC.delegate = self
+        }
+    }
     
     //MARK: - View lifecycle
     
@@ -27,4 +38,11 @@ class ReportTransactionDetailsTableViewController: UITableViewController {
         tableView.dataSource = transactionsDataSource
     }
 
+}
+
+extension ReportTransactionDetailsTableViewController: TransactionSortPickerDelegate {
+    func sortPicker(sortPicker: SortPickerViewController, didChangeSortTo sortType: TransactionSortType) {
+        transactionsDataSource.sortType = sortType
+        tableView.reloadData()
+    }
 }

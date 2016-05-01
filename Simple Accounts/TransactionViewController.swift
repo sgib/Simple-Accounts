@@ -84,7 +84,7 @@ class TransactionViewController: UIViewController {
     }
     
     private func loadTransactionData() {
-        transactionsDataSource.loadDataForRange(currentRange)
+        transactionsDataSource.setData(account.transactionsForRange(currentRange))
         transactionTableView.reloadData()
         updateBalanceDisplays()
     }
@@ -103,7 +103,7 @@ class TransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        transactionsDataSource = TransactionsDataSource(account: account, formatter: formatter, sortType: settingsProvider.transactionSortType)
+        transactionsDataSource = TransactionsDataSource(formatter: formatter, sortType: settingsProvider.transactionSortType)
         transactionTableView.dataSource = transactionsDataSource
         
         changeRangeTo(settingsProvider.transactionDateRange)

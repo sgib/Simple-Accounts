@@ -24,6 +24,15 @@ class ReportListTableViewController: UITableViewController {
     var categoryStore: CategoryStore!
     var formatter: AccountsFormatter!
     
+    //MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destVC = segue.destinationViewController as? ReportTransactionDetailsTableViewController {
+            destVC.formatter = formatter
+            destVC.transactionData = reportData[tableView.indexPathForSelectedRow!.row]
+        }
+    }
+    
     //MARK: - Private functions
     
     private func generateReport(range: CustomTransactionDateRange) {

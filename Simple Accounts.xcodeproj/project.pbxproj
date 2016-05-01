@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B026C4C31CD61943000E37F3 /* ReportTransactionDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026C4C21CD61943000E37F3 /* ReportTransactionDetailsTableViewController.swift */; };
 		B03566851CB109FA00E0F1FB /* AddEditMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03566841CB109FA00E0F1FB /* AddEditMode.swift */; };
 		B03CBE801CBA7F76008FCBC4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03CBE7F1CBA7F76008FCBC4 /* Extensions.swift */; };
 		B044DC091CCE856300C8C175 /* TransactionsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044DC081CCE856300C8C175 /* TransactionsDataSource.swift */; };
@@ -142,6 +143,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B026C4C21CD61943000E37F3 /* ReportTransactionDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTransactionDetailsTableViewController.swift; sourceTree = "<group>"; };
 		B03566841CB109FA00E0F1FB /* AddEditMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditMode.swift; sourceTree = "<group>"; };
 		B03CBE7F1CBA7F76008FCBC4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B044DC081CCE856300C8C175 /* TransactionsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsDataSource.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				B082C2301CAEE8B400B6DC29 /* AddCategoryViewController.swift */,
 				B073BFD61CC7F974008E32C4 /* ReportOptionsTableViewController.swift */,
 				B073BFD41CC7F95F008E32C4 /* ReportListTableViewController.swift */,
+				B026C4C21CD61943000E37F3 /* ReportTransactionDetailsTableViewController.swift */,
 				B0BEEFE31CC4BB5100D207BB /* SettingsViewController.swift */,
 				B07FFE8B1CD1F53C00A9A819 /* SortPickerViewController.swift */,
 				B05880281CD28188007B590F /* RangePickerViewController.swift */,
@@ -691,6 +694,7 @@
 				B051E82B1CA557BE006FED78 /* Transaction+CoreDataProperties.swift in Sources */,
 				B03566851CB109FA00E0F1FB /* AddEditMode.swift in Sources */,
 				B0B6DE091CD496CE00FD5A9C /* AccountSettingsProvider.swift in Sources */,
+				B026C4C31CD61943000E37F3 /* ReportTransactionDetailsTableViewController.swift in Sources */,
 				B0D0180C1CBA39D6007B1D9A /* CategorySelectionViewController.swift in Sources */,
 				B03CBE801CBA7F76008FCBC4 /* Extensions.swift in Sources */,
 				B0BEEFE41CC4BB5100D207BB /* SettingsViewController.swift in Sources */,

@@ -93,6 +93,7 @@
                                     <outlet property="sumAggregateLabel" destination="5QN-Of-4VD" id="b8c-HI-KHM"/>
                                     <outlet property="sumExpensesLabel" destination="Tdd-4j-Whv" id="YFL-Ki-V9i"/>
                                     <outlet property="sumIncomeLabel" destination="yel-b7-x6Z" id="MQ5-Rp-zlP"/>
+                                    <segue destination="ckF-d0-mEn" kind="show" identifier="ReportTransactionDetailsSegue" id="8si-cZ-hKJ"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReportTotalCell" id="BKz-77-NXo" customClass="ReportTotalTableViewCell" customModule="Simple_Accounts" customModuleProvider="target">
@@ -176,6 +177,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2nC-EO-Osa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1562" y="-1169"/>
+        </scene>
+        <!--Report Transaction Details Table View Controller-->
+        <scene sceneID="Aby-eR-mBJ">
+            <objects>
+                <tableViewController id="ckF-d0-mEn" customClass="ReportTransactionDetailsTableViewController" customModule="Simple_Accounts" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="WJZ-Z3-sXD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionCell" id="26J-Xs-tpw" customClass="TransactionTableViewCell" customModule="Simple_Accounts" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="26J-Xs-tpw" id="rnt-bb-Nia">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MQW-3D-tbF">
+                                            <rect key="frame" x="15" y="5" width="32" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="32" id="2Mr-Wu-ooT"/>
+                                                <constraint firstAttribute="height" constant="32" id="f9o-cR-dCf"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdY-cl-2OU">
+                                            <rect key="frame" x="552" y="12" width="40" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4r-n6-Xbk">
+                                            <rect key="frame" x="62" y="5" width="40" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkg-iF-zQg">
+                                            <rect key="frame" x="62" y="6" width="37" height="18"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ab0-G1-goH">
+                                            <rect key="frame" x="62" y="25" width="29" height="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dkg-iF-zQg" firstAttribute="top" secondItem="rnt-bb-Nia" secondAttribute="topMargin" constant="-2" id="9Ki-La-6aX"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="AdY-cl-2OU" secondAttribute="trailing" id="9n9-U3-PpP"/>
+                                        <constraint firstItem="MQW-3D-tbF" firstAttribute="leading" secondItem="rnt-bb-Nia" secondAttribute="leadingMargin" constant="7" id="GW8-jm-ZgP"/>
+                                        <constraint firstItem="Ab0-G1-goH" firstAttribute="top" secondItem="rnt-bb-Nia" secondAttribute="topMargin" constant="17" id="HD1-Ih-2fI"/>
+                                        <constraint firstItem="c4r-n6-Xbk" firstAttribute="leading" secondItem="rnt-bb-Nia" secondAttribute="leadingMargin" constant="54" id="HlF-Lf-cJj"/>
+                                        <constraint firstItem="c4r-n6-Xbk" firstAttribute="top" secondItem="rnt-bb-Nia" secondAttribute="topMargin" constant="-3" id="WTf-PK-kdU"/>
+                                        <constraint firstItem="Ab0-G1-goH" firstAttribute="leading" secondItem="rnt-bb-Nia" secondAttribute="leadingMargin" constant="54" id="XSj-Xt-lNZ"/>
+                                        <constraint firstItem="dkg-iF-zQg" firstAttribute="leading" secondItem="rnt-bb-Nia" secondAttribute="leadingMargin" constant="54" id="awX-F8-Jjz"/>
+                                        <constraint firstItem="MQW-3D-tbF" firstAttribute="top" secondItem="rnt-bb-Nia" secondAttribute="topMargin" constant="-3" id="jFA-Vt-ZhL"/>
+                                        <constraint firstItem="AdY-cl-2OU" firstAttribute="centerY" secondItem="rnt-bb-Nia" secondAttribute="centerY" id="kBx-nb-bhm"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="amountLabel" destination="AdY-cl-2OU" id="uTW-cT-7qY"/>
+                                    <outlet property="categoryImageView" destination="MQW-3D-tbF" id="nQu-UR-8cr"/>
+                                    <outlet property="categoryLabel" destination="c4r-n6-Xbk" id="pUi-yl-bCo"/>
+                                    <outlet property="dateLabel" destination="Ab0-G1-goH" id="Lea-lI-2rh"/>
+                                    <outlet property="descriptionLabel" destination="dkg-iF-zQg" id="YWT-5u-OcX"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ckF-d0-mEn" id="vfp-1U-wEX"/>
+                            <outlet property="delegate" destination="ckF-d0-mEn" id="fQU-c5-2MP"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LN6-av-818" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2276" y="-1729"/>
         </scene>
         <!--Report-->
         <scene sceneID="0dZ-UM-dYJ">
@@ -556,6 +636,11 @@
                                                 <constraint firstItem="LIb-6h-B4a" firstAttribute="centerY" secondItem="ILW-CE-xkU" secondAttribute="centerY" id="uQS-1r-BaJ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="LIb-6h-B4a" secondAttribute="trailing" id="usE-HN-KAN"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="hWb-Tk-Q36"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="8"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -565,7 +650,6 @@
                                             <outlet property="categoryLabel" destination="EQj-nD-IpT" id="X18-SH-rsZ"/>
                                             <outlet property="dateLabel" destination="Nny-mG-YAI" id="j9y-5R-XsX"/>
                                             <outlet property="descriptionLabel" destination="UBO-kq-vmX" id="xdL-G2-0VP"/>
-                                            <outlet property="imageView" destination="icF-DB-ZeT" id="TgM-oi-8Xh"/>
                                             <segue destination="Mph-PX-lsl" kind="presentation" identifier="Edit Transaction" modalPresentationStyle="formSheet" id="vOH-yT-y6V"/>
                                         </connections>
                                     </tableViewCell>
@@ -1413,9 +1497,9 @@ http://www.iconarchive.com/show/ios7-icons-by-icons8/Very-Basic-Settings-icon.ht
         <image name="TransactionsFilled" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vOH-yT-y6V"/>
-        <segue reference="26c-sm-g1t"/>
         <segue reference="N3z-S6-86g"/>
+        <segue reference="qKw-0A-bBB"/>
+        <segue reference="26c-sm-g1t"/>
         <segue reference="tMs-gw-hu3"/>
     </inferredMetricsTieBreakers>
 </document>

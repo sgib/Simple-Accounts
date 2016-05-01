@@ -14,7 +14,6 @@ class TransactionsDataSource: NSObject, UITableViewDataSource {
 
     //MARK: - Dependencies
     
-    private let account: Account
     private (set) var currentTransactions = TransactionCollection()
     var formatter: AccountsFormatter
     var sortType: TransactionSortType {
@@ -23,10 +22,10 @@ class TransactionsDataSource: NSObject, UITableViewDataSource {
         }
     }
     
-    //MARK: - Functions 
+    //MARK: - Functions
     
-    func loadDataForRange(dateRange: StandardTransactionDateRange) {
-        currentTransactions = account.transactionsForRange(dateRange)
+    func setData(transactionData: TransactionCollection) {
+        currentTransactions = transactionData
         sortTransactions()
     }
     
@@ -38,8 +37,7 @@ class TransactionsDataSource: NSObject, UITableViewDataSource {
     
     //MARK: - Lifecycle
     
-    init(account: Account, formatter: AccountsFormatter, sortType: TransactionSortType) {
-        self.account = account
+    init(formatter: AccountsFormatter, sortType: TransactionSortType) {
         self.formatter = formatter
         self.sortType = sortType
     }

@@ -15,7 +15,7 @@ class ReportListTableViewController: UITableViewController {
     private let emptyReuseID = "ReportEmptyCell"
     private var incomeTotal: Money = Money.zero()
     private var expenseTotal: Money = Money.zero()
-    private var reportData: [TransactionCollection] = []
+    private var reportData = [TransactionCollection]()
     
     //MARK: - Dependencies
     

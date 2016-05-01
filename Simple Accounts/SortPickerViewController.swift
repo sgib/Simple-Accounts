@@ -16,6 +16,7 @@ class SortPickerViewController: UIViewController {
 
     //MARK: Dependencies
     
+    var sortOptions: [TransactionSortType] = TransactionSortType.allCases
     var sortType: TransactionSortType!
     weak var delegate: TransactionSortPickerDelegate?
     
@@ -27,7 +28,7 @@ class SortPickerViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if let selectedRow = TransactionSortType.allCases.indexOf(sortType) {
+        if let selectedRow = sortOptions.indexOf(sortType) {
             sortPicker.selectRow(selectedRow, inComponent: 0, animated: true)
         }
     }
@@ -41,18 +42,18 @@ extension SortPickerViewController: UIPickerViewDataSource {
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return TransactionSortType.allCases.count
+        return sortOptions.count
     }
 }
 
 //MARK: - Sort picker delegate
 extension SortPickerViewController: UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return TransactionSortType.allCases[row].description
+        return sortOptions[row].description
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        sortType = TransactionSortType.allCases[row]
+        sortType = sortOptions[row]
         delegate?.sortPicker(self, didChangeSortTo: sortType)
     }
 }

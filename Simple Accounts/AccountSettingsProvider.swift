@@ -12,6 +12,8 @@ class AccountSettingsProvider {
     private let sortTypeKey = "accountSettingsProviderSortTypeKey"
     private let dateRangeStartDateKey = "accountSettingsProviderDateRangeStartDateKey"
     private let dateRangeSizeKey = "accountSettingsProviderDateRangeSizeKey"
+    private let reportDateRangeStartDateKey = "accountSettingsProviderReportDateRangeStartDateKey"
+    private let reportDateRangeEndDateKey = "accountSettingsProviderReportDateRangeEndDateKey"
     
     private let defaultSortType = TransactionSortType.DateOldestFirst
     private let defaultRangeSize = StandardTransactionDateRange.Size.Month
@@ -19,11 +21,20 @@ class AccountSettingsProvider {
     
     var transactionSortType: TransactionSortType
     var transactionDateRange: StandardTransactionDateRange
+    var reportDateRange: CustomTransactionDateRange?
     
     func saveChanges() {
-        NSUserDefaults.standardUserDefaults().setObject(transactionSortType.rawValue, forKey: sortTypeKey)
-        NSUserDefaults.standardUserDefaults().setObject(transactionDateRange.startDate, forKey: dateRangeStartDateKey)
-        NSUserDefaults.standardUserDefaults().setObject(transactionDateRange.size.rawValue, forKey: dateRangeSizeKey)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(transactionSortType.rawValue, forKey: sortTypeKey)
+        defaults.setObject(transactionDateRange.startDate, forKey: dateRangeStartDateKey)
+        defaults.setObject(transactionDateRange.size.rawValue, forKey: dateRangeSizeKey)
+        if let reportRange = reportDateRange {
+            defaults.setObject(reportRange.startDate, forKey: reportDateRangeStartDateKey)
+            defaults.setObject(reportRange.endDate, forKey: reportDateRangeEndDateKey)
+        } else {
+            defaults.removeObjectForKey(reportDateRangeStartDateKey)
+            defaults.removeObjectForKey(reportDateRangeEndDateKey)
+        }
     }
     
     init() {
@@ -39,6 +50,10 @@ class AccountSettingsProvider {
             transactionDateRange = StandardTransactionDateRange.rangeFromDate(startDate, withSize: rangeSize)
         } else {
             transactionDateRange = StandardTransactionDateRange.rangeFromDate(TransactionDate.Today, withSize: defaultRangeSize)
+        }
+        if let reportStartDate = defaults.objectForKey(reportDateRangeStartDateKey) as? TransactionDate,
+            reportEndDate = defaults.objectForKey(reportDateRangeEndDateKey) as? TransactionDate {
+            reportDateRange = CustomTransactionDateRange(startDate: reportStartDate, endDate: reportEndDate)
         }
     }
 }

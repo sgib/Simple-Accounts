@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         reportOptionController.account = account
                         reportOptionController.categoryStore = categoryStore
                         reportOptionController.formatter = formatter
+                        reportOptionController.settingsProvider = settingsProvider
                         reportListController.navigationItem.leftBarButtonItem = split.displayModeButtonItem()
                     }
                 }

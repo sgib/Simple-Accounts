@@ -23,6 +23,7 @@ class ReportOptionsTableViewController: UITableViewController {
     var account: Account!
     var categoryStore: CategoryStore!
     var formatter: AccountsFormatter!
+    var settingsProvider: AccountSettingsProvider!
     
     //MARK: - Outlets
     
@@ -48,7 +49,9 @@ class ReportOptionsTableViewController: UITableViewController {
             destVC.account = account
             destVC.categoryStore = categoryStore
             destVC.formatter = formatter
-            destVC.reportRange = generateReportRange()
+            let reportRange = generateReportRange()
+            settingsProvider.reportDateRange = reportRange
+            destVC.reportRange = reportRange
             destVC.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
         }
     }
@@ -101,6 +104,11 @@ class ReportOptionsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if let reportRange = settingsProvider.reportDateRange {
+            startDatePicker.setDate(reportRange.startDate, animated: false)
+            endDatePicker.setDate(reportRange.endDate, animated: false)
+            performSegueWithIdentifier(showReportSegueID, sender: self)
+        }
         dateChanged()
     }
 
